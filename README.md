@@ -43,11 +43,11 @@ Proyecto
       <td style="padding: 8px 16px;;">Santur Tello, Andrea Elizabeth</td>
     </tr>
     <tr>
-      <td style="padding: 8px 16px;">U20221E617 </td>
+      <td style="padding: 8px 16px;">U20221E617</td>
       <td style="padding: 8px 16px;">Verona Flores, Ítalo Sebastián</td>
     </tr>
     <tr>
-      <td style="padding: 8px 16px;">U202117377 </td>
+      <td style="padding: 8px 16px;">U202117377</td>
       <td style="padding: 8px 16px;">Arévalo Meza, John Telesforo</td>
     </tr>
   </tbody>
