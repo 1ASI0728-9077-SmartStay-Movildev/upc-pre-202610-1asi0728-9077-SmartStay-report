@@ -40,7 +40,7 @@ Proyecto
     </tr>
     <tr>
       <td style="padding: 8px 16px;">U202310988</td>
-      <td style="padding: 8px 16px;;"> Santur Tello, Andrea Elizabeth</td>
+      <td style="padding: 8px 16px;;">Santur Tello, Andrea Elizabeth</td>
     </tr>
     <tr>
       <td style="padding: 8px 16px;">U20221E617 </td>
