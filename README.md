@@ -68,6 +68,7 @@ Proyecto
 |   0.1   | 15/09/2026 | Howard Robles, Guillermo Arturo        | Creacion del reporte inicial y el startup profile.                                    | 
 |   0.2    | 15/09/2026 | Howard Robles, Guillermo Arturo        | Creación del solution profile                                                         | 
 |   0.3     | 16/09/2026    | Santur Tello, Andrea Elizabeth | Creación del competitive analysis and competitors   |
+| 0.4 | 17/09/2026 | Howard Robles, Guillermo Arturo | Creacion del registro de versiones | 
 
 ---
 
