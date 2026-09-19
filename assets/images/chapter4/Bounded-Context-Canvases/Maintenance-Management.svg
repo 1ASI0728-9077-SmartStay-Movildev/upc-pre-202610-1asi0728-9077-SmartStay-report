@@ -1,0 +1,243 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 550" width="100%" height="100%" style="background:#ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <style>
+      .canvas-border { fill: #ffffff; stroke: #1e293b; stroke-width: 2.5; }
+      .inner-line { stroke: #334155; stroke-width: 1.5; fill: none; }
+      
+      /* Tipografía de encabezados y secciones */
+      .canvas-title { font-size: 19px; font-weight: 800; fill: #0f172a; }
+      .canvas-name { font-size: 19px; font-weight: 500; fill: #1e293b; }
+      .section-title { font-size: 13.5px; font-weight: 700; fill: #0f172a; }
+      .section-subtitle { font-size: 9px; fill: #64748b; }
+      .col-header { font-size: 11px; font-weight: 600; fill: #475569; text-anchor: middle; }
+      .canvas-desc { font-size: 9.8px; fill: #334155; }
+      .meta-text { font-size: 9.5px; fill: #334155; }
+      
+      /* Tarjetas delimitadas */
+      .box-blue { fill: #dbeafe; stroke: #93c5fd; stroke-width: 1.2; rx: 4; ry: 4; }
+      .box-yellow { fill: #fef08a; stroke: #fde047; stroke-width: 1.2; rx: 4; ry: 4; }
+      .box-green { fill: #dcfce7; stroke: #86efac; stroke-width: 1.2; rx: 4; ry: 4; }
+      .box-purple { fill: #ede9fe; stroke: #c4b5fd; stroke-width: 1.2; rx: 4; ry: 4; }
+      .box-dashed { fill: #ffffff; stroke: #94a3b8; stroke-width: 1; stroke-dasharray: 2.5, 2.5; rx: 3; ry: 3; }
+      
+      /* Tipografía interior calibrada */
+      .txt-title { font-size: 8.8px; font-weight: 700; fill: #0f172a; text-anchor: middle; }
+      .txt-sub { font-size: 7.8px; font-weight: 500; fill: #475569; text-anchor: middle; }
+      .txt-desc { font-size: 7px; fill: #334155; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <g transform="translate(15, 12)">
+    <!-- Marco Exterior General -->
+    <rect x="0" y="0" width="930" height="522" class="canvas-border" />
+    
+    <!-- ================= FILA 1: CABECERA ================= -->
+    <line x1="0" y1="42" x2="930" y2="42" class="inner-line" />
+    <text x="12" y="28" class="canvas-title">Name: <tspan class="canvas-name">Maintenance Management</tspan></text>
+    
+    <line x1="600" y1="0" x2="600" y2="42" class="inner-line" />
+    <text x="615" y="18" class="meta-text" font-weight="700">V1.0</text>
+    <text x="615" y="32" class="meta-text">Smart Stay – Bounded Context Canvas</text>
+    
+    <!-- Badge CC-BY -->
+    <g transform="translate(825, 11)">
+      <rect x="0" y="0" width="90" height="22" rx="3" fill="#000000" />
+      <circle cx="22" cy="11" r="7" fill="none" stroke="#ffffff" stroke-width="1.3" />
+      <text x="22" y="14" font-size="8.5" fill="#ffffff" font-weight="bold" text-anchor="middle">CC</text>
+      <circle cx="50" cy="11" r="7" fill="none" stroke="#ffffff" stroke-width="1.3" />
+      <circle cx="50" cy="8.5" r="2.2" fill="#ffffff" />
+      <path d="M 46 16 C 46 12.5, 54 12.5, 54 16 Z" fill="#ffffff" />
+      <text x="75" y="14" font-size="7.5" fill="#ffffff" font-weight="bold" text-anchor="middle">BY</text>
+    </g>
+
+    <!-- ================= FILA 2: METADATOS Y ROLES ================= -->
+    <line x1="0" y1="148" x2="930" y2="148" class="inner-line" />
+    <line x1="375" y1="42" x2="375" y2="148" class="inner-line" />
+    <line x1="740" y1="42" x2="740" y2="148" class="inner-line" />
+
+    <!-- Description -->
+    <text x="12" y="62" class="section-title">Description</text>
+    <text x="12" y="81" class="canvas-desc">Gestiona el registro, asignación, seguimiento y resolución</text>
+    <text x="12" y="94" class="canvas-desc">de incidencias técnicas y averías en habitaciones o áreas</text>
+    <text x="12" y="107" class="canvas-desc">comunes. Coordina con el equipo técnico y bloquea o</text>
+    <text x="12" y="120" class="canvas-desc">libera unidades para garantizar la calidad y seguridad</text>
+    <text x="12" y="133" class="canvas-desc">de la infraestructura hotelera.</text>
+
+    <!-- Strategic Classification -->
+    <text x="390" y="62" class="section-title">Strategic Classification</text>
+    <text x="390" y="86" class="meta-text" font-weight="700" fill="#64748b">Domain</text>
+    <text x="390" y="120" class="meta-text" font-weight="700">Supporting</text>
+    
+    <text x="505" y="86" class="meta-text" font-weight="700" fill="#64748b">Business Model</text>
+    <text x="505" y="120" class="meta-text" font-weight="700">Engagement</text>
+    
+    <text x="635" y="86" class="meta-text" font-weight="700" fill="#64748b">Evolution</text>
+    <text x="635" y="120" class="meta-text" font-weight="700">Custom built</text>
+
+    <!-- Domain Roles -->
+    <text x="755" y="62" class="section-title">Domain Roles</text>
+    <text x="755" y="90" class="meta-text" font-weight="700">Execution Context</text>
+    <text x="755" y="120" class="meta-text" font-weight="700">Gateway Context</text>
+
+    <!-- ================= FILA 3: COMUNICACIÓN Y DOMINIO ================= -->
+
+    <!-- COLUMNA 1: INBOUND COMMUNICATION -->
+    <text x="12" y="170" class="section-title">Inbound Communication</text>
+    <text x="58" y="193" class="col-header">Collaborator</text>
+    <text x="210" y="193" class="col-header">Messages</text>
+
+    <!-- Inbound Fila 1: Operational Staff -->
+    <rect x="15" y="206" width="88" height="40" class="box-blue" />
+    <text x="59" y="224" class="txt-title">Operational Staff</text>
+    <text x="59" y="236" class="txt-sub">(Mobile App)</text>
+    
+    <rect x="125" y="206" width="92" height="40" class="box-yellow" />
+    <text x="171" y="224" class="txt-title">Reportar Incidencia</text>
+    <text x="171" y="235" class="txt-title">Técnica</text>
+
+    <rect x="225" y="206" width="92" height="40" class="box-green" />
+    <text x="271" y="224" class="txt-title">Consultar Estado</text>
+    <text x="271" y="235" class="txt-title">de Reparación</text>
+
+    <!-- Inbound Fila 2: Front Desk -->
+    <rect x="15" y="258" width="88" height="40" class="box-blue" />
+    <text x="59" y="276" class="txt-title">Front Desk / Admin</text>
+    <text x="59" y="288" class="txt-sub">(Staff App)</text>
+    
+    <rect x="125" y="258" width="92" height="40" class="box-yellow" />
+    <text x="171" y="276" class="txt-title">Asignar Orden</text>
+    <text x="171" y="287" class="txt-title">de Trabajo</text>
+
+    <rect x="225" y="258" width="92" height="40" class="box-green" />
+    <text x="271" y="276" class="txt-title">Priorizar Falla</text>
+    <text x="271" y="287" class="txt-title">de Habitación</text>
+
+    <!-- Inbound Fila 3: Housekeeping Management -->
+    <rect x="15" y="310" width="88" height="40" class="box-blue" />
+    <text x="59" y="324" class="txt-title">Housekeeping</text>
+    <text x="59" y="336" class="txt-sub">Management</text>
+    
+    <rect x="125" y="310" width="92" height="40" class="box-yellow" />
+    <text x="171" y="324" class="txt-title">Notificar Daño</text>
+    <text x="171" y="336" class="txt-title">en Habitación</text>
+
+    <rect x="225" y="310" width="92" height="40" class="box-green" />
+    <text x="271" y="324" class="txt-title">Solicitar Visto</text>
+    <text x="271" y="336" class="txt-title">Bueno Técnico</text>
+
+    <!-- Inbound Fila 4: IoT Stay & Experience -->
+    <rect x="15" y="362" width="88" height="40" class="box-blue" />
+    <text x="59" y="376" class="txt-title">IoT Stay &amp;</text>
+    <text x="59" y="388" class="txt-sub">Experience</text>
+    
+    <rect x="125" y="362" width="92" height="40" class="box-yellow" />
+    <text x="171" y="376" class="txt-title">Alerta de Falla</text>
+    <text x="171" y="388" class="txt-title">de Actuador</text>
+
+    <rect x="225" y="362" width="92" height="40" class="box-green" />
+    <text x="271" y="376" class="txt-title">Registrar Batería</text>
+    <text x="271" y="388" class="txt-title">Baja de Cerradura</text>
+
+
+    <!-- COLUMNA 2: UBIQUITOUS LANGUAGE & BUSINESS DECISIONS -->
+    <rect x="338" y="158" width="254" height="352" fill="#ffffff" stroke="#334155" stroke-width="1.2" rx="3" />
+    
+    <!-- Subsección: Ubiquitous Language -->
+    <text x="465" y="176" class="section-title" text-anchor="middle">Ubiquitous Language</text>
+    <text x="465" y="188" class="section-subtitle" text-anchor="middle">Context-specific domain terminology</text>
+
+    <!-- Incidencia Técnica -->
+    <rect x="395" y="196" width="140" height="32" class="box-dashed" />
+    <text x="465" y="207" class="txt-title" style="font-size:8px;">Incidencia Técnica</text>
+    <text x="465" y="216" class="txt-desc">Avería reportada que compromete</text>
+    <text x="465" y="224" class="txt-desc">el equipamiento de una habitación.</text>
+
+    <!-- Orden de Trabajo & Activo -->
+    <rect x="350" y="234" width="110" height="34" class="box-dashed" />
+    <text x="405" y="245" class="txt-title" style="font-size:8px;">Orden de Trabajo</text>
+    <text x="405" y="254" class="txt-desc">Instrucción formal de reparación</text>
+    <text x="405" y="262" class="txt-desc">asignada a un técnico.</text>
+
+    <rect x="470" y="234" width="110" height="34" class="box-dashed" />
+    <text x="525" y="245" class="txt-title" style="font-size:8px;">Activo Físico</text>
+    <text x="525" y="254" class="txt-desc">Dispositivo o mobiliario sujeto</text>
+    <text x="525" y="262" class="txt-desc">a mantenimiento preventivo.</text>
+
+    <!-- Técnico de Mantenimiento & Habitación Reparada -->
+    <rect x="350" y="274" width="110" height="34" class="box-dashed" />
+    <text x="405" y="285" class="txt-title" style="font-size:7.8px;">Personal Técnico</text>
+    <text x="405" y="294" class="txt-desc">Especialista calificado para</text>
+    <text x="405" y="302" class="txt-desc">resolver desperfectos físicos.</text>
+
+    <rect x="470" y="274" width="110" height="34" class="box-dashed" />
+    <text x="525" y="285" class="txt-title" style="font-size:8px;">Falla Resuelta</text>
+    <text x="525" y="294" class="txt-desc">Inspección final que avala el</text>
+    <text x="525" y="302" class="txt-desc">restablecimiento funcional.</text>
+
+    <!-- Subsección: Business Decisions -->
+    <text x="465" y="331" class="section-title" text-anchor="middle">Business Decisions</text>
+    <text x="465" y="343" class="section-subtitle" text-anchor="middle">Key business rules, policies, and decisions</text>
+
+    <!-- Reglas de Negocio (Lilas) -->
+    <rect x="348" y="354" width="112" height="42" class="box-purple" />
+    <text x="404" y="367" class="txt-title" style="font-size:6.9px;">Una falla de alta severidad</text>
+    <text x="404" y="377" class="txt-title" style="font-size:6.9px;">bloquea de forma inmediata</text>
+    <text x="404" y="386" class="txt-title" style="font-size:6.9px;">la disponibilidad de</text>
+    <text x="404" y="394" class="txt-title" style="font-size:6.9px;">la habitación.</text>
+
+    <rect x="468" y="354" width="114" height="42" class="box-purple" />
+    <text x="525" y="369" class="txt-title" style="font-size:6.9px;">El cierre de una orden exige</text>
+    <text x="525" y="379" class="txt-title" style="font-size:6.9px;">adjuntar evidencia y reporte</text>
+    <text x="525" y="388" class="txt-title" style="font-size:6.9px;">del repuesto utilizado.</text>
+
+    <rect x="348" y="403" width="112" height="38" class="box-purple" />
+    <text x="404" y="416" class="txt-title" style="font-size:6.9px;">Toda avería eléctrica debe</text>
+    <text x="404" y="425" class="txt-title" style="font-size:6.9px;">notificarse a la administración</text>
+    <text x="404" y="434" class="txt-title" style="font-size:6.9px;">en menos de 10 minutos.</text>
+
+    <rect x="468" y="403" width="114" height="38" class="box-purple" />
+    <text x="525" y="416" class="txt-title" style="font-size:6.9px;">Una habitación reparada debe</text>
+    <text x="525" y="425" class="txt-title" style="font-size:6.9px;">pasar por higienización antes</text>
+    <text x="525" y="434" class="txt-title" style="font-size:6.9px;">de recibir nuevos huéspedes.</text>
+
+
+    <!-- COLUMNA 3: OUTBOUND COMMUNICATION -->
+    <text x="608" y="170" class="section-title">Outbound Communication</text>
+    <text x="680" y="193" class="col-header">Messages</text>
+    <text x="835" y="193" class="col-header">Collaborator</text>
+
+    <!-- Outbound Fila 1 -->
+    <rect x="622" y="206" width="116" height="40" class="box-yellow" />
+    <text x="680" y="224" class="txt-title">Habitación Marcada</text>
+    <text x="680" y="236" class="txt-sub">en Mantenimiento (Event)</text>
+    
+    <rect x="765" y="206" width="128" height="40" class="box-green" />
+    <text x="829" y="230" class="txt-title">Room Availability</text>
+
+    <!-- Outbound Fila 2 -->
+    <rect x="622" y="262" width="116" height="40" class="box-yellow" />
+    <text x="680" y="224" class="txt-title" transform="translate(0, 56)">Personal Técnico</text>
+    <text x="680" y="236" class="txt-sub" transform="translate(0, 56)">Notificado (Event)</text>
+    
+    <rect x="765" y="262" width="128" height="40" class="box-green" />
+    <text x="829" y="286" class="txt-title">Notification Service</text>
+
+    <!-- Outbound Fila 3 -->
+    <rect x="622" y="318" width="116" height="40" class="box-yellow" />
+    <text x="680" y="336" class="txt-title">Reparación Concluida</text>
+    <text x="680" y="348" class="txt-sub">(Event)</text>
+    
+    <rect x="765" y="318" width="128" height="40" class="box-green" />
+    <text x="829" y="333" class="txt-title">Housekeeping</text>
+    <text x="829" y="344" class="txt-title">Management</text>
+
+    <!-- Outbound Fila 4 -->
+    <rect x="622" y="374" width="116" height="40" class="box-yellow" />
+    <text x="680" y="392" class="txt-title">Falla Crítica Registrada</text>
+    <text x="680" y="404" class="txt-sub">(Event)</text>
+    
+    <rect x="765" y="374" width="128" height="40" class="box-green" />
+    <text x="829" y="392" class="txt-title">Analytics &amp;</text>
+    <text x="829" y="403" class="txt-title">Reporting</text>
+  </g>
+</svg>
