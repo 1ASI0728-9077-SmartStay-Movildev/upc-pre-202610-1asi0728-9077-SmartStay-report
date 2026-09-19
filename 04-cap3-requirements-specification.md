@@ -5,7 +5,18 @@
 ## 3.1. To-Be Scenario Mapping
 
 * **Segmento objetivo 1:** Administradores de Hoteles Boutique Pequeños
+
+<div style="text-align: center; margin: 20px 0;">
+    <img src="assets/images/chapter-3/as-is-1.png" alt="As-Is Scenario Mapping - Segmento 1" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px; padding: 5px;" />
+    <p style="font-size: 0.9em; color: #666; margin-top: 5px;"><em>Figura 3.1: Mapeo de escenario As-Is / To-Be para Administradores de Hoteles Boutique Pequeños</em></p>
+  </div>
+  
 * **Segmento objetivo 2:** Huéspedes de Hoteles
+
+<div style="text-align: center; margin: 20px 0;">
+    <img src="assets/images/chapter-3/as-is-2.png" alt="As-Is Scenario Mapping - Segmento 2" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px; padding: 5px;" />
+    <p style="font-size: 0.9em; color: #666; margin-top: 5px;"><em>Figura 3.2: Mapeo de escenario As-Is / To-Be para Huéspedes de Hoteles</em></p>
+  </div>
 
 ---
 
@@ -398,7 +409,10 @@
 
 ## 3.3. Impact Mapping
 
-*(Sección reservada para esquemas o diagramas de Impact Mapping)*
+<div style="text-align: center; margin: 20px 0;">
+  <img src="assets/images/chapter-3/ImpactMapping.png" alt="Impact Mapping Diagram" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 4px; padding: 5px;" />
+  <p style="font-size: 0.9em; color: #666; margin-top: 5px;"><em>Figura 3.3: Diagrama de Impact Mapping para Smart Stay</em></p>
+</div>
 
 ---
 
