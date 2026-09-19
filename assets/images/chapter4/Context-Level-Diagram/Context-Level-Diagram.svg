@@ -1,0 +1,184 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 950 860" width="100%" height="100%" style="background:#ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Filtro de elevación y sombra profesional -->
+    <filter id="c4-shadow" x="-6%" y="-6%" width="112%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08" />
+    </filter>
+
+    <!-- Marcador de flecha para conectores C4 -->
+    <marker id="c4-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#334155" />
+    </marker>
+
+    <style>
+      /* Título general del diagrama */
+      .diagram-title { font-size: 20px; font-weight: 800; fill: #0f172a; }
+
+      /* C4 Box: Person / Actor */
+      .person-box { fill: #8ec5fc; stroke: #4a90e2; stroke-width: 1.5; rx: 3; ry: 3; filter: url(#c4-shadow); }
+      .person-avatar-bg { fill: #ffffff; stroke: #3b82f6; stroke-width: 1.4; }
+
+      /* C4 Box: Software System Core */
+      .system-box { fill: #0284c7; stroke: #0369a1; stroke-width: 2; rx: 28; ry: 28; filter: url(#c4-shadow); }
+
+      /* C4 Box: External Systems */
+      .external-box { fill: #475569; stroke: #334155; stroke-width: 1.5; rx: 3; ry: 3; filter: url(#c4-shadow); }
+
+      /* Tipografía de estereotipos C4 */
+      .stereotype { font-size: 11px; font-weight: 600; text-anchor: middle; }
+      .st-person { fill: #1e3a8a; }
+      .st-system { fill: #e0f2fe; }
+      .st-ext { fill: #cbd5e1; }
+
+      /* Tipografía de nombres de componentes */
+      .name-person { font-size: 15px; font-weight: 800; fill: #0f172a; text-anchor: middle; }
+      .name-system { font-size: 22px; font-weight: 800; fill: #ffffff; text-anchor: middle; }
+      .name-ext { font-size: 14px; font-weight: 800; fill: #ffffff; text-anchor: middle; }
+
+      /* Tipografía de descripciones delimitadas */
+      .desc-person { font-size: 9.6px; fill: #1e293b; text-anchor: middle; line-height: 1.35; }
+      .desc-system { font-size: 11.5px; fill: #f0f9ff; text-anchor: middle; }
+      .desc-ext { font-size: 9.6px; fill: #f1f5f9; text-anchor: middle; }
+
+      /* Líneas y etiquetas de relación */
+      .c4-line { stroke: #334155; stroke-width: 1.4; fill: none; }
+      .rel-pill { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1; rx: 4; ry: 4; }
+      .rel-text { font-size: 9.8px; font-weight: 600; fill: #1e293b; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <!-- ================= TÍTULO ================= -->
+  <text x="35" y="42" class="diagram-title">Smart Stay – Context Level Diagram</text>
+
+  <!-- ================= LÍNEAS DE CONEXIÓN (CAPA BASE) ================= -->
+  <!-- Guest -> Smart Stay -->
+  <line x1="285" y1="270" x2="335" y2="390" class="c4-line" marker-end="url(#c4-arrow)" />
+
+  <!-- Staff -> Smart Stay -->
+  <line x1="665" y1="270" x2="615" y2="390" class="c4-line" marker-end="url(#c4-arrow)" />
+
+  <!-- Smart Stay -> OTA Platforms -->
+  <line x1="330" y1="565" x2="165" y2="675" class="c4-line" marker-end="url(#c4-arrow)" />
+
+  <!-- Smart Stay -> Notification Service -->
+  <line x1="475" y1="565" x2="475" y2="760" class="c4-line" marker-end="url(#c4-arrow)" />
+
+  <!-- Smart Stay -> IoT Devices -->
+  <line x1="620" y1="565" x2="785" y2="675" class="c4-line" marker-end="url(#c4-arrow)" />
+
+  <!-- ================= ETIQUETAS DE RELACIÓN ================= -->
+  <!-- Rel: Guest -> System -->
+  <g transform="translate(145, 290)">
+    <rect x="0" y="0" width="290" height="22" class="rel-pill" />
+    <text x="145" y="15" class="rel-text">Searches rooms, makes reservations, and requests services</text>
+  </g>
+
+  <!-- Rel: Staff -> System -->
+  <g transform="translate(535, 318)">
+    <rect x="0" y="0" width="235" height="22" class="rel-pill" />
+    <text x="117" y="15" class="rel-text">Manages rooms, tasks, and operations</text>
+  </g>
+
+  <!-- Rel: System -> OTA -->
+  <g transform="translate(100, 615)">
+    <rect x="0" y="0" width="200" height="22" class="rel-pill" />
+    <text x="100" y="15" class="rel-text">Synchronizes reservations (API/JSON)</text>
+  </g>
+
+  <!-- Rel: System -> Notifications -->
+  <g transform="translate(380, 665)">
+    <rect x="0" y="0" width="190" height="22" class="rel-pill" />
+    <text x="95" y="15" class="rel-text">Sends notifications (HTTPS)</text>
+  </g>
+
+  <!-- Rel: System -> IoT -->
+  <g transform="translate(635, 615)">
+    <rect x="0" y="0" width="210" height="22" class="rel-pill" />
+    <text x="105" y="15" class="rel-text">Monitors and controls rooms (IoT/REST)</text>
+  </g>
+
+
+  <!-- ======================================================================
+       ACTORES (PERSONAS C4)
+       ====================================================================== -->
+
+  <!-- ACTOR 1: GUEST -->
+  <g transform="translate(160, 50)">
+    <rect x="0" y="0" width="250" height="220" class="person-box" />
+    <text x="125" y="30" class="stereotype st-person">«person»</text>
+    
+    <!-- Avatar Persona -->
+    <g transform="translate(125, 66)">
+      <circle cx="0" cy="0" r="16" class="person-avatar-bg" />
+      <path d="M -22 36 C -22 17, 22 17, 22 36 Z" class="person-avatar-bg" />
+    </g>
+
+    <text x="125" y="132" class="name-person">Guest</text>
+    <text x="125" y="152" class="desc-person">User who books rooms, performs digital</text>
+    <text x="125" y="167" class="desc-person">check-in/check-out, and requests services</text>
+    <text x="125" y="182" class="desc-person">from their mobile device.</text>
+  </g>
+
+  <!-- ACTOR 2: OPERATIONAL STAFF / ADMINISTRATOR -->
+  <g transform="translate(540, 50)">
+    <rect x="0" y="0" width="250" height="220" class="person-box" />
+    <text x="125" y="30" class="stereotype st-person">«person»</text>
+    
+    <!-- Avatar Persona -->
+    <g transform="translate(125, 66)">
+      <circle cx="0" cy="0" r="16" class="person-avatar-bg" />
+      <path d="M -22 36 C -22 17, 22 17, 22 36 Z" class="person-avatar-bg" />
+    </g>
+
+    <text x="125" y="125" class="name-person">Operational Staff/</text>
+    <text x="125" y="142" class="name-person">Administrator</text>
+    <text x="125" y="162" class="desc-person">Manages rooms, coordinates</text>
+    <text x="125" y="177" class="desc-person">housekeeping and maintenance, and</text>
+    <text x="125" y="192" class="desc-person">supervises hotel operations in real time.</text>
+  </g>
+
+
+  <!-- ======================================================================
+       SISTEMA CENTRAL: SMART STAY (SOFTWARE SYSTEM)
+       ====================================================================== -->
+  <g transform="translate(235, 390)">
+    <rect x="0" y="0" width="480" height="175" class="system-box" />
+    <text x="240" y="48" class="stereotype st-system">«system»</text>
+    <text x="240" y="85" class="name-system">Smart Stay</text>
+    <text x="240" y="122" class="desc-system">Hotel management platform that integrates reservations, operations, and</text>
+    <text x="240" y="139" class="desc-system">guest experience through mobile applications and IoT.</text>
+  </g>
+
+
+  <!-- ======================================================================
+       SISTEMAS EXTERNOS (EXTERNAL SYSTEMS C4)
+       ====================================================================== -->
+
+  <!-- EXTERNAL 1: OTA PLATFORMS -->
+  <g transform="translate(35, 675)">
+    <rect x="0" y="0" width="245" height="135" class="external-box" />
+    <text x="122" y="28" class="stereotype st-ext">«external system»</text>
+    <text x="122" y="52" class="name-ext">OTA Platforms</text>
+    <text x="122" y="80" class="desc-ext">Reservation and availability</text>
+    <text x="122" y="95" class="desc-ext">synchronization (Booking, Expedia,</text>
+    <text x="122" y="110" class="desc-ext">etc.)</text>
+  </g>
+
+  <!-- EXTERNAL 2: NOTIFICATION SERVICE -->
+  <g transform="translate(352, 760)">
+    <rect x="0" y="0" width="245" height="135" class="external-box" />
+    <text x="122" y="28" class="stereotype st-ext">«external system»</text>
+    <text x="122" y="52" class="name-ext">Notification Service</text>
+    <text x="122" y="85" class="desc-ext">Sends alerts, confirmations, and messages</text>
+    <text x="122" y="102" class="desc-ext">(push, SMS, or email)</text>
+  </g>
+
+  <!-- EXTERNAL 3: IOT DEVICES -->
+  <g transform="translate(670, 675)">
+    <rect x="0" y="0" width="245" height="135" class="external-box" />
+    <text x="122" y="28" class="stereotype st-ext">«external system»</text>
+    <text x="122" y="52" class="name-ext">IoT Devices</text>
+    <text x="122" y="82" class="desc-ext">Room monitoring and control (lighting,</text>
+    <text x="122" y="98" class="desc-ext">temperature, energy)</text>
+  </g>
+</svg>
