@@ -473,32 +473,86 @@ Para dar respuesta a los Architectural Drivers, se evaluaron tácticas y patrone
 ## 4.2. Strategic-Level Domain-Driven Design
 
 ### 4.2.1. EventStorming
-Para modelar el comportamiento del sistema y descubrir los límites del dominio, el equipo condujo un taller colaborativo de **EventStorming**. Mediante un enfoque iterativo estructurado en 10 pasos, se plasmaron los eventos de negocio, comandos, políticas, modelos de lectura y agrupaciones lógicas.
 
+<figure>
+  <img 
+    src="assets/images/chapter4/Strategic-Level%20Domain-Driven-Design/1.png" 
+    alt="Step 1: Unstructured Exploration - EventStorming" 
+    loading="lazy" 
+  />
+</figure>
 
-[DIAGRAMA: Tablero General de EventStorming de SmartStay]
-Ubicación del artefacto: Tablero colaborativo Miro/Mural (Link: [https://tinyurl.com/8529395x](https://tinyurl.com/8529395x?utm_source=gemini))
-Descripción visual: Muro horizontal secuencial con código de colores normalizado que contiene:
+<figure>
+  <img 
+    src="assets/images/chapter4/Strategic-Level%20Domain-Driven-Design/2.png" 
+    alt="Step 2: Timelines - EventStorming" 
+    loading="lazy" 
+  />
+</figure>
 
-* Naranja: Domain Events (verbos en pasado participio).
-* Azul: Commands (acciones disparadas por actores).
-* Amarillo: Agregados / Entidades del dominio.
-* Lila/Rosa: Políticas de negocio (Whenever... Then...).
-* Verde: Read Models (vistas y proyecciones de datos).
-* Rosa/Rojo: Pain Points (fricciones operativas identificadas).
-* Rosa Claro: External Systems (Pasarelas de Pago, Brokers IoT, OTAs).
+<figure>
+  <img 
+    src="assets/images/chapter4/Strategic-Level%20Domain-Driven-Design/3.png" 
+    alt="Step 3: Pain Points - EventStorming" 
+    loading="lazy" 
+  />
+</figure>
 
+<figure>
+  <img 
+    src="assets/images/chapter4/Strategic-Level%20Domain-Driven-Design/4.png" 
+    alt="Step 4: Pivotal Points - EventStorming" 
+    loading="lazy" 
+  />
+</figure>
 
-* **Step 1: Unstructured Exploration:** Los participantes propusieron eventos de negocio en notas naranjas escritas en tiempo pasado, capturando todo lo que sucede en el ciclo hotelero sin preocuparse por el orden inicial (ej. `RoomReserved`, `PaymentAccepted`, `DoorUnlocked`, `RoomCleaned`).
-* **Step 2: Timelines:** Se ordenaron cronológicamente los eventos de izquierda a derecha, estableciendo ramas divergentes para flujos concurrentes (flujo del huésped vs. flujo de operaciones del personal).
-* **Step 3: Pain Points:** Se identificaron fricciones críticas (en color rojo): overbooking manual, demoras de recepción, falta de verificación del estado de limpieza antes del acceso y llaves físicas extraviadas.
-* **Step 4: Pivotal Events:** Se marcaron los eventos de inflexión que delimitan fases del negocio: `UserRegistered`, `HotelConfigured`, `ReservationConfirmed`, `DigitalCheckInCompleted`, `RoomAccessGranted`, `MaintenanceTaskFinished`.
-* **Step 5: Commands:** Se ubicaron notas azules previas a los eventos, representando las intenciones y órdenes directas ejecutadas por los usuarios (ej. `RegisterHotel`, `ConfirmBooking`, `UnlockDoor`, `ReportIncident`).
-* **Step 6: Policies:** Se incorporaron notas lilas que formalizan reglas reactivas automáticas: *Whenever `DigitalCheckInCompleted` Then `GenerateDigitalKey`*, *Whenever `CheckOutCompleted` Then `CreateCleaningTask`*.
-* **Step 7: Read Models:** Se asociaron pantallas y proyecciones verdes que los usuarios consultan para tomar decisiones antes de disparar un comando (ej. `AvailableRoomsView`, `AssignedTasksDashboard`).
-* **Step 8: External Systems:** Se incorporaron sistemas externos en notas rectangulares: Pasarela de Pago (Stripe/Culqi), Proveedor de Mensajería Push (Firebase) y Broker MQTT de Dispositivos IoT.
-* **Step 9: Aggregates:** Se identificaron las fronteras de consistencia transaccional (notas amarillas) que encapsulan entidades y reglas: `Booking`, `Room`, `GuestProfile`, `SmartLock`, `OperationalTask`.
-* **Step 10: Bounded Contexts:** Se trazaron fronteras delimitadas finales sobre los agregados, identificando los 7 Bounded Contexts que conforman la solución SmartStay.
+<figure>
+  <img 
+    src="assets/images/chapter4/Strategic-Level%20Domain-Driven-Design/5.png" 
+    alt="Step 5: Commands - EventStorming" 
+    loading="lazy" 
+  />
+</figure>
+
+<figure>
+  <img 
+    src="assets/images/chapter4/Strategic-Level%20Domain-Driven-Design/6.png" 
+    alt="Step 6: Policies - EventStorming" 
+    loading="lazy" 
+  />
+</figure>
+
+<figure>
+  <img 
+    src="assets/images/chapter4/Strategic-Level%20Domain-Driven-Design/7.png" 
+    alt="Step 7: Read Models - EventStorming" 
+    loading="lazy" 
+  />
+</figure>
+
+<figure>
+  <img 
+    src="assets/images/chapter4/Strategic-Level%20Domain-Driven-Design/8.png" 
+    alt="Step 8: External Systems - EventStorming" 
+    loading="lazy" 
+  />
+</figure>
+
+<figure>
+  <img 
+    src="assets/images/chapter4/Strategic-Level%20Domain-Driven-Design/9.png" 
+    alt="Step 9: Aggregates - EventStorming" 
+    loading="lazy" 
+  />
+</figure>
+
+<figure>
+  <img 
+    src="assets/images/chapter4/Strategic-Level%20Domain-Driven-Design/10.png" 
+    alt="Step 10: Bounded Contexts - EventStorming" 
+    loading="lazy" 
+  />
+</figure>
 
 ---
 
