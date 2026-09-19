@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 950 560" width="100%" height="100%" style="background:#ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Marcador de flecha para las conexiones punteadas -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#555" />
+    </marker>
+    
+    <style>
+      .panel-border { fill: #ffffff; stroke: #7b4397; stroke-width: 1.5; }
+      .scenario-title { font-size: 17px; font-weight: 700; fill: #1f2937; }
+      .label-title { font-size: 11px; font-weight: 700; fill: #111827; text-anchor: middle; }
+      .label-sub { font-size: 9.5px; fill: #4b5563; text-anchor: middle; }
+      .flow-line { stroke: #6b7280; stroke-width: 1.5; stroke-dasharray: 4,4; fill: none; }
+      
+      /* Cajas de Command / Query */
+      .box-cmd { fill: #dbeafe; stroke: #93c5fd; stroke-width: 1.2; rx: 4; ry: 4; }
+      .text-cmd { font-size: 9.5px; font-weight: 700; fill: #1e3a8a; text-anchor: middle; }
+      
+      /* Cajas de Event */
+      .box-event { fill: #fef08a; stroke: #fde047; stroke-width: 1.2; rx: 4; ry: 4; }
+      .text-event { font-size: 9.5px; font-weight: 700; fill: #713f12; text-anchor: middle; }
+      
+      /* Bounded Contexts (Nubes/Óvalos) */
+      .shape-bc { fill: #f3e8ff; stroke: #c084fc; stroke-width: 1.5; }
+      .text-bc { font-size: 11px; font-weight: 700; fill: #581c87; text-anchor: middle; }
+      
+      /* External Systems / Services (Engranajes/Círculos) */
+      .shape-ext-circle { fill: #f3f4f6; stroke: #9ca3af; stroke-width: 1.5; }
+      .shape-ext-gear { fill: none; stroke: #6b7280; stroke-width: 1.5; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- Contenedor Principal con marco morado -->
+  <rect x="20" y="15" width="910" height="525" rx="4" class="panel-border" />
+  <text x="38" y="42" class="scenario-title">Scenario 05: Report Maintenance Issue</text>
+
+  <!-- ==========================================
+       ACTOR: OPERATIONAL STAFF
+       ========================================== -->
+  <g transform="translate(75, 160)">
+    <circle cx="0" cy="0" r="14" fill="#111827" />
+    <path d="M -18 35 C -18 17, 18 17, 18 35 Z" fill="#111827" />
+    <text x="0" y="55" class="label-title">Operational Staff</text>
+    <text x="0" y="68" class="label-sub">(Mobile App User)</text>
+  </g>
+
+  <!-- Línea 1: Staff -> App -->
+  <line x1="95" y1="190" x2="225" y2="190" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="120" y="150" width="88" height="42" class="box-cmd" />
+  <text x="164" y="167" class="text-cmd">1. Report</text>
+  <text x="164" y="178" class="text-cmd">Maintenance Issue</text>
+  <text x="164" y="189" class="text-cmd">(Command)</text>
+
+  <!-- External System: Smart Stay Mobile App (Top) -->
+  <g transform="translate(255, 190)">
+    <circle cx="0" cy="0" r="22" class="shape-ext-circle" />
+    <!-- Símbolo de Engranaje / Settings -->
+    <path d="M -4 -16 L 4 -16 L 5 -12 L 9 -10 L 13 -13 L 17 -8 L 14 -5 L 15 0 L 18 3 L 15 8 L 11 7 L 8 11 L 10 15 L 5 18 L 2 15 L -2 15 L -5 18 L -10 15 L -8 11 L -11 7 L -15 8 L -18 3 L -15 0 L -14 -5 L -17 -8 L -13 -13 L -9 -10 L -5 -12 Z" class="shape-ext-gear" />
+    <circle cx="0" cy="0" r="7" fill="#ffffff" stroke="#6b7280" stroke-width="1.5" />
+    <text x="0" y="38" class="label-title">Smart Stay Mobile App</text>
+    <text x="0" y="50" class="label-sub">(Android)</text>
+  </g>
+
+  <!-- Línea 2: App -> Maintenance Management -->
+  <line x1="285" y1="190" x2="415" y2="190" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="306" y="150" width="96" height="42" class="box-cmd" />
+  <text x="354" y="167" class="text-cmd">1. Send Maintenance</text>
+  <text x="354" y="178" class="text-cmd">Issue Report</text>
+  <text x="354" y="189" class="text-cmd">(Command)</text>
+
+  <!-- Bounded Context: Maintenance Management -->
+  <g transform="translate(478, 180)">
+    <path d="M -45 5 C -60 -5, -55 -28, -35 -30 C -25 -48, 10 -48, 25 -32 C 45 -35, 60 -15, 52 8 C 65 25, 45 48, 25 42 C 10 52, -25 50, -38 38 C -55 35, -60 18, -45 5 Z" class="shape-bc" />
+    <text x="0" y="0" class="text-bc">Maintenance</text>
+    <text x="0" y="14" class="text-bc">Management</text>
+  </g>
+
+  <!-- Línea 3: Maintenance Management -> Maintenance Issue Registered -->
+  <line x1="478" y1="135" x2="500" y2="78" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="502" y="42" width="112" height="45" class="box-event" />
+  <text x="558" y="59" class="text-event">2. Maintenance Issue</text>
+  <text x="558" y="70" class="text-event">Registered</text>
+  <text x="558" y="81" class="text-event">(Event)</text>
+
+  <!-- Línea 4: Event -> Room Availability -->
+  <line x1="614" y1="65" x2="685" y2="65" class="flow-line" marker-end="url(#arrow)" />
+
+  <!-- Bounded Context: Room Availability -->
+  <g transform="translate(725, 65)">
+    <path d="M -38 5 C -50 -5, -45 -22, -30 -25 C -20 -38, 10 -38, 20 -25 C 38 -28, 50 -12, 42 6 C 52 20, 38 38, 20 34 C 8 42, -20 40, -30 30 C -45 28, -50 15, -38 5 Z" class="shape-bc" />
+    <text x="0" y="3" class="text-bc" style="font-size:10.5px;">Room</text>
+    <text x="0" y="15" class="text-bc" style="font-size:10.5px;">Availability</text>
+  </g>
+
+  <!-- Línea 5: Room Availability -> Room Marked as Maintenance -->
+  <line x1="725" y1="102" x2="725" y2="152" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="676" y="152" width="98" height="42" class="box-event" />
+  <text x="725" y="169" class="text-event">3. Room Marked as</text>
+  <text x="725" y="180" class="text-event">Maintenance</text>
+  <text x="725" y="190" class="text-event">(Event)</text>
+
+  <!-- Línea 6: Event -> Notification Service -->
+  <line x1="725" y1="194" x2="725" y2="245" class="flow-line" marker-end="url(#arrow)" />
+
+  <!-- Línea 7: Maintenance Management -> Command Notify -->
+  <line x1="535" y1="210" x2="695" y2="265" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="575" y="240" width="90" height="42" class="box-cmd" />
+  <text x="620" y="256" class="text-cmd">4. Notify</text>
+  <text x="620" y="267" class="text-cmd">Administrator / Staff</text>
+  <text x="620" y="277" class="text-cmd">(Command)</text>
+
+  <!-- External System: Notification Service -->
+  <g transform="translate(725, 270)">
+    <circle cx="0" cy="0" r="22" class="shape-ext-circle" />
+    <path d="M -4 -16 L 4 -16 L 5 -12 L 9 -10 L 13 -13 L 17 -8 L 14 -5 L 15 0 L 18 3 L 15 8 L 11 7 L 8 11 L 10 15 L 5 18 L 2 15 L -2 15 L -5 18 L -10 15 L -8 11 L -11 7 L -15 8 L -18 3 L -15 0 L -14 -5 L -17 -8 L -13 -13 L -9 -10 L -5 -12 Z" class="shape-ext-gear" />
+    <circle cx="0" cy="0" r="7" fill="#ffffff" stroke="#6b7280" stroke-width="1.5" />
+    <text x="0" y="38" class="label-title">Notification Service</text>
+    <text x="0" y="50" class="label-sub">(Email / Push /</text>
+    <text x="0" y="60" class="label-sub">In-App Notification)</text>
+  </g>
+
+  <!-- Línea 8: Notification Service -> Staff / Admin Notified -->
+  <line x1="747" y1="270" x2="820" y2="270" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="820" y="248" width="86" height="42" class="box-event" />
+  <text x="863" y="265" class="text-event">5. Staff / Admin</text>
+  <text x="863" y="276" class="text-event">Notified</text>
+  <text x="863" y="286" class="text-event">(Event)</text>
+
+  <!-- Línea 9: Maintenance Management -> Maintenance Issue Visible in Dashboard -->
+  <line x1="478" y1="225" x2="478" y2="305" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="424" y="305" width="108" height="45" class="box-event" />
+  <text x="478" y="322" class="text-event">6. Maintenance Issue</text>
+  <text x="478" y="333" class="text-event">Visible in Dashboard</text>
+  <text x="478" y="343" class="text-event">(Event)</text>
+
+  <!-- Línea 10: Event -> App (Bottom) -->
+  <line x1="478" y1="350" x2="478" y2="400" class="flow-line" marker-end="url(#arrow)" />
+
+  <!-- External System: Smart Stay Mobile App (Bottom) -->
+  <g transform="translate(478, 425)">
+    <circle cx="0" cy="0" r="22" class="shape-ext-circle" />
+    <path d="M -4 -16 L 4 -16 L 5 -12 L 9 -10 L 13 -13 L 17 -8 L 14 -5 L 15 0 L 18 3 L 15 8 L 11 7 L 8 11 L 10 15 L 5 18 L 2 15 L -2 15 L -5 18 L -10 15 L -8 11 L -11 7 L -15 8 L -18 3 L -15 0 L -14 -5 L -17 -8 L -13 -13 L -9 -10 L -5 -12 Z" class="shape-ext-gear" />
+    <circle cx="0" cy="0" r="7" fill="#ffffff" stroke="#6b7280" stroke-width="1.5" />
+    <text x="0" y="38" class="label-title">Smart Stay Mobile App</text>
+    <text x="0" y="50" class="label-sub">(Android)</text>
+  </g>
+
+  <!-- Línea 11: App -> Issue Status Reflected in App -->
+  <line x1="456" y1="435" x2="368" y2="435" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="278" y="415" width="90" height="42" class="box-event" />
+  <text x="323" y="432" class="text-event">7. Issue Status</text>
+  <text x="323" y="443" class="text-event">Reflected in App</text>
+  <text x="323" y="453" class="text-event">(Event)</text>
+
+  <!-- Línea 12: Event -> Operational Staff (Retorno) -->
+  <path d="M 278 435 L 245 435 L 245 355 L 55 355 L 55 260" class="flow-line" marker-end="url(#arrow)" />
+
+  <!-- ==========================================
+       LEGEND
+       ========================================== -->
+  <g transform="translate(32, 385)">
+    <rect x="0" y="0" width="142" height="115" rx="3" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3,3" fill="#ffffff" />
+    <text x="12" y="18" style="font-size:10px; font-weight:700; fill:#1f2937;">Legend</text>
+    
+    <rect x="12" y="27" width="15" height="10" class="box-cmd" />
+    <text x="34" y="35" style="font-size:8.5px; fill:#374151;">Command / Query</text>
+    
+    <rect x="12" y="45" width="15" height="10" class="box-event" />
+    <text x="34" y="53" style="font-size:8.5px; fill:#374151;">Event</text>
+    
+    <path d="M 12 70 C 9 66, 12 62, 17 62 C 20 58, 27 58, 29 62 C 34 62, 36 67, 33 71 C 36 74, 32 78, 28 77 C 26 80, 20 80, 18 77 C 14 78, 10 74, 12 70 Z" class="shape-bc" />
+    <text x="34" y="72" style="font-size:8.5px; fill:#374151;">Bounded Context</text>
+    
+    <circle cx="20" cy="91" r="7" class="shape-ext-circle" />
+    <circle cx="20" cy="91" r="2.5" fill="#6b7280" />
+    <text x="34" y="94" style="font-size:8.5px; fill:#374151;">External System / Service</text>
+  </g>
+</svg>
