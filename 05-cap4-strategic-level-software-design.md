@@ -557,62 +557,69 @@ Para dar respuesta a los Architectural Drivers, se evaluaron tácticas y patrone
 ---
 
 ### 4.2.2. Candidate Context Discovery
-Aplicando la técnica *Look-for-pivotal-events*, se identificaron las fronteras naturales donde el lenguaje ubicuo cambia de significado y donde ocurren transiciones transaccionales determinantes.
 
+En esta sesión, el equipo aplicó la técnica de Candidate Context Discovery con el objetivo de descomponer el dominio general en subconjuntos con límites naturales o Bounded Contexts. Para lograrlo, se utilizó principalmente la técnica *Look-for-pivotal-events*, la cual consiste en identificar aquellos eventos clave que marcan un cambio de estado significativo en el proceso de negocio o un cambio de lenguaje dentro del dominio.
 
-[DIAGRAMA: Candidate Context Discovery Map]
-Descripción visual: Diagrama conceptual que agrupa los Pivotal Events identificados a lo largo de la línea temporal del negocio hotelero dentro de cápsulas funcionales preliminares, evidenciando las transiciones de responsabilidad.
+La sesión se dividió en fases progresivas para garantizar que los límites (*Boundaries*) de cada contexto estuvieran alineados con las reglas de negocio y las responsabilidades técnicas del sistema de gestión hotelera SmartStay.
 
-* **Fase de Identificación de Pivotal Events:**
-  1. `User Mode Selected` / `Identity Verified`: Transición de navegación anónima a contexto de seguridad.
-  2. `Hotel Setup Completed`: Transición de configuración a operatividad de planta física.
-  3. `Reservation Confirmed & Paid`: Transición del proceso comercial a la espera de estancia.
-  4. `Digital Check-in Completed`: Habilitación del entorno domótico y operacional para el huésped.
-  5. `Task Closed & Inspected`: Cierre del ciclo operativo interno.
+#### Paso 1: Identificación de Pivotal Events
+
+Analizando la línea de tiempo del EventStorming, identificamos los eventos que actúan como "puentes" o puntos de quiebre entre las diferentes fases del servicio. Estos eventos clave son:
+
+* **User mode selected:** Punto de quiebre entre la exploración general del servicio y el inicio de flujos específicos por rol.
+* **Administrator registered / Staff registered / Guest registered:** Eventos que cierran la fase de gestión de identidad e inician la operatividad.
+* **Hotel created in the system:** Marca el inicio de la configuración de infraestructura del hotel.
+* **Reservation completed:** Finaliza el proceso comercial e inicia el flujo de servicios al huésped.
+* **Digital check-in completed:** Activa las capacidades IoT de la habitación para el usuario.
+* **Tasks marked as completed:** Marca el fin de una iteración operativa del personal de limpieza o mantenimiento.
+
+#### Paso 2: Agrupación de Bounded Contexts (Candidate Contexts)
+
+A partir de estos eventos, agrupamos los comandos, agregados y sistemas externos en contextos específicos. A continuación, se detalla la propuesta de Bounded Contexts para SmartStay:
 
 <table>
   <thead>
     <tr>
-      <th>Bounded Context</th>
-      <th>Descripción de Responsabilidad</th>
-      <th>Eventos Clave Asociados</th>
+      <th style="width: 25%;">Bounded Context</th>
+      <th style="width: 45%;">Descripción</th>
+      <th style="width: 30%;">Eventos Clave</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><strong>IAM (Identity & Access Management)</strong></td>
-      <td>Gestiona la seguridad, emisión de credenciales, autenticación y autorización transversal para todos los roles (Admin, Staff, Huésped).</td>
-      <td>UserRegistered, AuthenticationSucceeded, AccessRevoked, TokenRefreshed.</td>
+      <td>Gestiona la seguridad, autenticación y autorización de todos los usuarios (Admin, Staff, Huésped).</td>
+      <td>Administrator registered, Secure authentication completed, Personal data encrypted.</td>
     </tr>
     <tr>
       <td><strong>Profiles</strong></td>
-      <td>Administra la información de identidad extendida, datos personales, preferencias de los huéspedes y legajos del personal.</td>
-      <td>ProfileCreated, PersonalDataUpdated, GuestPreferencesRecorded.</td>
+      <td>Administra la información detallada de los perfiles de usuario y el procesamiento de sus datos personales.</td>
+      <td>Data processing permitted, Staff/Guest registered.</td>
     </tr>
     <tr>
       <td><strong>Properties Management</strong></td>
-      <td>Encargado del catálogo físico del hotel: configuración de propiedades, plantas, tipología de habitaciones, comodidades y tarifas.</td>
-      <td>HotelCreated, RoomAdded, RoomStatusChanged, RoomAmenityConfigured.</td>
+      <td>Encargado de la gestión de la infraestructura física: creación de hoteles, configuración de habitaciones, tarifas y asignación de personal.</td>
+      <td>Hotel created, Rooms/Staff added, Available rooms checked.</td>
     </tr>
     <tr>
       <td><strong>Bookings & Payments</strong></td>
-      <td>Controla el ciclo comercial de reservas, cálculo de tarifas, procesamiento de pagos con pasarelas externas y balance financiero.</td>
-      <td>ReservationCreated, PaymentCaptured, BookingConfirmed, BookingCancelled.</td>
+      <td>Controla el flujo comercial, desde el contacto inicial en la Landing Page hasta la gestión de pagos y cálculo de ganancias.</td>
+      <td>SmartStay service contracted, Payment cards saved, Profits and losses calculated.</td>
     </tr>
     <tr>
       <td><strong>Operational Tasks</strong></td>
-      <td>Coordina las operaciones internas del hotel: órdenes de limpieza (*housekeeping*), mantenimiento técnico y resolución de incidencias.</td>
-      <td>CleaningTaskGenerated, MaintenanceTaskAssigned, IncidentReported, TaskCompleted.</td>
+      <td>Gestiona las actividades diarias del staff del hotel, como reportes de incidentes y gestión de tareas asignadas.</td>
+      <td>Assigned tasks viewed, Tasks marked as completed, Incidents reported.</td>
     </tr>
     <tr>
       <td><strong>IoT Stay & Experience</strong></td>
-      <td>Núcleo de la experiencia del huésped: habilitación de credenciales digitales y comunicación bidireccional con cerraduras y sensores de la habitación.</td>
-      <td>DigitalKeyIssued, DigitalKeyRevoked, RoomTemperatureSet, LightingModeChanged.</td>
+      <td>El Core de la solución. Gestiona la interacción digital del huésped con la habitación a través de IoT.</td>
+      <td>Digital check-in completed, Hotel digital key activated, Service review submitted.</td>
     </tr>
     <tr>
       <td><strong>Analytics</strong></td>
-      <td>Agrega eventos transaccionales para generar métricas de ocupación, ingresos (*RevPAR*), eficiencia del staff y satisfacción del cliente.</td>
-      <td>OccupancyMetricCalculated, StaffEfficiencyLogged, FinancialReportGenerated.</td>
+      <td>Recopila datos de uso y desempeño para generar reportes estratégicos para el administrador.</td>
+      <td>Reports reviewed, Hotel events viewed.</td>
     </tr>
   </tbody>
 </table>
