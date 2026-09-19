@@ -629,14 +629,13 @@ A partir de estos eventos, agrupamos los comandos, agregados y sistemas externos
 ### 4.2.3. Domain Message Flows Modeling
 El modelado de flujos de mensajes del dominio representa la coreografía y orquestación de comandos, eventos y consultas entre los diferentes Bounded Contexts.
 
-
-[DIAGRAMA: Domain Message Flow - Flujo Transaccional de Reserva y Pago]
-Descripción visual: Diagrama de secuencia de mensajes de dominio que muestra al Huésped enviando el comando CreateBooking a Bookings & Payments, la validación de inventario con Properties Management, la invocación de la Pasarela Externa de Pagos, la persistencia del agregado y la publicación del evento de dominio BookingConfirmed al Message Bus.
-
-[DIAGRAMA: Domain Message Flow - Check-in Digital y Activación IoT]
-Descripción visual: Diagrama que modela la interacción reactiva iniciada por el comando ExecuteDigitalCheckIn. Bookings & Payments emite DigitalCheckInCompleted, el cual es consumido por IoT Stay & Experience para invocar GenerateDigitalKey y por Operational Tasks para emitir alertas al staff.
-
-
+<figure>
+  <img 
+    src="assets/images/chapter4/Domain-Message-Flows-Modeling/Domain-Message-Flows-Modeling.svg" 
+    alt="Domain Message Flows Modeling - Escenarios de Reserva y Check-In Digital" 
+    loading="lazy" 
+  />
+</figure>
 
 #### Detalle de los Flujos de Mensajes Principales:
 1. **Flujo de Reserva y Pago:**
