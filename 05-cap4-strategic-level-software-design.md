@@ -680,95 +680,50 @@ El modelado de flujos de mensajes del dominio representa la coreografía y orque
 ### 4.2.4. Bounded Context Canvases
 A continuación se formalizan los Bounded Context Canvases para los dominios estructurales de la arquitectura SmartStay.
 
-#### Canvas 1: Bookings & Payments Context
-<table>
-  <tbody>
-    <tr><td colspan="2"><strong>Nombre del Contexto:</strong> Bookings & Payments</td></tr>
-    <tr><td colspan="2"><strong>Propósito de Negocio:</strong> Gestionar el ciclo de vida de las reservas, garantizar la consistencia en la venta de habitaciones y procesar las liquidaciones económicas.</td></tr>
-    <tr>
-      <td style="width: 50%;"><strong>Inbound Messages (Comandos / Eventos Entrantes):</strong><br>
-      • Command: <code>CreateReservation</code><br>
-      • Command: <code>CancelReservation</code><br>
-      • Command: <code>ProcessPayment</code><br>
-      • Event: <code>RoomPricedCalculated</code> (desde Properties)</td>
-      <td style="width: 50%;"><strong>Outbound Messages (Eventos Publicados):</strong><br>
-      • Event: <code>BookingCreatedEvent</code><br>
-      • Event: <code>BookingConfirmedEvent</code><br>
-      • Event: <code>PaymentCapturedEvent</code><br>
-      • Event: <code>DigitalCheckInCompletedEvent</code></td>
-    </tr>
-    <tr>
-      <td><strong>Lenguaje Ubicuo:</strong><br>
-      • <em>Folio:</em> Registro transaccional contable asociado a la estancia.<br>
-      • <em>Overbooking:</em> Condición de sobreventa prevenida por concurrencia pesimista/optimista.<br>
-      • <em>Rate Plan:</em> Esquema tarifario aplicable a la reserva.</td>
-      <td><strong>Agregados y Entidades:</strong><br>
-      • <strong>Aggregate Root:</strong> <code>Booking</code> (Entidades internas: <code>GuestSnapshot</code>, <code>StayPeriod</code>).<br>
-      • <strong>Aggregate Root:</strong> <code>PaymentTransaction</code> (Value Objects: <code>Money</code>, <code>PaymentReceipt</code>).</td>
-    </tr>
-  </tbody>
-</table>
+<figure>
+  <img 
+    src="assets/images/chapter4/Bounded-Context-Canvases/Bounded-Context-Canvases.svg" 
+    alt="Bounded Context Canvas - Reservation Management" 
+    loading="lazy" 
+  />
+  <figcaption>Figura 4.2.4.1 Bounded Context Canvas: Reservation Management.</figcaption>
+</figure>
 
-<br>
+<figure>
+  <img 
+    src="assets/images/chapter4/Bounded-Context-Canvases/Bounded-Context-Canvases-1.svg" 
+    alt="Bounded Context Canvas - Check-In / Check-Out Management" 
+    loading="lazy" 
+  />
+  <figcaption>Figura 4.2.4.2 Bounded Context Canvas: Check-In / Check-Out Management.</figcaption>
+</figure>
 
-#### Canvas 2: IoT Stay & Experience Context
-<table>
-  <tbody>
-    <tr><td colspan="2"><strong>Nombre del Contexto:</strong> IoT Stay & Experience</td></tr>
-    <tr><td colspan="2"><strong>Propósito de Negocio:</strong> Proveer autonomía de acceso al huésped y control del confort ambiental dentro de la habitación mediante dispositivos inteligentes.</td></tr>
-    <tr>
-      <td style="width: 50%;"><strong>Inbound Messages (Comandos / Eventos Entrantes):</strong><br>
-      • Event: <code>DigitalCheckInCompletedEvent</code> (desde Bookings)<br>
-      • Command: <code>UnlockDoorCommand</code><br>
-      • Command: <code>UpdateClimateCommand</code><br>
-      • Event: <code>TelemetryReceivedEvent</code> (desde MQTT Broker)</td>
-      <td style="width: 50%;"><strong>Outbound Messages (Eventos Publicados):</strong><br>
-      • Event: <code>DigitalKeyIssuedEvent</code><br>
-      • Event: <code>DigitalKeyRevokedEvent</code><br>
-      • Event: <code>RoomEnvironmentAdjustedEvent</code><br>
-      • Event: <code>LockHardwareAnomalyDetectedEvent</code></td>
-    </tr>
-    <tr>
-      <td><strong>Lenguaje Ubicuo:</strong><br>
-      • <em>Virtual Key:</em> Credencial temporal cifrada para control de acceso físico.<br>
-      • <em>Actuator:</em> Dispositivo electrónico que ejecuta cambios de estado físico.<br>
-      • <em>Telemetry:</em> Muestreo continuo de sensores de temperatura, presencia y luz.</td>
-      <td><strong>Agregados y Entidades:</strong><br>
-      • <strong>Aggregate Root:</strong> <code>DigitalKey</code> (Value Objects: <code>PasscodeToken</code>, <code>KeyValidityPeriod</code>).<br>
-      • <strong>Aggregate Root:</strong> <code>RoomEnvironmentController</code> (Entidades: <code>SensorNode</code>, <code>ActuatorNode</code>).</td>
-    </tr>
-  </tbody>
-</table>
+<figure>
+  <img 
+    src="assets/images/chapter4/Bounded-Context-Canvases/Bounded-Context-Canvas–Housekeeping-Management.svg" 
+    alt="Bounded Context Canvas - Housekeeping Management" 
+    loading="lazy" 
+  />
+  <figcaption>Figura 4.2.4.3 Bounded Context Canvas: Housekeeping Management.</figcaption>
+</figure>
 
-<br>
+<figure>
+  <img 
+    src="assets/images/chapter4/Bounded-Context-Canvases/Guest-Services.svg" 
+    alt="Bounded Context Canvas - Guest Services" 
+    loading="lazy" 
+  />
+  <figcaption>Figura 4.2.4.4 Bounded Context Canvas: Guest Services.</figcaption>
+</figure>
 
-#### Canvas 3: Operational Tasks Context
-<table>
-  <tbody>
-    <tr><td colspan="2"><strong>Nombre del Contexto:</strong> Operational Tasks</td></tr>
-    <tr><td colspan="2"><strong>Propósito de Negocio:</strong> Orquestar y fiscalizar el trabajo del personal de campo (limpieza, mantenimiento e inspección de habitaciones).</td></tr>
-    <tr>
-      <td style="width: 50%;"><strong>Inbound Messages (Comandos / Eventos Entrantes):</strong><br>
-      • Event: <code>CheckOutCompletedEvent</code> (desde Bookings)<br>
-      • Command: <code>AssignTaskCommand</code><br>
-      • Command: <code>ReportIncidentCommand</code><br>
-      • Command: <code>CompleteTaskCommand</code></td>
-      <td style="width: 50%;"><strong>Outbound Messages (Eventos Publicados):</strong><br>
-      • Event: <code>CleaningTaskCompletedEvent</code><br>
-      • Event: <code>RoomMarkedAsCleanEvent</code><br>
-      • Event: <code>MaintenanceIncidentEscalatedEvent</code></td>
-    </tr>
-    <tr>
-      <td><strong>Lenguaje Ubicuo:</strong><br>
-      • <em>Housekeeping:</em> Protocolo de higienización y orden de habitaciones.<br>
-      • <em>Incident Ticket:</em> Reporte de avería física de equipamiento en habitación.<br>
-      • <em>Turnaround Time:</em> Tiempo transcurrido entre check-out y habitación lista.</td>
-      <td><strong>Agregados y Entidades:</strong><br>
-      • <strong>Aggregate Root:</strong> <code>OperationalTask</code> (Value Objects: <code>TaskType</code>, <code>Priority</code>, <code>TaskState</code>).<br>
-      • <strong>Aggregate Root:</strong> <code>MaintenanceIncident</code> (Entidades: <code>IncidentLog</code>, <code>EvidenceAttachment</code>).</td>
-    </tr>
-  </tbody>
-</table>
+<figure>
+  <img 
+    src="assets/images/chapter4/Bounded-Context-Canvases/Maintenance-Management.svg" 
+    alt="Bounded Context Canvas - Maintenance Management" 
+    loading="lazy" 
+  />
+  <figcaption>Figura 4.2.4.5 Bounded Context Canvas: Maintenance Management.</figcaption>
+</figure>
 
 ---
 
