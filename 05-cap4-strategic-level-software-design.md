@@ -733,71 +733,14 @@ El Context Mapping define las relaciones semánticas, técnicas y organizacional
 
 
 
-[DIAGRAMA: Context Map Estratégico de SmartStay]
-Descripción visual: Mapa formal de Bounded Contexts que representa a los 7 dominios mediante elipses, explicitando las relaciones Upstream (U) / Downstream (D) y los patrones de integración utilizados:
-
-* IAM (U) -> [ACL] -> Profiles (D)
-* Profiles (U) -> [Conformist] -> Bookings & Payments (D)
-* Properties Management (U) -> [Customer/Supplier] -> Bookings & Payments (D)
-* Properties Management (U) -> [Customer/Supplier] -> Operational Tasks (D)
-* Bookings & Payments (U) -> [Customer/Supplier] -> Operational Tasks (D)
-* Bookings & Payments (U) -> [Customer/Supplier] -> IoT Stay & Experience (D)
-* Bookings & Payments (U) -> [ACL] -> Analytics (D)
-
-<table>
-  <thead>
-    <tr>
-      <th>Relación de Contextos</th>
-      <th>Upstream (U) / Downstream (D)</th>
-      <th>Patrón DDD de Integración</th>
-      <th>Justificación Técnica y de Dominio</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>IAM → Profiles</strong></td>
-      <td>IAM (U) / Profiles (D)</td>
-      <td>Anti-Corruption Layer (ACL)</td>
-      <td>IAM provee credenciales y tokens JWT de acceso. Profiles utiliza una capa ACL para traducir identidades a perfiles de usuario sin acoplar su modelo a los mecanismos de seguridad o esquemas del Identity Provider.</td>
-    </tr>
-    <tr>
-      <td><strong>Profiles → Bookings & Payments</strong></td>
-      <td>Profiles (U) / Bookings & Payments (D)</td>
-      <td>Conformist (CF)</td>
-      <td>El motor de reservas y cobros adopta directamente los identificadores y esquemas básicos de usuario y cliente provistos por Profiles para simplificar el enlace de folios comerciales.</td>
-    </tr>
-    <tr>
-      <td><strong>Properties Management → Bookings & Payments</strong></td>
-      <td>Properties Management (U) / Bookings & Payments (D)</td>
-      <td>Customer / Supplier (C/S)</td>
-      <td>Properties provee el catálogo, metadatos y tarifas base de las habitaciones. Bookings actúa como cliente negociando que la disponibilidad sea expuesta eficientemente para evitar bloqueos en reservas concurrentes.</td>
-    </tr>
-    <tr>
-      <td><strong>Properties Management → Operational Tasks</strong></td>
-      <td>Properties Management (U) / Operational Tasks (D)</td>
-      <td>Customer / Supplier (C/S)</td>
-      <td>Operational Tasks necesita conocer la topología de plantas y habitaciones del hotel para asignar cuadrillas de limpieza e inventariar activos de mantenimiento.</td>
-    </tr>
-    <tr>
-      <td><strong>Bookings & Payments → Operational Tasks</strong></td>
-      <td>Bookings & Payments (U) / Operational Tasks (D)</td>
-      <td>Customer / Supplier (C/S)</td>
-      <td>La ejecución de reservas, check-ins y check-outs condiciona directamente la generación y prioridad de órdenes de limpieza y revisión física de habitaciones.</td>
-    </tr>
-    <tr>
-      <td><strong>Bookings & Payments → IoT Stay & Experience</strong></td>
-      <td>Bookings & Payments (U) / IoT Stay & Experience (D)</td>
-      <td>Customer / Supplier (C/S)</td>
-      <td>El acceso digital y el control domótico solo se habilitan ante contratos de reserva válidos y check-in verificado, actuando IoT como consumidor de dichos eventos de ciclo de vida.</td>
-    </tr>
-    <tr>
-      <td><strong>Bookings & Payments → Analytics</strong></td>
-      <td>Bookings & Payments (U) / Analytics (D)</td>
-      <td>Anti-Corruption Layer (ACL)</td>
-      <td>Analytics ingiere métricas transaccionales (ingresos, ocupación, cancelaciones) mediante una capa anticorrupción que traduce esquemas relacionales/OLTP a modelos multidimensionales OLAP.</td>
-    </tr>
-  </tbody>
-</table>
+<figure>
+  <img 
+    src="assets/images/chapter4/Context-Map/Context-Map.svg" 
+    alt="Context Map Estratégico de SmartStay" 
+    loading="lazy" 
+  />
+  <figcaption>Figura 4.2.5.1. Context Map Estratégico de SmartStay.</figcaption>
+</figure>
 
 ---
 
