@@ -1,0 +1,235 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 950 1060" width="100%" height="100%" style="background:#ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#555" />
+    </marker>
+    <style>
+      .panel-border { fill: #ffffff; stroke: #7b4397; stroke-width: 1.5; }
+      .scenario-title { font-size: 16px; font-weight: bold; fill: #222; }
+      .label-title { font-size: 11px; font-weight: bold; fill: #111; text-anchor: middle; }
+      .label-sub { font-size: 9.5px; fill: #555; text-anchor: middle; }
+      .flow-line { stroke: #666; stroke-width: 1.5; stroke-dasharray: 4,4; fill: none; }
+      
+      .box-cmd { fill: #dbeafe; stroke: #93c5fd; stroke-width: 1.2; rx: 3; ry: 3; }
+      .text-cmd { font-size: 9.5px; font-weight: bold; fill: #1e3a8a; text-anchor: middle; }
+      
+      .box-event { fill: #fef08a; stroke: #fde047; stroke-width: 1.2; rx: 3; ry: 3; }
+      .text-event { font-size: 9.5px; font-weight: bold; fill: #713f12; text-anchor: middle; }
+      
+      .shape-bc { fill: #e9d5ff; stroke: #c084fc; stroke-width: 1.5; }
+      .text-bc { font-size: 10.5px; font-weight: bold; fill: #4c1d95; text-anchor: middle; }
+      
+      .shape-ext { fill: #f3f4f6; stroke: #9ca3af; stroke-width: 1.5; }
+      .text-ext { font-size: 10px; font-weight: bold; fill: #374151; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <!-- ==========================================
+       SCENARIO 03: REQUEST ROOM SERVICE
+       ========================================== -->
+  <rect x="25" y="20" width="900" height="470" rx="4" class="panel-border" />
+  <text x="45" y="45" class="scenario-title">Scenario 03: Request Room Service</text>
+
+  <!-- Actor: Guest -->
+  <circle cx="95" cy="180" r="14" fill="#111" />
+  <path d="M 75 215 C 75 197, 115 197, 115 215 Z" fill="#111" />
+  <text x="95" y="235" class="label-title">Guest</text>
+  <text x="95" y="248" class="label-sub">(Mobile App User)</text>
+
+  <!-- Flow Guest -> App -->
+  <line x1="115" y1="200" x2="255" y2="200" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="145" y="160" width="80" height="42" class="box-cmd" />
+  <text x="185" y="177" class="text-cmd">1. Request</text>
+  <text x="185" y="188" class="text-cmd">Room Service</text>
+  <text x="185" y="199" class="text-cmd">(Command)</text>
+
+  <!-- External System: Smart Stay Mobile App -->
+  <circle cx="280" cy="200" r="22" class="shape-ext" />
+  <text x="280" y="238" class="label-title">Smart Stay Mobile App</text>
+  <text x="280" y="250" class="label-sub">(Flutter)</text>
+
+  <!-- Flow App -> Guest Services -->
+  <line x1="305" y1="200" x2="445" y2="200" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="340" y="160" width="85" height="42" class="box-cmd" />
+  <text x="382" y="177" class="text-cmd">1. Register</text>
+  <text x="382" y="188" class="text-cmd">Service Request</text>
+  <text x="382" y="199" class="text-cmd">(Command)</text>
+
+  <!-- Bounded Context: Guest Services (Concierge) -->
+  <ellipse cx="510" cy="200" rx="60" ry="36" class="shape-bc" />
+  <text x="510" y="197" class="text-bc">Guest Services</text>
+  <text x="510" y="210" class="text-bc">(Concierge)</text>
+
+  <!-- Flow Guest Services -> Operational Task Management -->
+  <line x1="510" y1="164" x2="550" y2="85" class="flow-line" marker-end="url(#arrow)" />
+  <line x1="550" y1="85" x2="710" y2="85" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="560" y="55" width="88" height="45" class="box-event" />
+  <text x="604" y="72" class="text-event">2. Service Request</text>
+  <text x="604" y="83" class="text-event">Registered</text>
+  <text x="604" y="94" class="text-event">(Event)</text>
+
+  <!-- Bounded Context: Operational Task Management -->
+  <ellipse cx="760" cy="85" rx="65" ry="30" class="shape-bc" />
+  <text x="760" y="88" class="text-bc">Operational Task</text>
+  <text x="760" y="100" class="text-bc">Management</text>
+
+  <!-- Flow Operational Task -> Notification Service -->
+  <line x1="760" y1="115" x2="760" y2="225" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="725" y="145" width="70" height="42" class="box-event" />
+  <text x="760" y="162" class="text-event">3. Task Created</text>
+  <text x="760" y="174" class="text-event">(Event)</text>
+
+  <!-- Flow Guest Services -> Notification Service -->
+  <line x1="565" y1="215" x2="735" y2="245" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="625" y="210" width="75" height="42" class="box-cmd" />
+  <text x="662" y="226" class="text-cmd">4. Notify</text>
+  <text x="662" y="237" class="text-cmd">Relevant Staff</text>
+  <text x="662" y="247" class="text-cmd">(Command)</text>
+
+  <!-- External System: Notification Service -->
+  <circle cx="760" cy="245" r="22" class="shape-ext" />
+  <text x="760" y="280" class="label-title">Notification Service</text>
+  <text x="760" y="292" class="label-sub">(Email / Push /</text>
+  <text x="760" y="303" class="label-sub">In-App Notification)</text>
+
+  <!-- Event to Staff Notified -->
+  <line x1="782" y1="245" x2="855" y2="245" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="855" y="225" width="60" height="42" class="box-event" />
+  <text x="885" y="242" class="text-event">5. Staff</text>
+  <text x="885" y="253" class="text-event">Notified</text>
+  <text x="885" y="263" class="text-event">(Event)</text>
+
+  <!-- Flow Guest Services -> In-App Notification -->
+  <line x1="510" y1="236" x2="510" y2="395" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="465" y="280" width="95" height="50" class="box-event" />
+  <text x="512" y="297" class="text-event">6. Service Request</text>
+  <text x="512" y="308" class="text-event">Confirmed to Guest</text>
+  <text x="512" y="319" class="text-event">(Event)</text>
+
+  <!-- External System: Mobile App (In-App) -->
+  <circle cx="510" cy="415" r="22" class="shape-ext" />
+  <text x="510" y="448" class="label-title">Smart Stay Mobile App</text>
+  <text x="510" y="460" class="label-sub">(In-App Notification)</text>
+
+  <!-- Flow In-App -> Guest -->
+  <path d="M 488 415 L 235 415 L 235 270 L 95 270 L 95 255" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="310" y="390" width="80" height="42" class="box-event" />
+  <text x="350" y="407" class="text-event">7. Request in</text>
+  <text x="350" y="418" class="text-event">Progress</text>
+  <text x="350" y="428" class="text-event">(Event)</text>
+
+  <!-- Legend 03 -->
+  <rect x="45" y="365" width="145" height="110" rx="3" stroke="#999" stroke-width="1" stroke-dasharray="3,3" fill="#fff" />
+  <text x="55" y="382" style="font-size:10px; font-weight:bold; fill:#333;">Legend</text>
+  <rect x="55" y="390" width="14" height="9" class="box-cmd" />
+  <text x="75" y="398" style="font-size:8.5px; fill:#333;">Command / Query</text>
+  <rect x="55" y="407" width="14" height="9" class="box-event" />
+  <text x="75" y="415" style="font-size:8.5px; fill:#333;">Event</text>
+  <ellipse cx="62" cy="432" rx="7" ry="5" class="shape-bc" />
+  <text x="75" y="435" style="font-size:8.5px; fill:#333;">Bounded Context</text>
+  <circle cx="62" cy="452" r="6" class="shape-ext" />
+  <text x="75" y="455" style="font-size:8.5px; fill:#333;">External System / Service</text>
+
+
+  <!-- ==========================================
+       SCENARIO 04: UPDATE ROOM STATUS
+       ========================================== -->
+  <rect x="25" y="510" width="900" height="525" rx="4" class="panel-border" />
+  <text x="45" y="535" class="scenario-title">Scenario 04: Update Room Status</text>
+
+  <!-- Actor: Operational Staff -->
+  <circle cx="95" cy="690" r="14" fill="#111" />
+  <path d="M 75 725 C 75 707, 115 707, 115 725 Z" fill="#111" />
+  <text x="95" y="745" class="label-title">Operational Staff</text>
+  <text x="95" y="758" class="label-sub">(Mobile App User)</text>
+
+  <!-- Flow Staff -> App -->
+  <line x1="115" y1="710" x2="255" y2="710" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="145" y="670" width="80" height="42" class="box-cmd" />
+  <text x="185" y="687" class="text-cmd">1. Update</text>
+  <text x="185" y="698" class="text-cmd">Room Status</text>
+  <text x="185" y="709" class="text-cmd">(Command)</text>
+
+  <!-- External System: Smart Stay Mobile App (Android) -->
+  <circle cx="280" cy="710" r="22" class="shape-ext" />
+  <text x="280" y="748" class="label-title">Smart Stay Mobile App</text>
+  <text x="280" y="760" class="label-sub">(Android)</text>
+
+  <!-- Flow App -> Housekeeping Management -->
+  <line x1="305" y1="710" x2="445" y2="710" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="335" y="670" width="90" height="42" class="box-cmd" />
+  <text x="380" y="687" class="text-cmd">1. Send Room</text>
+  <text x="380" y="698" class="text-cmd">Status Update</text>
+  <text x="380" y="709" class="text-cmd">(Command)</text>
+
+  <!-- Bounded Context: Housekeeping Management -->
+  <ellipse cx="505" cy="710" rx="60" ry="36" class="shape-bc" />
+  <text x="505" y="708" class="text-bc">Housekeeping</text>
+  <text x="505" y="720" class="text-bc">Management</text>
+
+  <!-- Flow Housekeeping -> Room Availability -->
+  <line x1="505" y1="674" x2="560" y2="590" class="flow-line" marker-end="url(#arrow)" />
+  <line x1="560" y1="590" x2="720" y2="590" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="575" y="565" width="85" height="42" class="box-event" />
+  <text x="617" y="582" class="text-event">2. Room Status</text>
+  <text x="617" y="593" class="text-event">Updated</text>
+  <text x="617" y="603" class="text-event">(Event)</text>
+
+  <!-- Bounded Context: Room Availability -->
+  <ellipse cx="770" cy="590" rx="50" ry="30" class="shape-bc" />
+  <text x="770" y="588" class="text-bc">Room</text>
+  <text x="770" y="600" class="text-bc">Availability</text>
+
+  <!-- Flow Room Availability -> Notification Service -->
+  <line x1="770" y1="620" x2="770" y2="745" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="735" y="655" width="70" height="42" class="box-event" />
+  <text x="770" y="672" class="text-event">3. Availability</text>
+  <text x="770" y="683" class="text-event">Updated</text>
+  <text x="770" y="693" class="text-event">(Event)</text>
+
+  <!-- Flow Housekeeping -> Notification Service -->
+  <line x1="565" y1="720" x2="745" y2="765" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="635" y="740" width="85" height="42" class="box-cmd" />
+  <text x="677" y="756" class="text-cmd">4. Notify System /</text>
+  <text x="677" y="767" class="text-cmd">Staff</text>
+  <text x="677" y="777" class="text-cmd">(Command)</text>
+
+  <!-- External System: Notification Service -->
+  <circle cx="770" cy="765" r="22" class="shape-ext" />
+  <text x="770" y="802" class="label-title">Notification Service</text>
+  <text x="770" y="814" class="label-sub">(Email / Push)</text>
+
+  <!-- Event Staff Notified -->
+  <line x1="792" y1="765" x2="850" y2="765" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="850" y="745" width="60" height="42" class="box-event" />
+  <text x="880" y="762" class="text-event">5. Staff</text>
+  <text x="880" y="773" class="text-event">Notified</text>
+  <text x="880" y="783" class="text-event">(Event)</text>
+
+  <!-- Flow Housekeeping -> App (Status Reflected) -->
+  <line x1="505" y1="746" x2="505" y2="880" class="flow-line" marker-end="url(#arrow)" />
+  <rect x="460" y="788" width="90" height="45" class="box-event" />
+  <text x="505" y="805" class="text-event">6. Status Reflected</text>
+  <text x="505" y="816" class="text-event">In App</text>
+  <text x="505" y="826" class="text-event">(Event)</text>
+
+  <!-- External System: Mobile App (Android) - Bottom -->
+  <circle cx="505" cy="902" r="22" class="shape-ext" />
+  <text x="505" y="938" class="label-title">Smart Stay Mobile App</text>
+  <text x="505" y="950" class="label-sub">(Android)</text>
+
+  <!-- Flow App -> Operational Staff -->
+  <path d="M 483 902 L 340 902 L 340 840 L 95 840 L 95 765" class="flow-line" marker-end="url(#arrow)" />
+
+  <!-- Legend 04 -->
+  <rect x="45" y="860" width="145" height="110" rx="3" stroke="#999" stroke-width="1" stroke-dasharray="3,3" fill="#fff" />
+  <text x="55" y="877" style="font-size:10px; font-weight:bold; fill:#333;">Legend</text>
+  <rect x="55" y="885" width="14" height="9" class="box-cmd" />
+  <text x="75" y="893" style="font-size:8.5px; fill:#333;">Command / Query</text>
+  <rect x="55" y="902" width="14" height="9" class="box-event" />
+  <text x="75" y="910" style="font-size:8.5px; fill:#333;">Event</text>
+  <ellipse cx="62" cy="927" rx="7" ry="5" class="shape-bc" />
+  <text x="75" y="930" style="font-size:8.5px; fill:#333;">Bounded Context</text>
+  <circle cx="62" cy="947" r="6" class="shape-ext" />
+  <text x="75" y="950" style="font-size:8.5px; fill:#333;">External System / Service</text>
+</svg>
