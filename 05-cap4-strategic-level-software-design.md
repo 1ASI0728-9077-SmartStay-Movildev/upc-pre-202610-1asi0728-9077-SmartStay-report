@@ -731,8 +731,6 @@ A continuación se formalizan los Bounded Context Canvases para los dominios est
 El Context Mapping define las relaciones semánticas, técnicas y organizacionales entre los Bounded Contexts de SmartStay.
 
 
-
-
 <figure>
   <img 
     src="assets/images/chapter4/Context-Map/Context-Map.svg" 
@@ -742,7 +740,40 @@ El Context Mapping define las relaciones semánticas, técnicas y organizacional
   <figcaption>Figura 4.2.5.1. Context Map Estratégico de SmartStay.</figcaption>
 </figure>
 
----
+#### IAM – Profiles (Anti-Corruption Layer - ACL)
+* **Direccionalidad:** IAM es **Upstream**, pues provee la identidad validada de los usuarios, así como la lógica de autenticación y autorización del sistema. Profiles es **Downstream**, ya que consume la información de identidad para complementarla con atributos de perfil, datos personales y preferencias de usuario.
+* **Patrón de integración:** Se propone el uso de un **Anti-Corruption Layer (ACL)** en Profiles, ya que esto evita que cambios internos en el modelo de IAM afecten directamente al contexto de perfiles.
+* **Justificación técnica:** De esta manera, Profiles puede mantener su propio modelo sin depender de forma rígida de la estructura interna de IAM.
+
+#### Profiles – Bookings & Payments (Conformist)
+* **Direccionalidad:** Profiles es **Upstream**, ya que provee los datos del usuario que serán utilizados en el flujo comercial. Bookings & Payments es **Downstream**, adoptando el modelo de Profiles de forma directa para identificar al usuario relacionado con cada reserva o pago.
+* **Patrón de integración:** La relación es de tipo **Conformist**, ya que Bookings & Payments depende del modelo definido en Profiles y se ajusta a él para mantener consistencia en la información del usuario.
+* **Justificación técnica:** El contexto de Bookings & Payments necesita información del usuario para asociar reservas, pagos y transacciones al huésped correspondiente de forma estandarizada.
+
+#### Properties Management – Bookings & Payments (Customer/Supplier)
+* **Direccionalidad:** Properties Management es **Upstream (Supplier)**, ya que provee la información estructural del hotel, como habitaciones, configuración base y disponibilidad general. Bookings & Payments es **Downstream (Customer)**, pues consume esa información para asociarla a las reservas y procesar las operaciones comerciales.
+* **Patrón de integración:** La relación se establece como **Customer/Supplier**, ya que Bookings & Payments depende de la información administrada por Properties Management para funcionar correctamente.
+* **Justificación técnica:** El contexto de Bookings & Payments necesita información de propiedades, habitaciones y tarifas para poder registrar correctamente las reservas y pagos.
+
+#### Properties Management – Operational Tasks (Customer/Supplier)
+* **Direccionalidad:** Properties Management es **Upstream (Supplier)**, porque provee la información de la infraestructura física y organizacional del hotel. Operational Tasks es **Downstream (Customer)**, ya que consume esos datos para asignar tareas, registrar incidencias y coordinar actividades operativas.
+* **Patrón de integración:** La relación se establece como **Customer/Supplier**, debido a que Operational Tasks depende de la estructura definida en Properties Management para ejecutar correctamente sus procesos.
+* **Justificación técnica:** El contexto de Operational Tasks necesita conocer la estructura de la propiedad para gestionar tareas e incidencias relacionadas con habitaciones, áreas y operación del hotel.
+
+#### Bookings & Payments – Operational Tasks (Customer/Supplier)
+* **Direccionalidad:** Bookings & Payments es **Upstream (Supplier)**, ya que genera eventos e información relevantes sobre el ciclo de vida de las reservas. Operational Tasks es **Downstream (Customer)**, pues consume dicha información para organizar actividades como preparación de habitaciones, atención al huésped o seguimiento de incidencias.
+* **Patrón de integración:** La relación se establece como **Customer/Supplier**, ya que la operación diaria del hotel depende en parte de la información generada por el contexto de reservas y pagos.
+* **Justificación técnica:** El contexto de Operational Tasks necesita información sobre reservas, check-in, check-out o cambios de estado para activar tareas internas del hotel.
+
+#### Bookings & Payments – IoT Stay & Experience (Customer/Supplier)
+* **Direccionalidad:** Bookings & Payments es **Upstream (Supplier)**, ya que provee el estado de la reserva, la asignación de habitación y la validez de la estancia. IoT Stay & Experience es **Downstream (Customer)**, porque consume esta información para permitir o restringir servicios digitales vinculados a la experiencia del huésped.
+* **Patrón de integración:** La relación se define como **Customer/Supplier**, debido a que las funcionalidades IoT solo pueden activarse correctamente a partir de información confiable proveniente del flujo de reservas.
+* **Justificación técnica:** El contexto de IoT Stay & Experience necesita validar que exista una reserva activa para habilitar funciones como check-in digital, llave digital o interacción con dispositivos inteligentes.
+
+#### Bookings & Payments – Analytics (Anti-Corruption Layer - ACL)
+* **Direccionalidad:** Bookings & Payments es **Upstream**, ya que produce datos transaccionales relevantes para el análisis. Analytics es **Downstream**, pues consume esa información para construir indicadores y visualizaciones orientadas a la toma de decisiones.
+* **Patrón de integración:** Se propone el uso de un **Anti-Corruption Layer (ACL)** en Analytics, con el fin de evitar que el modelo analítico dependa directamente de la estructura interna del contexto transaccional.
+* **Justificación técnica:** El contexto de Analytics necesita información de reservas, pagos e ingresos para generar reportes estratégicos y métricas del negocio. Esto permite que Analytics traduzca los datos operativos a un modelo propio de reporting, manteniendo total independencia y flexibilidad.
 
 ## 4.3. Software Architecture
 
