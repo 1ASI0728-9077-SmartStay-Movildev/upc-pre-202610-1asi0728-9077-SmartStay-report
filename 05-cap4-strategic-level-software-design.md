@@ -782,18 +782,14 @@ El System Landscape Diagram contextualiza a SmartStay dentro del ecosistema glob
 
 
 
-
-[DIAGRAMA: C4 - System Landscape Diagram de SmartStay]
-Descripción visual: Diagrama C4 a nivel corporativo que sitúa al Enterprise System SmartStay en el centro, delimitado por una frontera empresarial.
-
-* Actores Externos: Huéspedes (Guest), Personal Operativo de Limpieza y Mantenimiento (Staff), Administrador Hotelero (Hotel Manager).
-* Sistemas Internos: SmartStay Core Platform (Web Admin, Mobile Apps, Backend Services, IoT Broker).
-* Sistemas Externos Integrados:
-* Pasarelas de Pago (Stripe/Culqi API vía HTTPS).
-* Online Travel Agencies - OTAs (Channel Manager / Booking.com vía APIs de sincronización).
-* Servicios de Mensajería Push (Firebase Cloud Messaging).
-* Dispositivos Físicos IoT (Cerraduras inteligentes y sensores ambientales en habitaciones).
-
+<figure>
+  <img 
+    src="assets/images/chapter4/Context-Level-Diagram/Context-Level-Diagram.svg" 
+    alt="Smart Stay - Context Level Diagram" 
+    loading="lazy" 
+  />
+  <figcaption>Figura 4.3.1.1. Smart Stay – Context Level Diagram.</figcaption>
+</figure>
 
 
 
