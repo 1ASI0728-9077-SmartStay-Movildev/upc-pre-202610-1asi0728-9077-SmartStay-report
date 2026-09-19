@@ -1,0 +1,271 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1100" width="100%" height="100%" style="background:#ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Sombra profesional y suave para contenedores -->
+    <filter id="box-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.08" />
+    </filter>
+
+    <!-- Marcador de flecha punteada C4 -->
+    <marker id="c4-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#475569" />
+    </marker>
+
+    <style>
+      /* Líneas de conexión */
+      .c4-line { stroke: #475569; stroke-width: 1.5; stroke-dasharray: 5,5; fill: none; }
+
+      /* Estereotipos y tipografía */
+      .st-person { font-size: 11px; font-weight: 700; fill: #0369a1; text-anchor: middle; }
+      .st-container { font-size: 11px; font-weight: 700; fill: #bae6fd; text-anchor: middle; }
+      .st-external { font-size: 11px; font-weight: 700; fill: #cbd5e1; text-anchor: middle; }
+
+      .name-person { font-size: 15px; font-weight: 800; fill: #0f172a; text-anchor: middle; }
+      .name-container { font-size: 15px; font-weight: 800; fill: #ffffff; text-anchor: middle; }
+      .name-external { font-size: 14px; font-weight: 800; fill: #ffffff; text-anchor: middle; }
+
+      .desc-person { font-size: 9.6px; fill: #1e293b; text-anchor: middle; }
+      .desc-container { font-size: 9.8px; fill: #f0f9ff; text-anchor: middle; }
+      .desc-external { font-size: 9.5px; fill: #f1f5f9; text-anchor: middle; }
+
+      /* Etiquetas en conectores */
+      .pill-bg { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1; rx: 4; ry: 4; }
+      .pill-text { font-size: 10px; font-weight: 600; fill: #1e293b; text-anchor: middle; }
+
+      /* Cajas principales */
+      .box-person { fill: #bae6fd; stroke: #38bdf8; stroke-width: 1.5; rx: 16; ry: 16; filter: url(#box-shadow); }
+      .avatar-circ { fill: #e0f2fe; stroke: #0284c7; stroke-width: 1.5; }
+
+      .box-container { fill: #0284c7; stroke: #0369a1; stroke-width: 1.5; rx: 14; ry: 14; filter: url(#box-shadow); }
+      .box-external { fill: #475569; stroke: #334155; stroke-width: 1.5; rx: 12; ry: 12; filter: url(#box-shadow); }
+
+      /* Límite del Sistema */
+      .boundary-box { fill: none; stroke: #38bdf8; stroke-width: 1.8; rx: 28; ry: 28; stroke-dasharray: 6,6; }
+      .boundary-title { font-size: 13px; font-weight: 800; fill: #0284c7; }
+    </style>
+  </defs>
+
+  <!-- ======================================================================
+       LÍMITE DEL SISTEMA SMARTSTAY (SOFTWARE SYSTEM BOUNDARY)
+       ====================================================================== -->
+  <rect x="65" y="380" width="610" height="690" class="boundary-box" />
+  <text x="85" y="405" class="boundary-title">Smart Stay System [Software System Boundary]</text>
+
+  <!-- ======================================================================
+       LÍNEAS DE CONEXIÓN Y FLUJOS (CAPA BASE)
+       ====================================================================== -->
+
+  <!-- Guest -> Guest App -->
+  <line x1="285" y1="290" x2="230" y2="430" class="c4-line" marker-end="url(#c4-arrow)" />
+
+  <!-- Operational Staff -> Staff App -->
+  <line x1="575" y1="290" x2="510" y2="445" class="c4-line" marker-end="url(#c4-arrow)" />
+
+  <!-- Guest App -> Backend Manager -->
+  <line x1="230" y1="565" x2="310" y2="640" class="c4-line" marker-end="url(#c4-arrow)" />
+
+  <!-- Staff App -> Backend Manager -->
+  <line x1="480" y1="580" x2="430" y2="640" class="c4-line" marker-end="url(#c4-arrow)" />
+
+  <!-- Backend Manager -> Database -->
+  <line x1="350" y1="770" x2="350" y2="840" class="c4-line" marker-end="url(#c4-arrow)" />
+
+  <!-- Backend Manager -> OTA Platforms -->
+  <line x1="505" y1="680" x2="725" y2="520" class="c4-line" marker-end="url(#c4-arrow)" />
+
+  <!-- Backend Manager -> Payment Gateway -->
+  <line x1="505" y1="700" x2="735" y2="640" class="c4-line" marker-end="url(#c4-arrow)" />
+
+  <!-- Backend Manager -> Notification Service -->
+  <line x1="505" y1="720" x2="725" y2="760" class="c4-line" marker-end="url(#c4-arrow)" />
+
+  <!-- Backend Manager -> IoT Devices -->
+  <line x1="505" y1="740" x2="630" y2="905" class="c4-line" marker-end="url(#c4-arrow)" />
+
+
+  <!-- ======================================================================
+       ETIQUETAS DELIMITADAS EN LOS FLUJOS
+       ====================================================================== -->
+
+  <g transform="translate(180, 340)">
+    <rect x="0" y="0" width="160" height="20" class="pill-bg" />
+    <text x="80" y="14" class="pill-text">Uses directly the mobile app</text>
+  </g>
+
+  <g transform="translate(485, 350)">
+    <rect x="0" y="0" width="160" height="20" class="pill-bg" />
+    <text x="80" y="14" class="pill-text">Uses directly the mobile app</text>
+  </g>
+
+  <g transform="translate(170, 595)">
+    <rect x="0" y="0" width="140" height="20" class="pill-bg" />
+    <text x="70" y="14" class="pill-text">Consult / Send requests</text>
+  </g>
+
+  <g transform="translate(375, 595)">
+    <rect x="0" y="0" width="160" height="20" class="pill-bg" />
+    <text x="80" y="14" class="pill-text">Consult / Manage operations</text>
+  </g>
+
+  <g transform="translate(290, 800)">
+    <rect x="0" y="0" width="120" height="20" class="pill-bg" />
+    <text x="60" y="14" class="pill-text">Read and write data</text>
+  </g>
+
+  <g transform="translate(540, 580)">
+    <rect x="0" y="0" width="150" height="20" class="pill-bg" />
+    <text x="75" y="14" class="pill-text">Synchronize reservations</text>
+  </g>
+
+  <g transform="translate(565, 665)">
+    <rect x="0" y="0" width="115" height="20" class="pill-bg" />
+    <text x="57" y="14" class="pill-text">Process payments</text>
+  </g>
+
+  <g transform="translate(565, 740)">
+    <rect x="0" y="0" width="115" height="20" class="pill-bg" />
+    <text x="57" y="14" class="pill-text">Send notifications</text>
+  </g>
+
+  <g transform="translate(495, 825)">
+    <rect x="0" y="0" width="155" height="20" class="pill-bg" />
+    <text x="77" y="14" class="pill-text">Monitor and control rooms</text>
+  </g>
+
+
+  <!-- ======================================================================
+       ACTORES / PERSONAS [Person]
+       ====================================================================== -->
+
+  <!-- ACTOR 1: GUEST -->
+  <g transform="translate(170, 20)">
+    <!-- Silueta superior de Persona -->
+    <circle cx="115" cy="40" r="28" class="avatar-circ" />
+    <path d="M 65 95 C 65 65, 165 65, 165 95 Z" class="avatar-circ" />
+
+    <!-- Caja de contenido -->
+    <rect x="0" y="70" width="230" height="200" class="box-person" />
+    <text x="115" y="98" class="name-person">Guest</text>
+    <text x="115" y="116" class="st-person">[Person]</text>
+    <text x="115" y="140" class="desc-person">Hotel guest who books rooms, performs</text>
+    <text x="115" y="155" class="desc-person">digital check-in/check-out, requests</text>
+    <text x="115" y="170" class="desc-person">services, and controls room features</text>
+    <text x="115" y="185" class="desc-person">from the mobile app.</text>
+  </g>
+
+  <!-- ACTOR 2: OPERATIONAL STAFF / ADMINISTRATOR -->
+  <g transform="translate(460, 45)">
+    <!-- Silueta superior de Persona -->
+    <circle cx="115" cy="40" r="28" class="avatar-circ" />
+    <path d="M 65 95 C 65 65, 165 65, 165 95 Z" class="avatar-circ" />
+
+    <!-- Caja de contenido -->
+    <rect x="0" y="70" width="230" height="200" class="box-person" />
+    <text x="115" y="94" class="name-person">Operational Staff /</text>
+    <text x="115" y="110" class="name-person">Administrator</text>
+    <text x="115" y="128" class="st-person">[Person]</text>
+    <text x="115" y="148" class="desc-person">Hotel staff member who manages</text>
+    <text x="115" y="163" class="desc-person">reservations, room status,</text>
+    <text x="115" y="178" class="desc-person">housekeeping, maintenance, and hotel</text>
+    <text x="115" y="193" class="desc-person">operations in real time.</text>
+  </g>
+
+
+  <!-- ======================================================================
+       CONTENEDORES DEL SISTEMA SMARTSTAY [Container]
+       ====================================================================== -->
+
+  <!-- CONTENEDOR 1: GUEST APP -->
+  <g transform="translate(105, 430)">
+    <rect x="0" y="0" width="230" height="135" class="box-container" />
+    <text x="115" y="26" class="name-container">Guest App</text>
+    <text x="115" y="42" class="st-container">[Container: Flutter]</text>
+    <text x="115" y="66" class="desc-container">Mobile application for guests to book</text>
+    <text x="115" y="80" class="desc-container">rooms, perform digital check-in/check-</text>
+    <text x="115" y="94" class="desc-container">out, request services, communicate with</text>
+    <text x="115" y="108" class="desc-container">staff, and control IoT room features.</text>
+  </g>
+
+  <!-- CONTENEDOR 2: STAFF APP -->
+  <g transform="translate(370, 445)">
+    <rect x="0" y="0" width="245" height="135" class="box-container" />
+    <text x="122" y="26" class="name-container">Staff App</text>
+    <text x="122" y="42" class="st-container">[Container: Android]</text>
+    <text x="122" y="66" class="desc-container">Mobile application for operational staff to</text>
+    <text x="122" y="80" class="desc-container">manage reservations, room status,</text>
+    <text x="122" y="94" class="desc-container">housekeeping, maintenance tasks, and</text>
+    <text x="122" y="108" class="desc-container">operational alerts.</text>
+  </g>
+
+  <!-- CONTENEDOR 3: BACKEND MANAGER -->
+  <g transform="translate(190, 640)">
+    <rect x="0" y="0" width="315" height="130" class="box-container" />
+    <text x="157" y="24" class="name-container">Backend Manager</text>
+    <text x="157" y="40" class="st-container">[Container: REST API / Microservices]</text>
+    <text x="157" y="62" class="desc-container">Responsible for business logic, reservation</text>
+    <text x="157" y="76" class="desc-container">management, check-in/check-out, housekeeping</text>
+    <text x="157" y="90" class="desc-container">coordination, maintenance incidents, notifications, user</text>
+    <text x="157" y="104" class="desc-container">management, and IoT integration.</text>
+  </g>
+
+  <!-- CONTENEDOR 4: DATABASE (CILINDRO C4) -->
+  <g transform="translate(190, 840)">
+    <!-- Cuerpo del cilindro -->
+    <path d="M 0 25 L 0 160 A 155 25 0 0 0 310 160 L 310 25 Z" fill="#0284c7" stroke="#0369a1" stroke-width="1.5" filter="url(#box-shadow)" />
+    <!-- Tapa superior elíptica -->
+    <ellipse cx="155" cy="25" rx="155" ry="25" fill="#38bdf8" stroke="#0369a1" stroke-width="1.5" />
+
+    <text x="155" y="65" class="name-container">Database</text>
+    <text x="155" y="82" class="st-container">[Container: MySQL]</text>
+    <text x="155" y="106" class="desc-container">Stores users, reservations, room status, housekeeping</text>
+    <text x="155" y="120" class="desc-container">tasks, maintenance records, payments, guest</text>
+    <text x="155" y="134" class="desc-container">requests, and operational reports.</text>
+  </g>
+
+
+  <!-- ======================================================================
+       SISTEMAS EXTERNOS [Software System]
+       ====================================================================== -->
+
+  <!-- EXTERNAL 1: OTA PLATFORMS -->
+  <g transform="translate(735, 485)">
+    <rect x="0" y="0" width="180" height="100" class="box-external" />
+    <text x="90" y="24" class="name-external">OTA Platforms</text>
+    <text x="90" y="40" class="st-external">[Software System]</text>
+    <text x="90" y="66" class="desc-external">Booking and reservation</text>
+    <text x="90" y="80" class="desc-external">channel synchronization.</text>
+  </g>
+
+  <!-- EXTERNAL 2: PAYMENT GATEWAY -->
+  <g transform="translate(745, 600)">
+    <rect x="0" y="0" width="180" height="100" class="box-external" />
+    <text x="90" y="24" class="name-external">Payment Gateway</text>
+    <text x="90" y="40" class="st-external">[Software System]</text>
+    <text x="90" y="66" class="desc-external">Processes digital payments</text>
+    <text x="90" y="80" class="desc-external">and billing transactions.</text>
+  </g>
+
+  <!-- EXTERNAL 3: NOTIFICATION SERVICE -->
+  <g transform="translate(735, 715)">
+    <rect x="0" y="0" width="180" height="105" class="box-external" />
+    <text x="90" y="24" class="name-external">Notification Service</text>
+    <text x="90" y="40" class="st-external">[Software System]</text>
+    <text x="90" y="66" class="desc-external">Sends push notifications,</text>
+    <text x="90" y="80" class="desc-external">email, SMS, and operational</text>
+    <text x="90" y="94" class="desc-external">alerts.</text>
+  </g>
+
+  <!-- EXTERNAL 4: IOT DEVICES -->
+  <g transform="translate(640, 865)">
+    <rect x="0" y="0" width="265" height="145" class="box-external" />
+    <text x="132" y="24" class="name-external">IoT Devices</text>
+    <text x="132" y="40" class="st-external">[Software System]</text>
+    <text x="132" y="64" class="desc-external">Monitors and controls room temperature,</text>
+    <text x="132" y="78" class="desc-external">lighting, and energy consumption.</text>
+    
+    <!-- Nota metodológica C4 inferior -->
+    <rect x="12" y="94" width="241" height="40" fill="#334155" rx="4" />
+    <text x="132" y="108" class="desc-external" style="font-size:8.5px; fill:#cbd5e1;">Si tu diagrama se ve cargado, deja solo 3</text>
+    <text x="132" y="122" class="desc-external" style="font-size:8.5px; fill:#cbd5e1;">externos y junta OTA + pagos + notificaciones,</text>
+    <text x="132" y="134" class="desc-external" style="font-size:8.5px; fill:#cbd5e1;">pero lo ideal para arquitectura es separarlos.</text>
+  </g>
+</svg>
