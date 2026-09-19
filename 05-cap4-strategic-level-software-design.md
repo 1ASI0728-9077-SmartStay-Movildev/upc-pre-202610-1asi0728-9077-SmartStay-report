@@ -637,6 +637,24 @@ El modelado de flujos de mensajes del dominio representa la coreografía y orque
   />
 </figure>
 
+<figure>
+  <img 
+    src="assets/images/chapter4/Domain-Message-Flows-Modeling/Domain-Message-Flows-Modeling-1.svg" 
+    alt="Domain Message Flows Modeling - Escenarios 01 y 02: Reserva y Check-In Digital" 
+    loading="lazy" 
+  />
+  <figcaption>Figura 4.2.3. Flujos de mensajes de dominio para Reservas y Check-In Digital.</figcaption>
+</figure>
+
+<figure>
+  <img 
+    src="assets/images/chapter4/Domain-Message-Flows-Modeling/Domain-Message-Flows-Modeling-2.svg" 
+    alt="Domain Message Flows Modeling - Escenarios 03, 04 y 05: Room Service, Estado de Habitación y Mantenimiento" 
+    loading="lazy" 
+  />
+  <figcaption>Figura 4.2.3. Flujos de mensajes de dominio para Servicios, Estados Operativos y Mantenimiento.</figcaption>
+</figure>
+
 #### Detalle de los Flujos de Mensajes Principales:
 1. **Flujo de Reserva y Pago:**
    * El cliente ejecuta el comando `SubmitBooking(hotelId, roomId, dates, paymentMethod)`.
