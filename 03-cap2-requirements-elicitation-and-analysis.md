@@ -385,8 +385,30 @@ La disposición a pagar por tecnología varía según la generación. Mientras q
 
 Esta tendencia refleja datos globales donde las reseñas en línea han reemplazado el boca a boca tradicional, con los millennials consultando plataformas como TripAdvisor, Google y redes sociales antes de reservar.
 
+## 2.3. Needfinding
 
 
+
+### 2.3.1 User Personas
+
+Segmento 1 – Administradores de Hoteles Boutique y Pequeños en Lima
+
+![S2_12_influencia_resenas.png](assets/images/cap2/UserPersona-Segmento1.png)
+
+Segmento 2 – Huéspedes de Hoteles
+
+![S2_12_influencia_resenas.png](assets/images/cap2/UserPersona-Segmento2.png)
+
+
+### 2.3.2 Needfinding
+
+
+
+### 2.3.3 Needfinding
+
+
+
+### 2.3.4 Needfinding
 
 
  
