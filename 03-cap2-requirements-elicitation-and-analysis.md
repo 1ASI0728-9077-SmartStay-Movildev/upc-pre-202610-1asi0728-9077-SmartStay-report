@@ -399,16 +399,160 @@ Segmento 2 – Huéspedes de Hoteles
 
 ![S2_12_influencia_resenas.png](assets/images/cap2/UserPersona-Segmento2.png)
 
+### 2.3.2 User Task Matrix
 
-### 2.3.2 Needfinding
+En esta sección se presenta el **User Task Matrix**, que concentra las tareas que los User Persona realizan para cumplir sus objetivos en la gestión hotelera y la experiencia de estadía. Las tareas descritas existen independientemente de cualquier solución de software, pero se analizan considerando el contexto de digitalización, movilidad e integración con tecnologías IoT.
+
+Se consideran dos segmentos con sus respectivos User Persona:
+
+- **Administradores de Hoteles Boutique y Pequeños en Lima** (User Persona: Administrador)  
+- **Huéspedes de Hoteles Boutique** (User Persona: Huésped)  
+
+---
+
+### Matriz de Tareas
+
+| Tarea / Task | Administradores Frecuencia | Administradores Importancia | Huéspedes Frecuencia | Huéspedes Importancia |
+|-------------|--------------------------|-----------------------------|----------------------|-----------------------|
+| Centralizar reservas, housekeeping y mantenimiento en un solo sistema | Alta | Alta | Media | Alta |
+| Evitar sobreventa mediante sincronización en tiempo real | Media | Alta | Baja | Media |
+| Gestionar check-in/check-out digital (sin contacto) | Alta | Alta | Alta | Alta |
+| Monitorear ocupación, disponibilidad y estado de habitaciones en tiempo real | Alta | Alta | Media | Media |
+| Generar reportes operativos y métricas (KPIs) | Media | Alta | Baja | Media |
+| Gestionar pagos y facturación digital | Media | Alta | Media | Alta |
+| Coordinar housekeeping y mantenimiento con notificaciones en tiempo real | Alta | Alta | Baja | Media |
+| Capacitar al personal en el uso de aplicaciones móviles | Media | Media | Baja | Media |
+| Controlar costos operativos y consumo energético (IoT) | Media | Alta | Baja | Media |
+| Integrar canales digitales (OTAs, apps, plataformas online) | Media | Alta | Media | Alta |
+| Gestionar reseñas y reputación digital | Media | Alta | Alta | Alta |
+| Personalizar servicios y comunicación con el huésped | Media | Media | Media | Alta |
+| Realizar reservas y pagos desde el móvil | — | — | Alta | Alta |
+| Realizar check-in/check-out sin contacto | — | — | Alta | Alta |
+| Controlar la habitación mediante app (luces, temperatura, servicios IoT) | — | — | Media | Alta |
+| Solicitar servicios del hotel desde la app (room service, soporte) | — | — | Alta | Alta |
+| Acceder a información del hotel y recomendaciones digitales | — | — | Media | Media |
+| Evaluar experiencia y dejar reseñas post-estadía | — | — | Media | Alta |
+
+---
+
+### Análisis
+
+#### Tareas de mayor frecuencia e importancia compartidas
+
+- **Gestión de check-in/check-out digital:** Alta/Alta en ambos perfiles, siendo un punto crítico que impacta directamente en la experiencia del huésped y la eficiencia operativa.  
+- **Gestión de reseñas y reputación digital:** Alta importancia en ambos segmentos, ya que influye en la decisión de futuros clientes y en los ingresos del hotel.  
+
+---
+
+#### Tareas críticas para Administradores
+
+Las tareas más relevantes están orientadas a la **optimización operativa mediante digitalización y tiempo real**, entre ellas:
+
+- Centralizar reservas, housekeeping y mantenimiento  
+- Monitorear ocupación y estado de habitaciones en tiempo real  
+- Evitar sobreventa mediante sincronización de datos  
+- Integrar múltiples canales digitales  
+- Gestionar pagos, facturación y reportes  
+
+Además, destaca el:
+
+- **Control de costos operativos y consumo energético (IoT)**  
+  → Alta importancia por su impacto financiero y eficiencia del hotel  
+
+---
+
+#### Tareas críticas para Huéspedes
+
+El huésped presenta un enfoque **mobile-first**, priorizando:
+
+- Reservas y pagos desde el smartphone  
+- Check-in/check-out sin contacto  
+- Solicitud de servicios mediante apps  
+- Experiencia personalizada dentro de la habitación  
+
+También destacan:
+
+- **Control del entorno mediante IoT (luces, temperatura, servicios)**  
+- Acceso rápido a información y servicios digitales  
+
+---
+
+#### Diferencias clave
+
+- **Administradores:** Enfocados en eficiencia operativa, coordinación interna y control de recursos.  
+- **Huéspedes:** Enfocados en rapidez, autonomía, comodidad y experiencia digital personalizada.  
+
+---
+
+#### Coincidencias
+
+- Ambos segmentos valoran procesos rápidos y eficientes.  
+- Ambos dependen de una **correcta gestión de información en tiempo real**.  
+- Existe una alineación clara hacia la **digitalización, automatización y autoservicio**.  
+
+### 2.3.3 Empathy Mapping
+
+El Empathy Mapping permite comprender en profundidad las emociones, pensamientos y comportamientos de los usuarios, facilitando una conexión más humana con sus necesidades reales. A través de esta herramienta, se identifican los dolores, motivaciones y expectativas de los distintos perfiles, lo que contribuye al diseño de soluciones más relevantes y personalizadas.
+
+En el caso de Smart Stay, se elaboraron dos mapas de empatía diferenciados según los segmentos objetivos:
+
+##### 1. Segmento Objetivo 1: STAFF OPERATIVO
+
+##### 2. Segmento Objetivo 2: HUÉSPEDES
+
+Estos mapas permiten visualizar cómo cada tipo de usuario piensa, siente y actúa frente al servicio, además de reconocer los puntos de dolor (pains) y las ganancias esperadas (gains). El análisis conjunto de ambos segmentos brinda una visión integral para mejorar la eficiencia operativa del hotel y elevar la satisfacción del huésped, alineando tecnología y experiencia humana.
+
+#### 1. Segmento Objetivo 1: STAFF OPERATIVO
+
+![Empathy Map - Staff Operativo](./assets/images//cap2/empathy-staff.png)
+
+---
+
+#### 2. Segmento Objetivo 2: HUÉSPEDES
+
+![Empathy Map - Huéspedes](./assets/images//cap2/empathy-guest.png)
 
 
+### 2.3.4 As-is Scenario Mapping
 
-### 2.3.3 Needfinding
+**Segmento 1: Staff Operativo / Administradores de Hoteles Boutique**
+
+| Fases | Doing | Thinking | Feeling |
+|---|---|---|---|
+| **Recepción de reserva** | Recibe reservas por WhatsApp, llamadas o la web del hotel y las traslada manualmente a un Excel o cuaderno. | "¿Ya anoté esta reserva en todos lados? ¿Se cruzará con otra?" | Estrés por posible duplicidad. Desconfianza en el sistema actual. |
+| **Revisión de disponibilidad** | Revisa manualmente el Excel o cuaderno para confirmar si la habitación está libre en esas fechas. | "¿Está actualizado esto? ¿Alguien más habrá reservado la misma habitación?" | Incertidumbre. Miedo a la sobreventa (overbooking). |
+| **Check-in del huésped** | Recibe al huésped en recepción, revisa documentos físicos, ingresa datos a mano y entrega la llave. | "¿Tengo todos los datos? ¿Cuánto tiempo va a esperar el huésped?" | Presión por la fila. Cansancio en horas pico. |
+| **Coordinación de housekeeping / mantenimiento** | Avisa al personal de limpieza de forma verbal o por WhatsApp sobre qué habitaciones atender. | "¿Le llegó el mensaje? ¿Ya limpiaron la 205?" | Falta de control. Ansiedad por no tener visibilidad en tiempo real. |
+| **Atención de solicitudes durante la estancia** | Recibe pedidos de los huéspedes por teléfono o en persona y los transmite al área correspondiente. | "¿Se lo comuniqué bien a la persona encargada? ¿Se me olvidó algo?" | Sobrecarga. Temor a errores por falta de registro. |
+| **Check-out y facturación** | Calcula manualmente los cargos finales, revisa consumos y emite la cuenta. | "¿Está bien calculado? ¿Me faltó cobrar algún servicio?" | Tensión por posibles errores frente al huésped. |
+| **Reportes y cierre** | Al final del día o del mes, arma reportes de ocupación e ingresos en Excel de forma manual. | "¿Cuadra la información? ¿Cuánto tiempo me va a tomar esto?" | Fatiga. Sensación de carga administrativa excesiva. |
+
+**Segmento 2: Huéspedes de Hoteles Boutique**
+
+| Fases | Doing | Thinking | Feeling |
+|---|---|---|---|
+| **Búsqueda y reserva** | Busca el hotel por reseñas online y contacta por WhatsApp o llamada para reservar. | "¿Me confirmarán rápido? ¿Estará realmente disponible la habitación?" | Ilusión por el viaje. Algo de incertidumbre por la falta de confirmación inmediata. |
+| **Llegada y check-in** | Hace fila en recepción, entrega documentos físicos y espera el registro manual. | "¿Cuánto voy a esperar? ¿Por qué esto no es más rápido?" | Frustración por la demora. Cansancio tras el viaje. |
+| **Instalación en la habitación** | Recibe la llave física y ajusta manualmente luces, aire acondicionado o cortinas. | "¿Cómo funciona el AC? ¿Por qué no hay algo más simple?" | Incomodidad. Sensación de experiencia poco moderna. |
+| **Solicitud de servicios durante la estancia** | Llama a recepción o baja personalmente para pedir room service, limpieza o soporte. | "¿Me atenderán rápido? ¿Vale la pena el esfuerzo de pedir esto?" | Impaciencia. A veces prefiere no pedir nada por la incomodidad. |
+| **Personalización del ambiente** | No cuenta con una forma digital de ajustar su habitación; depende de controles físicos limitados. | "¿Por qué no puedo controlar esto desde mi celular?" | Expectativa insatisfecha, sobre todo en huéspedes jóvenes y digitales. |
+| **Check-out** | Espera en recepción mientras revisan su cuenta y los cargos adicionales. | "¿Está bien cobrado? ¿Por qué tarda tanto esto?" | Ansiedad por posibles cargos inesperados. Prisa por salir a tiempo. |
+| **Evaluación post-estadía** | Si la experiencia fue mala, deja una reseña negativa en Google o Booking; si fue buena, muchas veces no comenta nada. | "¿Vale la pena escribir una reseña? ¿Me leerán?" | Indiferencia o frustración, según la experiencia vivida. |
 
 
+### 2.4. Ubiquitous Language
 
-### 2.3.4 Needfinding
-
+| **Término en Inglés**        | **Término en Español**             | **Definición**                                                                                                                                      |
+|------------------------------|------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| Hotel Administrator          | Administrador del hotel            | Usuario encargado de la gestión operativa del hotel. Supervisa reservas, limpieza, facturación y coordinación con el personal.                      |
+| Reservation Management       | Gestión de reservas                | Proceso centralizado de registro, confirmación, modificación y cancelación de reservas en tiempo real.                                              |
+| Overbooking                  | Sobreventa                         | Situación en la que el hotel vende más habitaciones de las disponibles debido a la falta de sincronización en los sistemas de reserva.              |
+| Housekeeping Schedule        | Programación de limpieza           | Organización de tareas de limpieza y mantenimiento de habitaciones, coordinadas desde el sistema de gestión.                                        |
+| Digital Check-In / Check-Out | Registro digital de entrada/salida | Funcionalidad que permite al huésped ingresar o salir del hotel sin necesidad de hacer filas en recepción, a través de una aplicación o portal web. |
+| Guest Profile                | Perfil del huésped                 | Información digital del cliente que incluye preferencias, historial de estadías y solicitudes especiales.                                           |
+| Smart Room Control           | Control inteligente de habitación  | Función que permite al huésped manejar servicios como iluminación, temperatura o room service desde su dispositivo móvil.                           |
+| Real-Time Notification       | Notificación en tiempo real        | Alerta automática que informa sobre nuevas reservas, cambios en disponibilidad o solicitudes de huéspedes.                                          |
+| Financial Report             | Reporte financiero                 | Documento digital generado por el sistema que resume ingresos, gastos y métricas clave para evaluar la rentabilidad del hotel.                      |
+| Guest Feedback               | Retroalimentación del huésped      | Opiniones y calificaciones que los huéspedes comparten sobre su estadía, utilizadas para mejorar los servicios.                                     |
 
  
