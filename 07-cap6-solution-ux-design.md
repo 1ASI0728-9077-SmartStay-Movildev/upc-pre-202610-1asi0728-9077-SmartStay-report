@@ -1,5 +1,7 @@
-## Capítulo VI: Solution UI/UX Design
-### 6.1 Style Guidelines
+<div style="page-break-before: always;"></div>
+
+# Capítulo VI: Solution UI/UX Design
+## 6.1 Style Guidelines
 
 La base de esta sección es definir la identidad visual y de diseño de Smart Stay, con el fin de asegurar consistencia, claridad y facilidad de uso en todos los puntos de contacto de la marca, tanto en medios digitales como en la experiencia general del usuario. 
 
@@ -8,7 +10,7 @@ La base de esta sección es definir la identidad visual y de diseño de Smart St
 - Garantizar una experiencia de usuario comprensible, accesible y visualmente atractiva.
 - Permitir que el diseño pueda integrarse de manera coherente tanto en la web como en aplicaciones móviles mediante un lenguaje visual unificado.
 
-#### 6.1.1 General Style Guidelines
+### 6.1.1 General Style Guidelines
 
 **Branding**
 
@@ -84,7 +86,7 @@ Los logotipos, wireframes y mockups de este capítulo se mantienen centralizados
   - **Texto secundario / notas:** Open Sans Regular – 14px  
   - **Botones primarios:** Open Sans SemiBold – 16px (MAYÚSCULAS)
 
-#### 6.1.2. Web, Mobile & Devices Style Guidelines 
+### 6.1.2. Web, Mobile & Devices Style Guidelines 
 
 Smart Stay ofrece una experiencia coherente en tres puntos de contacto: la Landing Page desarrollada para web, la aplicación web administrativa y las aplicaciones móviles nativas. La interfaz de cada canal se adapta a las tareas y al contexto de uso de sus usuarios, manteniendo los mismos principios de marca, lenguaje visual y retroalimentación.
 
@@ -150,9 +152,9 @@ Los controles de iluminación, temperatura, acceso y conectividad deben mostrar 
 
 Estas directrices se aplican a los wireframes y mockups de la sección 6.3 y sirven como referencia compartida para evolucionar la Landing Page, la aplicación administrativa y las aplicaciones móviles sin perder consistencia ni adecuación a cada contexto de uso.
 
-### 6.2 Information Architecture
+## 6.2 Information Architecture
 
-#### 6.2.1 Organization Systems
+### 6.2.1 Organization Systems
 
 La organización combina jerarquía de navegación, secuencias para tareas y vistas matriciales para comparar datos. La categorización depende del tipo de información y del perfil que la consume, de modo que Landing Page, staff y huésped encuentran primero lo más relevante para su objetivo.
 
@@ -166,9 +168,9 @@ La organización combina jerarquía de navegación, secuencias para tareas y vis
 
 En pantallas pequeñas se conserva el mismo orden lógico, pero se reemplazan matrices densas por listas o tarjetas; los flujos secuenciales muestran el paso actual y permiten volver sin perder los datos ya ingresados.
 
-### UX Heuristics & Principles Evaluation
+- UX Heuristics & Principles Evaluation
 
-### Usability – Inclusive Design – Information Architecture
+**Usability – Inclusive Design – Information Architecture**
 
 - **CARRERA:** Ingeniería de Software  
 - **CURSO:** Aplicaciones para Dispositivos Móviles  
@@ -180,9 +182,9 @@ En pantallas pequeñas se conserva el mismo orden lógico, pero se reemplazan ma
 
 ---
 
-### TAREAS A EVALUAR
+- TAREAS A EVALUAR
 
-#### Segmento Objetivo #1: Staff Operativo de Hoteles (Administradores y Personal)
+**Segmento Objetivo #1: Staff Operativo de Hoteles (Administradores y Personal)**
 
 - Gestión de habitaciones: visualización en tiempo real del estado (disponible, ocupado, mantenimiento).
 - Coordinación de tareas de limpieza: asignación rápida y seguimiento de housekeeping.
@@ -192,7 +194,7 @@ En pantallas pequeñas se conserva el mismo orden lógico, pero se reemplazan ma
 
 ---
 
-#### Segmento Objetivo #2: Huéspedes de Hoteles
+**Segmento Objetivo #2: Huéspedes de Hoteles**
 
 - Check-in / Check-out digital: proceso rápido y sin contacto desde la aplicación.
 - Control de habitación: manejo de dispositivos IoT (iluminación, temperatura, Wi-Fi).
@@ -202,7 +204,7 @@ En pantallas pequeñas se conserva el mismo orden lógico, pero se reemplazan ma
 
 ---
 
-### No incluidas en esta versión de la evaluación:
+**No incluidas en esta versión de la evaluación:**
 
 - Integración con sistemas financieros avanzados (facturación completa).
 - Conexión con plataformas externas (marketplaces o agencias de viaje).
@@ -210,7 +212,7 @@ En pantallas pequeñas se conserva el mismo orden lógico, pero se reemplazan ma
 
 ---
 
-### ESCALA DE SEVERIDAD
+***ESCALA DE SEVERIDAD***
 
 | Nivel | Descripción |
 |------|------------|
@@ -221,7 +223,7 @@ En pantallas pequeñas se conserva el mismo orden lógico, pero se reemplazan ma
 
 ---
 
-### TABLA RESUMEN
+***TABLA RESUMEN***
 
 | # | Problema | Escala de severidad | Heurística/Principio violado |
 |--|----------|---------------------|-----------------------------|
@@ -234,13 +236,13 @@ En pantallas pequeñas se conserva el mismo orden lógico, pero se reemplazan ma
 
 ---
 
-### ANÁLISIS GENERAL
+***ANÁLISIS GENERAL***
 
 La arquitectura de información de Smart Stay presenta una estructura basada en tareas y roles, lo que facilita la segmentación entre usuarios internos (staff) y externos (huéspedes). Sin embargo, se identifican oportunidades de mejora en la claridad de navegación, visibilidad del estado del sistema y optimización de flujos críticos como el check-in digital.
 
 Se concluye que una correcta reorganización de la jerarquía de información y mejora en la retroalimentación visual permitirá reducir la carga cognitiva del usuario y mejorar la eficiencia operativa del sistema.
 
-#### 6.2.2 Labeling Systems
+### 6.2.2 Labeling Systems
 
 El sistema de etiquetado define cómo se nombran las secciones, botones y funcionalidades dentro de la aplicación, permitiendo que el usuario comprenda rápidamente el propósito de cada elemento. En Smart Stay, las etiquetas se diseñan bajo principios de claridad, consistencia y orientación al usuario, adaptándose tanto al Staff Operativo como a los Huéspedes.
 
@@ -279,7 +281,7 @@ Las etiquetas se mantienen cortas, consistentes y vinculadas al lenguaje habitua
 
 ---
 
-#### 6.2.3 Searching Systems
+### 6.2.3 Searching Systems
 
 El sistema de búsqueda de Smart Stay permite a los usuarios localizar información, reservas, servicios y funcionalidades de manera rápida y eficiente. En la Landing Page, la búsqueda está orientada a descubrir contenido general sobre la plataforma, utilizando accesos directos, enlaces destacados y navegación guiada hacia secciones clave como “Try Demo” o “Benefits”.
 
@@ -313,7 +315,7 @@ Cuando no haya coincidencias, la interfaz indica que no encontró resultados y p
 
 ---
 
-#### 6.2.4 SEO Tags, Meta Tags y ASO Elements
+### 6.2.4 SEO Tags, Meta Tags y ASO Elements
 
 Los SEO tags y meta tags son elementos fundamentales dentro de la Landing Page de Smart Stay, ya que permiten mejorar la visibilidad del sistema en motores de búsqueda, facilitar su indexación y optimizar la forma en que se presenta tanto en resultados de búsqueda como en redes sociales.
 
@@ -323,7 +325,7 @@ La Landing Page de Smart Stay implementa etiquetas esenciales como: charset, vie
 
 ---
 
-### Meta charset
+***Meta charset***
 
 ```html
 <meta charset="UTF-8">
@@ -335,7 +337,7 @@ La Landing Page de Smart Stay implementa etiquetas esenciales como: charset, vie
 
 ---
 
-### Meta viewport
+***Meta viewport***
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -347,7 +349,7 @@ La Landing Page de Smart Stay implementa etiquetas esenciales como: charset, vie
 
 ---
 
-### Title
+***Title***
 
 ```html
 <title>Smart Stay</title>
@@ -359,7 +361,7 @@ La Landing Page de Smart Stay implementa etiquetas esenciales como: charset, vie
 
 ---
 
-### 1. Meta Tags principales
+***1. Meta Tags principales***
 
 - **charset:** Define la codificación del documento. UTF-8 es el estándar actual.
 - **viewport:** Permite adaptar la página a diferentes dispositivos y resoluciones.
@@ -369,7 +371,7 @@ La Landing Page de Smart Stay implementa etiquetas esenciales como: charset, vie
 
 ---
 
-### 2. Meta Tags para Redes Sociales (Open Graph)
+***2. Meta Tags para Redes Sociales (Open Graph)***
 
 ```html
 <meta property="og:title" content="Smart Stay">
@@ -384,7 +386,7 @@ La Landing Page de Smart Stay implementa etiquetas esenciales como: charset, vie
 
 ---
 
-### 3. Otros elementos importantes
+***3. Otros elementos importantes***
 
 **Favicon:**
 
@@ -405,7 +407,7 @@ La Landing Page de Smart Stay implementa etiquetas esenciales como: charset, vie
 
 Los siguientes valores son una propuesta para la publicación. Se debe reemplazar `smartstay.com` por el dominio definitivo antes del despliegue y emplear las descripciones y palabras clave correspondientes a cada página.
 
-### Valores SEO por página
+***Valores SEO por página***
 
 | Página | Title | Description | Keywords |
 |---|---|---|---|
@@ -427,7 +429,7 @@ En cada página pública se definen también `author` como “Equipo Smart Stay�
 <meta name="robots" content="index,follow">
 ```
 
-### ASO para aplicaciones móviles
+***ASO para aplicaciones móviles***
 
 Los textos siguientes son propuestas para las fichas de las aplicaciones nativas. Las palabras clave se incorporan a la descripción y a los campos que permita cada tienda; si la tienda no ofrece un campo específico de keywords, no se debe asumir que existe una etiqueta equivalente.
 
@@ -440,13 +442,13 @@ Los textos siguientes son propuestas para las fichas de las aplicaciones nativas
 
 ---
 
-#### 6.2.5 Navigation Systems
+### 6.2.5 Navigation Systems
 
 El sistema de navegación de Smart Stay define cómo los usuarios se desplazan dentro de la plataforma, permitiendo acceder a las distintas secciones de forma clara, rápida e intuitiva. Este sistema está diseñado bajo principios de consistencia, accesibilidad y eficiencia, adaptándose tanto a la Landing Page como a la aplicación móvil.
 
 ---
 
-### Landing Page Navigation
+***Landing Page Navigation***
 
 | Navigation Item | Location / Component | Function |
 |-----------------|----------------------|----------|
@@ -463,7 +465,7 @@ El sistema de navegación de Smart Stay define cómo los usuarios se desplazan d
 
 ---
 
-### Mobile Application Navigation
+***Mobile Application Navigation***
 
 | Navigation Item | Location / Component | Function |
 |-----------------|----------------------|----------|
@@ -484,7 +486,7 @@ El sistema de navegación de Smart Stay define cómo los usuarios se desplazan d
 
 ---
 
-### 6.3 Landing Page UI Design
+## 6.3 Landing Page UI Design
 
 El diseño de la interfaz de la Landing Page de Smart Stay tiene como objetivo principal presentar de manera clara y atractiva la propuesta de valor del sistema, captando la atención del usuario desde el primer contacto. Esta página funciona como el punto de entrada al producto, por lo que su diseño está orientado a la conversión, usabilidad y comprensión inmediata del servicio.
 
@@ -492,7 +494,7 @@ Se aplican principios de diseño centrado en el usuario, jerarquía visual y acc
 
 La propuesta traduce la arquitectura de información en una navegación pública orientada al descubrimiento (Home, Products, Solutions y Prices) y en acciones claras de conversión (Try Demo y Sign Up). Los wireframes y mockups mantienen esta jerarquía y aplican el sistema visual de la sección 6.1.1. La experiencia privada se diferencia por perfil: la solución Android para staff prioriza la operación y la solución Flutter para huéspedes prioriza la estancia, los servicios y el control IoT; ambas consumen los servicios de Smart Stay definidos en las decisiones arquitectónicas.
 
-#### 6.3.1 Landing Page Wireframe
+### 6.3.1 Landing Page Wireframe
 
 Los wireframes de la Landing Page de Smart Stay definen la estructura base de navegación, asegurando que cada sección tenga un propósito claro dentro de la experiencia del usuario. Cada pantalla está diseñada para guiar al usuario desde el descubrimiento hasta la acción (registro o uso del sistema).
 
@@ -510,7 +512,7 @@ Los recursos gráficos disponibles no contienen pares de capturas etiquetados pa
 
 ---
 
-### 1. Home
+***1. Home***
 
 - **Propósito:** Página principal de presentación de Smart Stay.
 
@@ -525,7 +527,7 @@ Los recursos gráficos disponibles no contienen pares de capturas etiquetados pa
 
 ---
 
-### 2. Products
+***2. Products***
 
 - **Propósito:** Mostrar los productos principales que ofrece Smart Stay.
 
@@ -539,7 +541,7 @@ Los recursos gráficos disponibles no contienen pares de capturas etiquetados pa
 
 ---
 
-### 3. Solutions
+***3. Solutions***
 
 - **Propósito:** Explicar cómo la plataforma resuelve problemas específicos del sector hotelero.
 
@@ -551,7 +553,7 @@ Los recursos gráficos disponibles no contienen pares de capturas etiquetados pa
 
 ---
 
-### 4. Prices
+***4. Prices***
 
 - **Propósito:** Presentar los planes o modelos de precios del sistema.
 
@@ -562,7 +564,7 @@ Los recursos gráficos disponibles no contienen pares de capturas etiquetados pa
 
 ---
 
-### 5. Success Stories
+***5. Success Stories***
 
 - **Propósito:** Generar confianza mediante casos reales o testimonios.
 
@@ -575,7 +577,7 @@ Los recursos gráficos disponibles no contienen pares de capturas etiquetados pa
 
 ---
 
-### 6. Resources
+***6. Resources***
 
 - **Propósito:** Proporcionar contenido de apoyo para el usuario.
 
@@ -588,7 +590,7 @@ Los recursos gráficos disponibles no contienen pares de capturas etiquetados pa
 
 ---
 
-### 7. Register
+***7. Register***
 
 - **Propósito:** Permitir el registro de nuevos usuarios.
 
@@ -601,7 +603,7 @@ Los recursos gráficos disponibles no contienen pares de capturas etiquetados pa
 
 ---
 
-### 8. Login
+***8. Login***
 
 - **Propósito:** Permitir el acceso a usuarios registrados.
 
@@ -723,8 +725,3 @@ Las imágenes actualmente disponibles para Landing Page no incluyen un par de mo
   - Mejora en la visibilidad de los campos.
   - Inclusión de opción de recuperación de contraseña.
   - Diseño optimizado para acceso rápido.
-
-
-
-
-
