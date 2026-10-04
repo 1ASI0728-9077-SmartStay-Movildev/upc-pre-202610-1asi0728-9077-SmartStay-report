@@ -16,7 +16,7 @@ Relación con otros contextos: **Profiles – Bookings & Payments (Conformist)**
 
 Contiene el núcleo del contexto y las reglas de negocio: quién es la persona, de qué tipo es (Guest o Staff) y si autorizó el procesamiento de sus datos.
 
-#### Aggregates y Entities
+***Aggregates y Entities***
 
 | Clase | Categoría | Propósito |
 |---|---|---|
@@ -57,7 +57,7 @@ Contiene el núcleo del contexto y las reglas de negocio: quién es la persona, 
 - Un perfil `Inactive` no puede modificarse ni otorgar consentimientos.
 - `StaffDetails` es obligatorio para Staff y prohibido para Guest.
 
-#### Value Objects (implementados como `record`)
+***Value Objects (implementados como `record`)***
 
 | Clase | Propósito | Atributos |
 |---|---|---|
@@ -70,7 +70,7 @@ Contiene el núcleo del contexto y las reglas de negocio: quién es la persona, 
 | `Address` | Dirección | `Street`, `City`, `Country`, `ZipCode` |
 | `ConsentPurpose` | Finalidad del consentimiento | `Code`, `Description` |
 
-#### Enumeraciones
+***Enumeraciones***
 
 | Enum | Valores |
 |---|---|
@@ -78,7 +78,7 @@ Contiene el núcleo del contexto y las reglas de negocio: quién es la persona, 
 | `ProfileStatus` | `Active`, `Inactive` |
 | `DocumentType` | `Dni`, `Passport`, `ForeignCard` |
 
-#### Domain Events
+***Domain Events***
 
 | Evento | Se emite cuando | Datos |
 |---|---|---|
@@ -88,21 +88,21 @@ Contiene el núcleo del contexto y las reglas de negocio: quién es la persona, 
 
 Todos implementan la interfaz `IDomainEvent` (marca de MediatR `INotification`).
 
-#### Factories y Domain Services
+***Factories y Domain Services***
 
 | Clase | Tipo | Propósito |
 |---|---|---|
 | `ProfileFactory` | Factory | Construye `Profile` válidos desde los comandos, incluyendo `StaffDetails` según el tipo. |
 | `ProfileUniquenessService` | Domain Service | Verifica unicidad de email y documento antes de registrar o cambiar datos. |
 
-#### Repositories (interfaces)
+***Repositories (interfaces)***
 
 | Interfaz | Métodos |
 |---|---|
 | `IProfileRepository` | `AddAsync(Profile)`, `UpdateAsync(Profile)`, `FindByIdAsync(ProfileId)`, `FindByUserIdAsync(UserId)`, `FindByEmailAsync(EmailAddress)`, `ExistsByEmailAsync(EmailAddress)`, `ExistsByIdentityDocumentAsync(IdentityDocument)` |
 | `IUnitOfWork` | `CommitAsync()` |
 
-#### Relaciones entre clases
+***Relaciones entre clases***
 
 - `Profile` **compone** 0..* `DataProcessingConsent` y 0..1 `StaffDetails`.
 - `Profile` **usa** los Value Objects `PersonName`, `EmailAddress`, `PhoneNumber`, `IdentityDocument` y `Address`.
@@ -131,7 +131,7 @@ Como Bookings & Payments es *Conformist*, consume `ProfileResource` directamente
 
 Orquesta los flujos del negocio mediante **MediatR**. Se separan **commands** (cambian estado) de **queries** (solo leen).
 
-#### Commands y Command Handlers (`IRequestHandler<,>`)
+***Commands y Command Handlers (`IRequestHandler<,>`)***
 
 | Command | Command Handler | Flujo |
 |---|---|---|
@@ -145,7 +145,7 @@ Orquesta los flujos del negocio mediante **MediatR**. Se separan **commands** (c
 
 Cada command tiene un validador de **FluentValidation** (por ejemplo `RegisterGuestCommandValidator`) registrado como pipeline behavior de MediatR.
 
-#### Queries y Query Handlers
+***Queries y Query Handlers***
 
 | Query | Query Handler | Resultado |
 |---|---|---|
@@ -153,7 +153,7 @@ Cada command tiene un validador de **FluentValidation** (por ejemplo `RegisterGu
 | `GetProfileByUserIdQuery` | `GetProfileByUserIdQueryHandler` | `Profile` por usuario IAM |
 | `GetProfileConsentsQuery` | `GetProfileConsentsQueryHandler` | Lista de consentimientos |
 
-#### Event Handlers (`INotificationHandler<>`)
+***Event Handlers (`INotificationHandler<>`)***
 
 | Handler | Evento que atiende | Acción |
 |---|---|---|
@@ -162,7 +162,7 @@ Cada command tiene un validador de **FluentValidation** (por ejemplo `RegisterGu
 | `DataProcessingPermittedEventHandler` | `DataProcessingPermitted` | Registra auditoría y notifica a los contextos interesados. |
 | `UserCreatedEventHandler` *(opcional)* | `UserCreated` (IAM) | Crea el perfil base cuando se registra un usuario nuevo. |
 
-#### Puertos de salida (interfaces de aplicación)
+***Puertos de salida (interfaces de aplicación)***
 
 | Interfaz | Propósito |
 |---|---|
@@ -1184,6 +1184,668 @@ Ref: audit_logs.user_id > users.id
 - Nunca se guarda la contraseña en claro: `password_hash` almacena solo el hash BCrypt.
 - En EF Core, los enums se guardan como texto con `HasConversion<string>()` para que coincidan con los valores de arriba.
 - `profiles.user_id` (contexto Profiles) es una **referencia lógica** a `users.id`: no hay FK entre bases de datos de contextos distintos.
+
+## 5.3. Bounded Context: Properties Management
+
+El bounded context **Properties Management** se encarga de la gestión de la infraestructura física: creación de hoteles, configuración de habitaciones y tipos de habitación, tarifas y asignación de personal. Está implementado con **C# / ASP.NET Core (.NET 8)**, **Entity Framework Core** sobre **PostgreSQL**, **MediatR** para commands, queries y eventos, y arquitectura DDD por capas.
+
+Eventos clave: `HotelCreated`, `RoomAdded`, `StaffAdded` y `AvailableRoomsChecked`.
+
+Relación con otros contextos: **Properties Management – Bookings & Payments (Customer/Supplier)**. Properties Management es *upstream* (Supplier): provee la información estructural del hotel (habitaciones, configuración base, tarifas y disponibilidad general). Bookings & Payments es *downstream* (Customer): consume esa información para asociarla a reservas y pagos. Al ser Customer/Supplier, el contrato que expone la fachada pública (`IPropertiesContextFacade`) se versiona y se acuerda con el contexto cliente, de modo que Properties no lo cambia unilateralmente.
+
+> **Alcance de la disponibilidad:** Properties solo conoce la disponibilidad **operativa** de una habitación (disponible, en mantenimiento o fuera de servicio). La disponibilidad por fechas (cruce con reservas existentes) la resuelve Bookings & Payments, que parte de la lista que le entrega Properties.
+
+---
+
+### 5.3.1. Domain Layer.
+
+Contiene el núcleo del contexto y las reglas de negocio de la infraestructura: qué hoteles existen, qué tipos de habitación y tarifas manejan, qué habitaciones tienen y qué personal está asignado a cada uno.
+
+***Aggregates y Entities***
+
+| Clase | Categoría | Propósito |
+|---|---|---|
+| `Hotel` | Aggregate Root | Representa un hotel. Controla su información, sus tipos de habitación y tarifas, sus habitaciones y su personal asignado. Toda modificación pasa por esta clase. |
+| `RoomType` | Entity (dentro del agregado Hotel) | Categoría de habitación (Simple, Doble, Suite...) con capacidad, descripción y tarifa base por noche. |
+| `Room` | Entity (dentro del agregado Hotel) | Habitación física del hotel, asociada a un tipo y con un estado operativo. |
+| `StaffAssignment` | Entity (dentro del agregado Hotel) | Asignación de un miembro del personal (referencia al perfil Staff) a un hotel con un cargo. |
+
+**Atributos y métodos de `Hotel`:**
+
+| Miembro | Tipo | Descripción |
+|---|---|---|
+| `Id` | `HotelId` | Identificador único del hotel. |
+| `Name` | `HotelName` | Nombre del hotel. |
+| `Description` | `string` | Descripción general. |
+| `Address` | `Address` | Dirección del hotel. |
+| `Contact` | `ContactInfo` | Teléfono y correo de contacto. |
+| `Status` | `HotelStatus` | `Active` o `Inactive`. |
+| `RoomTypes` | `IReadOnlyCollection<RoomType>` | Tipos de habitación y sus tarifas. |
+| `Rooms` | `IReadOnlyCollection<Room>` | Habitaciones del hotel. |
+| `StaffAssignments` | `IReadOnlyCollection<StaffAssignment>` | Personal asignado. |
+| `Create(...)` | `static Hotel` | Crea un hotel y emite `HotelCreated`. |
+| `UpdateInformation(...)` | `void` | Actualiza nombre, descripción, dirección y contacto. |
+| `AddRoomType(name, capacity, baseRate)` | `RoomType` | Registra un tipo de habitación con su tarifa base. |
+| `ChangeRoomTypeRate(roomTypeId, newRate)` | `void` | Cambia la tarifa base y emite `RoomRateChanged`. |
+| `AddRoom(number, floor, roomTypeId)` | `Room` | Agrega una habitación y emite `RoomAdded`. |
+| `ChangeRoomStatus(roomId, status)` | `void` | Marca la habitación como disponible, en mantenimiento o fuera de servicio. |
+| `AssignStaff(profileId, position)` | `StaffAssignment` | Asigna personal al hotel y emite `StaffAdded`. |
+| `UnassignStaff(profileId)` | `void` | Finaliza la asignación del personal. |
+| `Deactivate()` / `Activate()` | `void` | Cambia el estado del hotel. |
+| `PullDomainEvents()` | `IReadOnlyList<IDomainEvent>` | Entrega y limpia los eventos pendientes. |
+
+**Atributos principales de las entidades internas:**
+
+| Entidad | Atributos |
+|---|---|
+| `RoomType` | `Id: RoomTypeId`, `Name: string`, `Description: string`, `Capacity: int`, `BaseRate: Money` |
+| `Room` | `Id: RoomId`, `Number: RoomNumber`, `Floor: int`, `RoomTypeId: RoomTypeId`, `Status: RoomStatus`; `ChangeStatus(...)`, `IsAvailableFor(guests)` |
+| `StaffAssignment` | `Id: StaffAssignmentId`, `StaffProfileId: StaffProfileId`, `Position: StaffPosition`, `AssignedAt: DateTime`, `EndedAt: DateTime?`; `IsActive()`, `End()` |
+
+**Reglas de negocio principales:**
+
+- El número de habitación es único dentro de un hotel.
+- Una habitación debe pertenecer a un tipo de habitación existente en el mismo hotel.
+- La tarifa base debe ser mayor que cero y tener moneda definida.
+- Un hotel `Inactive` no puede recibir habitaciones, tarifas ni personal nuevo.
+- Un mismo miembro del personal no puede tener dos asignaciones activas en el mismo hotel.
+- Solo las habitaciones en estado `Available` entran en la consulta de habitaciones disponibles.
+- Una habitación no puede quedar fuera de servicio si es la única de su tipo con reservas activas (validación coordinada con Bookings & Payments).
+- No pueden existir dos hoteles activos con el mismo nombre en la misma ciudad.
+
+***Value Objects (implementados como `record`)***
+
+| Clase | Propósito | Atributos |
+|---|---|---|
+| `HotelId` | Identidad del hotel | `Value: Guid` |
+| `RoomId` | Identidad de la habitación | `Value: Guid` |
+| `RoomTypeId` | Identidad del tipo de habitación | `Value: Guid` |
+| `StaffAssignmentId` | Identidad de la asignación | `Value: Guid` |
+| `StaffProfileId` | Referencia al perfil Staff del contexto Profiles | `Value: Guid` |
+| `HotelName` | Nombre validado del hotel | `Value: string` |
+| `Address` | Dirección | `Street`, `City`, `Country`, `ZipCode` |
+| `ContactInfo` | Datos de contacto | `Phone`, `Email` |
+| `RoomNumber` | Número de habitación | `Value: string` |
+| `Money` | Monto con moneda | `Amount: decimal`, `Currency: string` |
+| `StayPeriod` | Rango de fechas de consulta | `CheckIn: DateOnly`, `CheckOut: DateOnly` |
+
+***Enumeraciones***
+
+| Enum | Valores |
+|---|---|
+| `HotelStatus` | `Active`, `Inactive` |
+| `RoomStatus` | `Available`, `Maintenance`, `OutOfService` |
+| `StaffPosition` | `Manager`, `Receptionist`, `Housekeeping`, `Maintenance`, `Security` |
+
+***Domain Events***
+
+| Evento | Se emite cuando | Datos |
+|---|---|---|
+| `HotelCreated` | Se crea un hotel | `HotelId`, `Name`, `City`, `OccurredAt` |
+| `RoomAdded` | Se agrega una habitación | `HotelId`, `RoomId`, `RoomNumber`, `RoomTypeId`, `OccurredAt` |
+| `StaffAdded` | Se asigna personal a un hotel | `HotelId`, `StaffProfileId`, `Position`, `OccurredAt` |
+| `AvailableRoomsChecked` | Se consulta la disponibilidad de habitaciones (evento de aplicación informativo, publicado por el query handler) | `HotelId`, `StayPeriod`, `Guests`, `ResultCount`, `OccurredAt` |
+| `RoomRateChanged` | Se cambia la tarifa de un tipo de habitación (evento de integración para Bookings & Payments) | `HotelId`, `RoomTypeId`, `NewRate`, `OccurredAt` |
+
+Todos implementan `IDomainEvent` (marca de MediatR `INotification`).
+
+***Factories y Domain Services***
+
+| Clase | Tipo | Propósito |
+|---|---|---|
+| `HotelFactory` | Factory | Construye `Hotel` válidos desde los comandos, con sus valores iniciales. |
+| `HotelUniquenessService` | Domain Service | Verifica que no exista otro hotel activo con el mismo nombre en la misma ciudad. |
+| `RoomAvailabilityService` | Domain Service | Filtra las habitaciones operativamente disponibles de un hotel según capacidad y estado. |
+
+***Repositories (interfaces)***
+
+| Interfaz | Métodos |
+|---|---|
+| `IHotelRepository` | `AddAsync(Hotel)`, `UpdateAsync(Hotel)`, `FindByIdAsync(HotelId)`, `FindByRoomIdAsync(RoomId)`, `FindAllAsync()`, `ExistsActiveByNameAndCityAsync(HotelName, string city)` |
+| `IUnitOfWork` | `CommitAsync()` |
+
+***Relaciones entre clases***
+
+- `Hotel` **compone** 0..* `RoomType`, 0..* `Room` y 0..* `StaffAssignment`.
+- `Room` **referencia** 1 `RoomType` por `RoomTypeId`.
+- `RoomType` **usa** el Value Object `Money` para su tarifa base.
+- `StaffAssignment` **referencia** un perfil Staff del contexto Profiles por `StaffProfileId` (referencia lógica).
+- `Hotel` **emite** `HotelCreated`, `RoomAdded`, `StaffAdded` y `RoomRateChanged`.
+- `HotelFactory` **crea** `Hotel`; `HotelUniquenessService` **depende** de `IHotelRepository`; `RoomAvailabilityService` **evalúa** las `Room` de un `Hotel`.
+
+---
+
+### 5.3.2. Interface Layer.
+
+Expone las capacidades del contexto hacia el frontend y hacia Bookings & Payments. Los controllers solo traducen HTTP a commands/queries; no contienen reglas de negocio.
+
+| Clase | Tipo | Propósito | Endpoints / Operaciones |
+|---|---|---|---|
+| `HotelsController` | ASP.NET Core Controller (`[ApiController]`) | Creación y gestión de hoteles. | `POST /api/v1/hotels`, `GET /api/v1/hotels`, `GET /api/v1/hotels/{hotelId}`, `PUT /api/v1/hotels/{hotelId}`, `PATCH /api/v1/hotels/{hotelId}/deactivation` |
+| `RoomTypesController` | ASP.NET Core Controller | Tipos de habitación y tarifas. | `POST /api/v1/hotels/{hotelId}/room-types`, `GET /api/v1/hotels/{hotelId}/room-types`, `PATCH /api/v1/hotels/{hotelId}/room-types/{roomTypeId}/rate` |
+| `RoomsController` | ASP.NET Core Controller | Habitaciones y consulta de disponibilidad. | `POST /api/v1/hotels/{hotelId}/rooms`, `GET /api/v1/hotels/{hotelId}/rooms`, `PATCH /api/v1/hotels/{hotelId}/rooms/{roomId}/status`, `GET /api/v1/hotels/{hotelId}/rooms/available?checkIn=&checkOut=&guests=` |
+| `StaffAssignmentsController` | ASP.NET Core Controller | Asignación de personal a hoteles. | `POST /api/v1/hotels/{hotelId}/staff`, `GET /api/v1/hotels/{hotelId}/staff`, `DELETE /api/v1/hotels/{hotelId}/staff/{staffProfileId}` |
+| `IPropertiesContextFacade` / `PropertiesContextFacade` | Facade (API pública del contexto) | Contrato versionado para Bookings & Payments (relación Customer/Supplier). | `FetchHotelByIdAsync(hotelId)`, `FetchRoomByIdAsync(roomId)`, `FetchRoomRateAsync(roomId)`, `FetchAvailableRoomsAsync(hotelId, stayPeriod, guests)`, `ExistsActiveRoomAsync(roomId)` |
+| `PropertiesResourceAssembler` | Assembler | Convierte entre agregados, commands y DTOs. | `ToResource(Hotel)`, `ToResource(Room)`, `ToCommand(Resource)` |
+| `CreateHotelResource`, `UpdateHotelResource`, `AddRoomTypeResource`, `ChangeRateResource`, `AddRoomResource`, `ChangeRoomStatusResource`, `AssignStaffResource`, `HotelResource`, `RoomResource`, `RoomRateResource`, `StaffAssignmentResource` | DTOs (`record`) | Contratos de entrada y salida de la API. | — |
+
+**Notas:**
+
+- Las operaciones de escritura requieren rol Admin (validado con el JWT emitido por IAM); las de lectura de disponibilidad están abiertas a Staff, Guest y al contexto Bookings & Payments.
+- `PropertiesContextFacade` devuelve `HotelResource`, `RoomResource` y `RoomRateResource`: son el contrato que Bookings & Payments acuerda con Properties.
+- En el endpoint `rooms/available`, la respuesta lista habitaciones **operativamente** disponibles; las fechas se usan como contexto y se publican en `AvailableRoomsChecked`.
+
+---
+
+### 5.3.3. Application Layer.
+
+Orquesta los flujos del negocio mediante **MediatR**. Se separan **commands** (cambian estado) de **queries** (solo leen).
+
+***Commands y Command Handlers (`IRequestHandler<,>`)***
+
+| Command | Command Handler | Flujo |
+|---|---|---|
+| `CreateHotelCommand` | `CreateHotelCommandHandler` | Valida unicidad → crea Hotel con `HotelFactory` → guarda → publica `HotelCreated`. |
+| `UpdateHotelCommand` | `UpdateHotelCommandHandler` | Carga el hotel → `UpdateInformation` → guarda. |
+| `DeactivateHotelCommand` | `DeactivateHotelCommandHandler` | Carga el hotel → `Deactivate` → guarda. |
+| `AddRoomTypeCommand` | `AddRoomTypeCommandHandler` | Carga el hotel → `AddRoomType` → guarda. |
+| `ChangeRoomTypeRateCommand` | `ChangeRoomTypeRateCommandHandler` | Carga el hotel → `ChangeRoomTypeRate` → guarda → publica `RoomRateChanged`. |
+| `AddRoomCommand` | `AddRoomCommandHandler` | Carga el hotel → `AddRoom` → guarda → publica `RoomAdded`. |
+| `ChangeRoomStatusCommand` | `ChangeRoomStatusCommandHandler` | Carga el hotel → `ChangeRoomStatus` → guarda. |
+| `AssignStaffCommand` | `AssignStaffCommandHandler` | Verifica que el perfil Staff exista y esté activo (`IStaffProfileVerifier`) → carga el hotel → `AssignStaff` → guarda → publica `StaffAdded`. |
+| `UnassignStaffCommand` | `UnassignStaffCommandHandler` | Carga el hotel → `UnassignStaff` → guarda. |
+
+Cada command tiene un validador de **FluentValidation** (por ejemplo `AddRoomCommandValidator`) registrado como pipeline behavior de MediatR.
+
+***Queries y Query Handlers***
+
+| Query | Query Handler | Resultado |
+|---|---|---|
+| `GetHotelByIdQuery` | `GetHotelByIdQueryHandler` | `Hotel` por id |
+| `GetAllHotelsQuery` | `GetAllHotelsQueryHandler` | Lista de hoteles |
+| `GetRoomTypesByHotelQuery` | `GetRoomTypesByHotelQueryHandler` | Tipos de habitación y tarifas |
+| `GetRoomsByHotelQuery` | `GetRoomsByHotelQueryHandler` | Habitaciones del hotel |
+| `GetStaffByHotelQuery` | `GetStaffByHotelQueryHandler` | Personal asignado |
+| `CheckAvailableRoomsQuery` | `CheckAvailableRoomsQueryHandler` | Habitaciones operativamente disponibles (usa `RoomAvailabilityService`) y publica `AvailableRoomsChecked`. |
+
+***Event Handlers (`INotificationHandler<>`)***
+
+| Handler | Evento que atiende | Acción |
+|---|---|---|
+| `HotelCreatedEventHandler` | `HotelCreated` | Registra auditoría y notifica al administrador la creación del hotel. |
+| `RoomAddedEventHandler` | `RoomAdded` | Invalida la caché de disponibilidad del hotel y registra auditoría. |
+| `StaffAddedEventHandler` | `StaffAdded` | Envía correo de notificación al miembro del personal asignado. |
+| `AvailableRoomsCheckedEventHandler` | `AvailableRoomsChecked` | Registra métricas de consultas de disponibilidad. |
+| `RoomRateChangedEventHandler` | `RoomRateChanged` | Publica el evento de integración al broker para que Bookings & Payments actualice las tarifas. |
+
+***Puertos de salida (interfaces de aplicación)***
+
+| Interfaz | Propósito |
+|---|---|
+| `IDomainEventPublisher` | Publica eventos de dominio y de integración al broker. |
+| `IStaffProfileVerifier` | Verifica que un `StaffProfileId` exista y esté activo en el contexto Profiles. |
+| `INotificationService` | Envía correos de notificación. |
+| `IAvailabilityCache` | Cachea los resultados de disponibilidad por hotel. |
+
+---
+
+### 5.3.4. Infrastructure Layer.
+
+Implementa el acceso a servicios externos y las interfaces definidas en el dominio y la aplicación.
+
+| Clase | Implementa / Rol | Tecnología | Descripción |
+|---|---|---|---|
+| `PropertiesDbContext` | `DbContext` + `IUnitOfWork` | EF Core + Npgsql | Contexto de persistencia del bounded context. |
+| `EfHotelRepository` | `IHotelRepository` | EF Core | Persiste el agregado Hotel con sus tipos de habitación, habitaciones y asignaciones. |
+| `HotelConfiguration`, `RoomTypeConfiguration`, `RoomConfiguration`, `StaffAssignmentConfiguration` | `IEntityTypeConfiguration<T>` | EF Core Fluent API | Mapeo objeto-relacional; los Value Objects se mapean con `OwnsOne` y `HasConversion`. |
+| `MediatRDomainEventPublisher` | `IDomainEventPublisher` | MediatR / Message Broker | Publica los eventos del agregado tras persistir. |
+| `OutboxMessage` + `OutboxProcessor` | Patrón Outbox | EF Core + `BackgroundService` | Garantiza la entrega de eventos al broker (recomendado). |
+| `ProfilesFacadeClient` | `IStaffProfileVerifier` | `HttpClient` tipado / llamada a `IProfilesContextFacade` | Consulta `ExistsActiveProfileAsync` del contexto Profiles para validar al personal. |
+| `SmtpNotificationService` | `INotificationService` | MailKit / SMTP | Envía correos de notificación. |
+| `MemoryAvailabilityCache` | `IAvailabilityCache` | `IMemoryCache` / Redis | Cachea la disponibilidad por hotel con invalidación por evento. |
+| `PropertiesSeeder` | Inicialización | EF Core | Carga datos base (tipos de habitación por defecto) en entornos de desarrollo. |
+
+---
+
+### 5.3.5. Bounded Context Software Architecture Component Level Diagrams.
+
+Container considerado: **Properties API** (ASP.NET Core Web API), dentro de la plataforma.
+
+| Componente | Responsabilidad | Tecnología |
+|---|---|---|
+| HotelsController | Creación y gestión de hoteles | ASP.NET Core Controller |
+| RoomTypesController | Tipos de habitación y tarifas | ASP.NET Core Controller |
+| RoomsController | Habitaciones y consulta de disponibilidad | ASP.NET Core Controller |
+| StaffAssignmentsController | Asignación de personal | ASP.NET Core Controller |
+| PropertiesContextFacade | API interna versionada para Bookings & Payments (Supplier) | C# Service |
+| Command Handlers | Casos de uso de escritura | MediatR |
+| Query Handlers | Casos de uso de lectura | MediatR |
+| Event Handlers | Reaccionan a eventos de dominio | MediatR `INotificationHandler` |
+| Properties Domain Model | Aggregate Hotel, entidades, VOs, Domain Services | C# (clases/records) |
+| EfHotelRepository | Persistencia | EF Core + Npgsql |
+| Profiles Facade Client | Verifica perfiles Staff en Profiles | `HttpClient` tipado |
+| Availability Cache | Caché de disponibilidad | IMemoryCache / Redis |
+| Event Publisher / Outbox | Publicación de eventos | MediatR + BackgroundService |
+| Notification Service | Envío de correos | MailKit |
+
+Código **Structurizr DSL** (https://structurizr.com/dsl):
+
+```
+workspace "Properties Management Bounded Context" "C4 - Component diagram" {
+
+  model {
+    admin = person "Admin" "Administrador que crea hoteles, habitaciones y tarifas"
+    staff = person "Staff" "Personal que consulta habitaciones y disponibilidad"
+
+    bookings = softwareSystem "Bookings & Payments" "Downstream (Customer): consume propiedades, habitaciones y tarifas" "Existing"
+    profiles = softwareSystem "Profiles" "Provee la validación de perfiles Staff" "Existing"
+    mail = softwareSystem "Email Service" "Servicio de correo (SMTP)" "External"
+
+    platform = softwareSystem "Plataforma" "Sistema principal" {
+      web = container "Frontend" "Interfaz de usuario" "SPA"
+      db = container "Properties DB" "Hoteles, tipos de habitación, habitaciones, personal y outbox" "PostgreSQL" "Database"
+      cache = container "Availability Cache" "Caché de disponibilidad por hotel" "Redis" "Database"
+      broker = container "Message Broker" "Eventos de dominio e integración" "RabbitMQ"
+
+      api = container "Properties API" "Bounded Context Properties Management" "C#, ASP.NET Core 8" {
+        hotelsController = component "HotelsController" "Creación y gestión de hoteles" "ASP.NET Core Controller"
+        roomTypesController = component "RoomTypesController" "Tipos de habitación y tarifas" "ASP.NET Core Controller"
+        roomsController = component "RoomsController" "Habitaciones y consulta de disponibilidad" "ASP.NET Core Controller"
+        staffController = component "StaffAssignmentsController" "Asignación de personal" "ASP.NET Core Controller"
+        facade = component "PropertiesContextFacade" "API pública versionada para otros contextos" "C# Service"
+        commandHandlers = component "Command Handlers" "Casos de uso de escritura" "MediatR"
+        queryHandlers = component "Query Handlers" "Casos de uso de lectura" "MediatR"
+        eventHandlers = component "Event Handlers" "Reaccionan a eventos de dominio" "MediatR INotificationHandler"
+        domainModel = component "Properties Domain Model" "Aggregate Hotel, entidades, Value Objects, Domain Services" "C#"
+        repository = component "EfHotelRepository" "Implementa IHotelRepository" "EF Core"
+        profilesClient = component "Profiles Facade Client" "Verifica que el personal exista y esté activo" "HttpClient tipado"
+        availabilityCache = component "Availability Cache" "Cachea disponibilidad por hotel" "IMemoryCache / Redis"
+        publisher = component "Event Publisher / Outbox" "Publica eventos de dominio e integración" "MediatR + BackgroundService"
+        notifService = component "Notification Service" "Envía correos de notificación" "MailKit"
+      }
+    }
+
+    admin -> web "Usa"
+    staff -> web "Usa"
+    web -> hotelsController "Consume" "HTTPS/JSON"
+    web -> roomTypesController "Consume" "HTTPS/JSON"
+    web -> roomsController "Consume" "HTTPS/JSON"
+    web -> staffController "Consume" "HTTPS/JSON"
+    bookings -> facade "Consulta hoteles, habitaciones y tarifas" "Llamada interna"
+    broker -> bookings "Entrega RoomRateChanged y RoomAdded" "AMQP"
+
+    hotelsController -> commandHandlers "Envía commands"
+    hotelsController -> queryHandlers "Envía queries"
+    roomTypesController -> commandHandlers "Envía commands"
+    roomTypesController -> queryHandlers "Envía queries"
+    roomsController -> commandHandlers "Envía commands"
+    roomsController -> queryHandlers "Envía queries"
+    staffController -> commandHandlers "Envía commands"
+    staffController -> queryHandlers "Envía queries"
+    facade -> queryHandlers "Consulta información estructural"
+
+    commandHandlers -> domainModel "Aplica reglas de negocio"
+    commandHandlers -> repository "Guarda agregados"
+    commandHandlers -> profilesClient "Verifica perfil Staff"
+    queryHandlers -> repository "Lee agregados"
+    queryHandlers -> domainModel "Calcula disponibilidad operativa"
+    queryHandlers -> availabilityCache "Lee y escribe disponibilidad"
+    commandHandlers -> publisher "Publica eventos"
+    repository -> db "Lee/Escribe" "EF Core / Npgsql"
+    publisher -> db "Guarda mensajes outbox" "EF Core / Npgsql"
+    publisher -> broker "Publica eventos" "AMQP"
+    publisher -> eventHandlers "Notifica eventos internos"
+    eventHandlers -> availabilityCache "Invalida caché"
+    eventHandlers -> notifService "Solicita envío"
+    availabilityCache -> cache "Lee/Escribe" "RESP"
+    profilesClient -> profiles "Consulta ExistsActiveProfile" "HTTPS/JSON"
+    notifService -> mail "Envía correos" "SMTP"
+  }
+
+  views {
+    component api "PropertiesComponents" "Component diagram del container Properties API" {
+      include *
+      autolayout lr
+    }
+
+    styles {
+      element "Person" {
+        shape Person
+        background #08427b
+        color #ffffff
+      }
+      element "Software System" {
+        background #1168bd
+        color #ffffff
+      }
+      element "External" {
+        background #999999
+        color #ffffff
+      }
+      element "Existing" {
+        background #6b8e23
+        color #ffffff
+      }
+      element "Container" {
+        background #438dd5
+        color #ffffff
+      }
+      element "Database" {
+        shape Cylinder
+      }
+      element "Component" {
+        background #85bbf0
+        color #000000
+      }
+    }
+  }
+}
+```
+
+---
+
+### 5.3.6. Bounded Context Software Architecture Code Level Diagrams.
+
+#### 5.3.6.1. Bounded Context Domain Layer Class Diagrams.
+
+Diagrama UML de clases del Domain Layer. Visibilidad: `+` public, `-` private, `#` protected. Las propiedades de C# se muestran con setter privado (`+Id: HotelId {get; private set}` se simplifica como `+Id`).
+
+Código **PlantUML** (https://www.plantuml.com/plantuml):
+
+```plantuml
+@startuml
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+enum HotelStatus {
+  Active
+  Inactive
+}
+enum RoomStatus {
+  Available
+  Maintenance
+  OutOfService
+}
+enum StaffPosition {
+  Manager
+  Receptionist
+  Housekeeping
+  Maintenance
+  Security
+}
+
+class Hotel <<Aggregate Root>> {
+  +Id: HotelId
+  +Name: HotelName
+  +Description: string
+  +Address: Address
+  +Contact: ContactInfo
+  +Status: HotelStatus
+  +RoomTypes: IReadOnlyCollection<RoomType>
+  +Rooms: IReadOnlyCollection<Room>
+  +StaffAssignments: IReadOnlyCollection<StaffAssignment>
+  -_domainEvents: List<IDomainEvent>
+  +{static} Create(...): Hotel
+  +UpdateInformation(name: HotelName, description: string, address: Address, contact: ContactInfo): void
+  +AddRoomType(name: string, capacity: int, baseRate: Money): RoomType
+  +ChangeRoomTypeRate(roomTypeId: RoomTypeId, newRate: Money): void
+  +AddRoom(number: RoomNumber, floor: int, roomTypeId: RoomTypeId): Room
+  +ChangeRoomStatus(roomId: RoomId, status: RoomStatus): void
+  +AssignStaff(profileId: StaffProfileId, position: StaffPosition): StaffAssignment
+  +UnassignStaff(profileId: StaffProfileId): void
+  +Deactivate(): void
+  +Activate(): void
+  +PullDomainEvents(): IReadOnlyList<IDomainEvent>
+  -EnsureActive(): void
+}
+
+class RoomType <<Entity>> {
+  +Id: RoomTypeId
+  +Name: string
+  +Description: string
+  +Capacity: int
+  +BaseRate: Money
+  +ChangeRate(newRate: Money): void
+}
+
+class Room <<Entity>> {
+  +Id: RoomId
+  +Number: RoomNumber
+  +Floor: int
+  +RoomTypeId: RoomTypeId
+  +Status: RoomStatus
+  +ChangeStatus(status: RoomStatus): void
+  +IsAvailableFor(guests: int, capacity: int): bool
+}
+
+class StaffAssignment <<Entity>> {
+  +Id: StaffAssignmentId
+  +StaffProfileId: StaffProfileId
+  +Position: StaffPosition
+  +AssignedAt: DateTime
+  +EndedAt: DateTime
+  +IsActive(): bool
+  +End(): void
+}
+
+class HotelId <<Value Object>> {
+  +Value: Guid
+}
+class RoomId <<Value Object>> {
+  +Value: Guid
+}
+class RoomTypeId <<Value Object>> {
+  +Value: Guid
+}
+class StaffAssignmentId <<Value Object>> {
+  +Value: Guid
+}
+class StaffProfileId <<Value Object>> {
+  +Value: Guid
+}
+class HotelName <<Value Object>> {
+  +Value: string
+}
+class Address <<Value Object>> {
+  +Street: string
+  +City: string
+  +Country: string
+  +ZipCode: string
+}
+class ContactInfo <<Value Object>> {
+  +Phone: string
+  +Email: string
+}
+class RoomNumber <<Value Object>> {
+  +Value: string
+}
+class Money <<Value Object>> {
+  +Amount: decimal
+  +Currency: string
+}
+class StayPeriod <<Value Object>> {
+  +CheckIn: DateOnly
+  +CheckOut: DateOnly
+}
+
+interface IDomainEvent {
+  +OccurredAt: DateTime
+}
+class HotelCreated <<Domain Event>> {
+  +HotelId: HotelId
+  +Name: HotelName
+  +City: string
+}
+class RoomAdded <<Domain Event>> {
+  +HotelId: HotelId
+  +RoomId: RoomId
+  +RoomNumber: RoomNumber
+  +RoomTypeId: RoomTypeId
+}
+class StaffAdded <<Domain Event>> {
+  +HotelId: HotelId
+  +StaffProfileId: StaffProfileId
+  +Position: StaffPosition
+}
+class AvailableRoomsChecked <<Domain Event>> {
+  +HotelId: HotelId
+  +StayPeriod: StayPeriod
+  +Guests: int
+  +ResultCount: int
+}
+class RoomRateChanged <<Domain Event>> {
+  +HotelId: HotelId
+  +RoomTypeId: RoomTypeId
+  +NewRate: Money
+}
+
+class HotelFactory <<Factory>> {
+  +CreateHotel(cmd: CreateHotelCommand): Hotel
+}
+class HotelUniquenessService <<Domain Service>> {
+  -_repository: IHotelRepository
+  +EnsureNameIsUniqueInCityAsync(name: HotelName, city: string): Task
+}
+class RoomAvailabilityService <<Domain Service>> {
+  +GetAvailableRooms(hotel: Hotel, guests: int): IReadOnlyList<Room>
+}
+interface IHotelRepository <<Repository>> {
+  +AddAsync(hotel: Hotel): Task
+  +UpdateAsync(hotel: Hotel): Task
+  +FindByIdAsync(id: HotelId): Task<Hotel>
+  +FindByRoomIdAsync(id: RoomId): Task<Hotel>
+  +FindAllAsync(): Task<List<Hotel>>
+  +ExistsActiveByNameAndCityAsync(name: HotelName, city: string): Task<bool>
+}
+
+Hotel "1" *-- "0..*" RoomType : define tipos >
+Hotel "1" *-- "0..*" Room : contiene >
+Hotel "1" *-- "0..*" StaffAssignment : asigna personal >
+Room "*" --> "1" RoomType : es de tipo (por RoomTypeId) >
+Room "*" --> "1" RoomStatus : tiene estado >
+RoomType "1" *-- "1" Money : tarifa base >
+StaffAssignment "*" --> "1" StaffPosition : cumple cargo >
+Hotel "*" --> "1" HotelStatus : tiene estado >
+Hotel "1" *-- "1" HotelId : se identifica por >
+Hotel "1" *-- "1" HotelName : se llama >
+Hotel "1" *-- "1" Address : se ubica en >
+Hotel "1" *-- "1" ContactInfo : se contacta por >
+Room "1" *-- "1" RoomNumber : se numera con >
+StaffAssignment "1" *-- "1" StaffProfileId : referencia perfil Staff >
+Hotel ..> IDomainEvent : emite >
+IDomainEvent <|.. HotelCreated
+IDomainEvent <|.. RoomAdded
+IDomainEvent <|.. StaffAdded
+IDomainEvent <|.. AvailableRoomsChecked
+IDomainEvent <|.. RoomRateChanged
+AvailableRoomsChecked "*" --> "1" StayPeriod : consulta fechas >
+HotelFactory ..> Hotel : crea >
+HotelUniquenessService ..> IHotelRepository : consulta >
+RoomAvailabilityService ..> Hotel : evalúa habitaciones de >
+IHotelRepository ..> Hotel : persiste >
+@enduml
+```
+
+#### 5.3.6.2. Bounded Context Database Design Diagram.
+
+Se usa un esquema relacional en **PostgreSQL** con 5 tablas, generado mediante EF Core Migrations:
+
+- `hotels`: tabla principal del agregado Hotel. Los Value Objects (`HotelName`, `Address`, `ContactInfo`) se aplanan en columnas.
+- `room_types`: tipos de habitación con su tarifa base (`Money` aplanado en monto y moneda). Relación 1:N con `hotels`.
+- `rooms`: habitaciones físicas. Relación 1:N con `hotels` y N:1 con `room_types`.
+- `staff_assignments`: asignaciones de personal. Relación 1:N con `hotels`; `staff_profile_id` es una referencia lógica al contexto Profiles.
+- `outbox_events`: garantiza la entrega de eventos de dominio e integración al broker.
+
+Código **DBML** (https://dbdiagram.io):
+
+```dbml
+Table hotels {
+  id uuid [pk]
+  name varchar(150) [not null]
+  description text
+  address_street varchar(200) [not null]
+  address_city varchar(100) [not null]
+  address_country varchar(100) [not null]
+  address_zip_code varchar(20)
+  contact_phone varchar(20)
+  contact_email varchar(150)
+  status varchar(10) [not null, default: 'ACTIVE', note: 'ACTIVE | INACTIVE']
+  created_at timestamp [not null, default: `now()`]
+  updated_at timestamp [not null, default: `now()`]
+
+  indexes {
+    (name, address_city) [note: 'Único entre hoteles ACTIVE (índice parcial: WHERE status = ''ACTIVE'')']
+  }
+}
+
+Table room_types {
+  id uuid [pk]
+  hotel_id uuid [not null]
+  name varchar(80) [not null]
+  description varchar(250)
+  capacity int [not null]
+  base_rate_amount numeric(10,2) [not null]
+  base_rate_currency char(3) [not null, default: 'PEN']
+
+  indexes {
+    (hotel_id, name) [unique]
+  }
+}
+
+Table rooms {
+  id uuid [pk]
+  hotel_id uuid [not null]
+  room_type_id uuid [not null]
+  room_number varchar(10) [not null]
+  floor int [not null]
+  status varchar(15) [not null, default: 'AVAILABLE', note: 'AVAILABLE | MAINTENANCE | OUT_OF_SERVICE']
+
+  indexes {
+    (hotel_id, room_number) [unique]
+    (hotel_id, status)
+  }
+}
+
+Table staff_assignments {
+  id uuid [pk]
+  hotel_id uuid [not null]
+  staff_profile_id uuid [not null, note: 'Referencia lógica al perfil Staff (contexto Profiles)']
+  position varchar(20) [not null, note: 'MANAGER | RECEPTIONIST | HOUSEKEEPING | MAINTENANCE | SECURITY']
+  assigned_at timestamp [not null, default: `now()`]
+  ended_at timestamp
+
+  indexes {
+    (hotel_id, staff_profile_id) [note: 'Único entre asignaciones activas (índice parcial: WHERE ended_at IS NULL)']
+  }
+}
+
+Table outbox_events {
+  id uuid [pk]
+  aggregate_id uuid [not null]
+  event_type varchar(100) [not null, note: 'HotelCreated | RoomAdded | StaffAdded | RoomRateChanged']
+  payload jsonb [not null]
+  occurred_at timestamp [not null]
+  published boolean [not null, default: false]
+}
+
+Ref: room_types.hotel_id > hotels.id [delete: cascade]
+Ref: rooms.hotel_id > hotels.id [delete: cascade]
+Ref: rooms.room_type_id > room_types.id
+Ref: staff_assignments.hotel_id > hotels.id [delete: cascade]
+Ref: outbox_events.aggregate_id > hotels.id
+```
+
+**Constraints adicionales:**
+
+- `CHECK (status IN ('ACTIVE','INACTIVE'))` en `hotels`.
+- `CHECK (status IN ('AVAILABLE','MAINTENANCE','OUT_OF_SERVICE'))` en `rooms`.
+- `CHECK (position IN ('MANAGER','RECEPTIONIST','HOUSEKEEPING','MAINTENANCE','SECURITY'))` en `staff_assignments`.
+- `CHECK (base_rate_amount > 0)` y `CHECK (capacity > 0)` en `room_types`.
+- Índice único parcial `(name, address_city) WHERE status = 'ACTIVE'` en `hotels`.
+- Índice único parcial `(hotel_id, staff_profile_id) WHERE ended_at IS NULL` en `staff_assignments`.
+- `rooms.room_type_id` debe pertenecer al mismo hotel que `rooms.hotel_id` (regla garantizada por el dominio).
+- `staff_assignments.staff_profile_id` es una **referencia lógica** a `profiles.id` (contexto Profiles): no hay FK entre bases de datos de contextos distintos.
+- En EF Core, los enums se guardan como texto con `HasConversion<string>()` para que coincidan con los valores de arriba.
 
 ## 5.X. Bounded Context: <Bounded Context Name>
 
