@@ -76,6 +76,7 @@ Proyecto
 |1.4 | 03/10/2026 | Howard Robles, Guillermo Arturo | Creacion del bounded context properties management |
 |1.5 | 04/10/2026 | Howard Robles, Guillermo Arturo | Creacion del bounded context Bookings & Payments  |
 |1.6| 04/10/2026 | Howard Robles, Guillermo Arturo | Creacion de las conclusiones |
+|1.7| 04/10/2026 | Howard Robles, Guillermo Arturo | Creacion del outcome tp1 |
 
 ---
 
