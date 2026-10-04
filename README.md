@@ -217,15 +217,20 @@ Esta sección detalla cómo el equipo colaboró para construir el **Final Projec
         <td style="padding: 15px; text-align: left; vertical-align: top;">
             <strong>Arévalo Meza, John Telesforo</strong><br>
             <strong>AV1:</strong> Comunico<br>
+            <strong>TP1:</strong> Comunico<br>
             <strong>Howard Robles, Guillermo Arturo</strong><br>
             <strong>AV1:</strong> Comunico<br>
+            <strong>TP1:</strong> Comunico<br>
             <strong>Santur Tello, Andrea Elizabeth</strong><br>
             <strong>AV1:</strong> Comunico<br>
+            <strong>TP1:</strong> Comunico<br>
             <strong>Verona Flores, Ítalo Sebastián</strong><br>
             <strong>AV1:</strong> Sustentación y explicación técnica de las decisiones de diseño arquitectónico estratégico basadas en Attribute-Driven Design (ADD) y EventStorming ante el equipo de desarrollo, pares académicos y el docente del curso.<br>
+            <strong>TP1:</strong> Comunico<br>
         </td>
         <td style="padding: 15px; text-align: left; vertical-align: top;">
             <strong>AV1:</strong> Se definió la visión del producto y objetivos mediante la participación del Product Owner y el equipo. Se elaboraron historias de usuario, análisis de competidores y needfinding. Se aplicó event storming y se diseñaron interfaces UX. Demostró la capacidad de transmitir conceptos complejos de arquitectura de software y diseño orientado a dominios (DDD) de manera clara y objetiva.<br><br>
+            <strong>TP1:</strong> El equipo consolidó un modelo de liderazgo compartido con autogestión de Bounded Contexts, asegurando la alineación con los objetivos del Sprint y la integración fluida entre componentes.<br>
         </td>
     </tr>
     <tr>
@@ -233,15 +238,20 @@ Esta sección detalla cómo el equipo colaboró para construir el **Final Projec
         <td style="padding: 15px; text-align: left; vertical-align: top;">
             <strong>Arévalo Meza, John Telesforo</strong><br>
             <strong>AV1:</strong> Comunico<br>
+            <strong>TP1:</strong> Comunico<br>
             <strong>Howard Robles, Guillermo Arturo</strong><br>
             <strong>AV1:</strong> Comunico<br>
+            <strong>TP1:</strong> Comunico<br>
             <strong>Santur Tello, Andrea Elizabeth</strong><br>
             <strong>AV1:</strong> Comunico<br>
+            <strong>TP1:</strong> Comunico<br>
             <strong>Verona Flores, Ítalo Sebastián</strong><br>
             <strong>AV1:</strong> Redacción, estructuración y refinamiento técnico de los capítulos correspondientes al diseño a nivel estratégico de software, incluyendo el Attribute-Driven Design Inputs, la definición del Architectural Drivers Backlog, y las decisiones de diseño arquitectónico (Architectural Design Decisions).<br>
+            <strong>TP1:</strong> Comunico<br>
         </td>
         <td style="padding: 15px; text-align: left; vertical-align: top;">
             <strong>AV1:</strong> Se estableció un flujo de trabajo basado en Gitflow y conventional commits. Se definieron metas semanales y se promovió la participación equitativa. El equipo cumplió con los objetivos del hito, evidenciando competencia para redactar documentación de ingeniería clara, estructurada y rigurosa.<br><br>
+            <strong>TP1:</strong> Se fomentó un entorno inclusivo mediante la rotación de responsabilidades. Se definieron metas con un Sprint Backlog detallado, entregando un producto funcional desplegado en múltiples plataformas.<br>
         </td>
     </tr>
 </tbody>
