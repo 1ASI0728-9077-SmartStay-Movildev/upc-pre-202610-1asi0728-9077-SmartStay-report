@@ -5412,6 +5412,3 @@ Ref: outbox_events.aggregate_id > reports.id
 - Todos los `*_id` de otros contextos (`hotel_id`, `requested_by`, `booking_id`, `payment_id`, `task_id`, `incident_id`, `review_id`) son **referencias lógicas**: no hay FK entre bases de datos de contextos distintos.
 - En EF Core, los enums se guardan como texto con `HasConversion<string>()` para que coincidan con los valores de arriba.
 
-
-
-
