@@ -72,6 +72,7 @@ Proyecto
 | 0.5 | 17/09/2026 | Arévalo Meza, John Telesforo | Creación del capítulo de Introduction |
 |1.1 | 02/10/2026 | Howard Robles, Guillermo Arturo | Creacion del capitulo bounded context Profiles | 
  | 1.2 | 03/10/2026 | Howard Robles, Guillermo Arturo | Creacion del bounded context profiles |
+|1.3 | 03/10/2026 | Howard Robles, Guillermo Arturo | Creacion del bounded context iam |
 
 ---
 
