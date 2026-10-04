@@ -22,7 +22,7 @@
 
 ## 3.2. User Stories
 
-### Resumen de Épicas (Epics)
+***Resumen de Épicas (Epics)***
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
   <thead>
@@ -81,7 +81,7 @@
 
 ---
 
-### Detalle de Historias de Usuario
+***Detalle de Historias de Usuario***
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
   <thead>
@@ -453,3 +453,4 @@
     <tr><td>22</td><td>US-13</td><td>Comunicación digital huésped-personal</td><td>Como huésped, quiero comunicarme con el personal del hotel de forma digital para resolver dudas y solicitudes rápidamente.</td><td>5</td></tr>
   </tbody>
 </table>
+

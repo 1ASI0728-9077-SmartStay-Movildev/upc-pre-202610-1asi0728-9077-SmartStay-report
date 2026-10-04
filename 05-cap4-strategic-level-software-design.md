@@ -385,7 +385,7 @@ Para dar respuesta a los Architectural Drivers, se evaluaron tácticas y patrone
 
 ### 4.1.5. Quality Attribute Scenario Refinements
 
-##### Scenario Refinement 1: Fiabilidad / Resiliencia
+****Scenario Refinement 1: Fiabilidad / Resiliencia****
 <table>
   <tbody>
     <tr><td><strong>Scenario(s)</strong></td><td>Ante una falla de red o la indisponibilidad temporal de un servicio externo (OTA o pasarela de pagos), una solicitud de sincronización o procesamiento no recibe respuesta dentro del tiempo esperado.</td></tr>
@@ -402,7 +402,7 @@ Para dar respuesta a los Architectural Drivers, se evaluaron tácticas y patrone
   </tbody>
 </table>
 
-##### Scenario Refinement 2: Eficiencia / Rendimiento
+****Scenario Refinement 2: Eficiencia / Rendimiento****
 <table>
   <tbody>
     <tr><td><strong>Scenario(s)</strong></td><td>Durante la hora punta de check-ins y consultas de disponibilidad, cientos de usuarios y dispositivos IoT saturan la plataforma simultáneamente.</td></tr>
@@ -419,7 +419,7 @@ Para dar respuesta a los Architectural Drivers, se evaluaron tácticas y patrone
   </tbody>
 </table>
 
-##### Scenario Refinement 3: Seguridad
+****Scenario Refinement 3: Seguridad****
 <table>
   <tbody>
     <tr><td><strong>Scenario(s)</strong></td><td>Un atacante externo intenta forzar el acceso a actuadores de apertura de puertas de habitaciones o extraer datos sensibles de tarjetas de huéspedes.</td></tr>
@@ -436,7 +436,7 @@ Para dar respuesta a los Architectural Drivers, se evaluaron tácticas y patrone
   </tbody>
 </table>
 
-##### Scenario Refinement 4: Mantenibilidad / Evolución
+****Scenario Refinement 4: Mantenibilidad / Evolución****
 <table>
   <tbody>
     <tr><td><strong>Scenario(s)</strong></td><td>El equipo de desarrollo necesita integrar un nuevo fabricante de cerraduras inteligentes IoT sin interrumpir el servicio de reservas ni el check-in actual.</td></tr>
@@ -453,7 +453,7 @@ Para dar respuesta a los Architectural Drivers, se evaluaron tácticas y patrone
   </tbody>
 </table>
 
-##### Scenario Refinement 5: Disponibilidad
+****Scenario Refinement 5: Disponibilidad****
 <table>
   <tbody>
     <tr><td><strong>Scenario(s)</strong></td><td>Una instancia crítica del backend o el nodo del contenedor donde se aloja el servicio de reservas sufre una falla de memoria y colapsa inesperadamente.</td></tr>
@@ -564,7 +564,7 @@ En esta sesión, el equipo aplicó la técnica de Candidate Context Discovery co
 
 La sesión se dividió en fases progresivas para garantizar que los límites (*Boundaries*) de cada contexto estuvieran alineados con las reglas de negocio y las responsabilidades técnicas del sistema de gestión hotelera SmartStay.
 
-#### Paso 1: Identificación de Pivotal Events
+***Paso 1: Identificación de Pivotal Events***
 
 Analizando la línea de tiempo del EventStorming, identificamos los eventos que actúan como "puentes" o puntos de quiebre entre las diferentes fases del servicio. Estos eventos clave son:
 
@@ -575,7 +575,7 @@ Analizando la línea de tiempo del EventStorming, identificamos los eventos que 
 * **Digital check-in completed:** Activa las capacidades IoT de la habitación para el usuario.
 * **Tasks marked as completed:** Marca el fin de una iteración operativa del personal de limpieza o mantenimiento.
 
-#### Paso 2: Agrupación de Bounded Contexts (Candidate Contexts)
+***Paso 2: Agrupación de Bounded Contexts (Candidate Contexts)***
 
 A partir de estos eventos, agrupamos los comandos, agregados y sistemas externos en contextos específicos. A continuación, se detalla la propuesta de Bounded Contexts para SmartStay:
 
@@ -657,7 +657,7 @@ El modelado de flujos de mensajes del dominio representa la coreografía y orque
   <figcaption>Figura 4.2.3. Flujos de mensajes de dominio para Servicios, Estados Operativos y Mantenimiento.</figcaption>
 </figure>
 
-#### Detalle de los Flujos de Mensajes Principales:
+***Detalle de los Flujos de Mensajes Principales:***
 1. **Flujo de Reserva y Pago:**
    * El cliente ejecuta el comando `SubmitBooking(hotelId, roomId, dates, paymentMethod)`.
    * El contexto **Bookings & Payments** consulta el Read Model de disponibilidad de **Properties Management**.
@@ -742,37 +742,37 @@ El Context Mapping define las relaciones semánticas, técnicas y organizacional
   <figcaption>Figura 4.2.5.1. Context Map Estratégico de SmartStay.</figcaption>
 </figure>
 
-#### IAM – Profiles (Anti-Corruption Layer - ACL)
+***IAM – Profiles (Anti-Corruption Layer - ACL)***
 * **Direccionalidad:** IAM es **Upstream**, pues provee la identidad validada de los usuarios, así como la lógica de autenticación y autorización del sistema. Profiles es **Downstream**, ya que consume la información de identidad para complementarla con atributos de perfil, datos personales y preferencias de usuario.
 * **Patrón de integración:** Se propone el uso de un **Anti-Corruption Layer (ACL)** en Profiles, ya que esto evita que cambios internos en el modelo de IAM afecten directamente al contexto de perfiles.
 * **Justificación técnica:** De esta manera, Profiles puede mantener su propio modelo sin depender de forma rígida de la estructura interna de IAM.
 
-#### Profiles – Bookings & Payments (Conformist)
+***Profiles – Bookings & Payments (Conformist)***
 * **Direccionalidad:** Profiles es **Upstream**, ya que provee los datos del usuario que serán utilizados en el flujo comercial. Bookings & Payments es **Downstream**, adoptando el modelo de Profiles de forma directa para identificar al usuario relacionado con cada reserva o pago.
 * **Patrón de integración:** La relación es de tipo **Conformist**, ya que Bookings & Payments depende del modelo definido en Profiles y se ajusta a él para mantener consistencia en la información del usuario.
 * **Justificación técnica:** El contexto de Bookings & Payments necesita información del usuario para asociar reservas, pagos y transacciones al huésped correspondiente de forma estandarizada.
 
-#### Properties Management – Bookings & Payments (Customer/Supplier)
+***Properties Management – Bookings & Payments (Customer/Supplier)***
 * **Direccionalidad:** Properties Management es **Upstream (Supplier)**, ya que provee la información estructural del hotel, como habitaciones, configuración base y disponibilidad general. Bookings & Payments es **Downstream (Customer)**, pues consume esa información para asociarla a las reservas y procesar las operaciones comerciales.
 * **Patrón de integración:** La relación se establece como **Customer/Supplier**, ya que Bookings & Payments depende de la información administrada por Properties Management para funcionar correctamente.
 * **Justificación técnica:** El contexto de Bookings & Payments necesita información de propiedades, habitaciones y tarifas para poder registrar correctamente las reservas y pagos.
 
-#### Properties Management – Operational Tasks (Customer/Supplier)
+***Properties Management – Operational Tasks (Customer/Supplier)***
 * **Direccionalidad:** Properties Management es **Upstream (Supplier)**, porque provee la información de la infraestructura física y organizacional del hotel. Operational Tasks es **Downstream (Customer)**, ya que consume esos datos para asignar tareas, registrar incidencias y coordinar actividades operativas.
 * **Patrón de integración:** La relación se establece como **Customer/Supplier**, debido a que Operational Tasks depende de la estructura definida en Properties Management para ejecutar correctamente sus procesos.
 * **Justificación técnica:** El contexto de Operational Tasks necesita conocer la estructura de la propiedad para gestionar tareas e incidencias relacionadas con habitaciones, áreas y operación del hotel.
 
-#### Bookings & Payments – Operational Tasks (Customer/Supplier)
+***Bookings & Payments – Operational Tasks (Customer/Supplier)***
 * **Direccionalidad:** Bookings & Payments es **Upstream (Supplier)**, ya que genera eventos e información relevantes sobre el ciclo de vida de las reservas. Operational Tasks es **Downstream (Customer)**, pues consume dicha información para organizar actividades como preparación de habitaciones, atención al huésped o seguimiento de incidencias.
 * **Patrón de integración:** La relación se establece como **Customer/Supplier**, ya que la operación diaria del hotel depende en parte de la información generada por el contexto de reservas y pagos.
 * **Justificación técnica:** El contexto de Operational Tasks necesita información sobre reservas, check-in, check-out o cambios de estado para activar tareas internas del hotel.
 
-#### Bookings & Payments – IoT Stay & Experience (Customer/Supplier)
+***Bookings & Payments – IoT Stay & Experience (Customer/Supplier)***
 * **Direccionalidad:** Bookings & Payments es **Upstream (Supplier)**, ya que provee el estado de la reserva, la asignación de habitación y la validez de la estancia. IoT Stay & Experience es **Downstream (Customer)**, porque consume esta información para permitir o restringir servicios digitales vinculados a la experiencia del huésped.
 * **Patrón de integración:** La relación se define como **Customer/Supplier**, debido a que las funcionalidades IoT solo pueden activarse correctamente a partir de información confiable proveniente del flujo de reservas.
 * **Justificación técnica:** El contexto de IoT Stay & Experience necesita validar que exista una reserva activa para habilitar funciones como check-in digital, llave digital o interacción con dispositivos inteligentes.
 
-#### Bookings & Payments – Analytics (Anti-Corruption Layer - ACL)
+***Bookings & Payments – Analytics (Anti-Corruption Layer - ACL)***
 * **Direccionalidad:** Bookings & Payments es **Upstream**, ya que produce datos transaccionales relevantes para el análisis. Analytics es **Downstream**, pues consume esa información para construir indicadores y visualizaciones orientadas a la toma de decisiones.
 * **Patrón de integración:** Se propone el uso de un **Anti-Corruption Layer (ACL)** en Analytics, con el fin de evitar que el modelo analítico dependa directamente de la estructura interna del contexto transaccional.
 * **Justificación técnica:** El contexto de Analytics necesita información de reservas, pagos e ingresos para generar reportes estratégicos y métricas del negocio. Esto permite que Analytics traduzca los datos operativos a un modelo propio de reporting, manteniendo total independencia y flexibilidad.
@@ -781,7 +781,6 @@ El Context Mapping define las relaciones semánticas, técnicas y organizacional
 
 ### 4.3.1. Software Architecture System Landscape Diagram
 El System Landscape Diagram contextualiza a SmartStay dentro del ecosistema global del negocio hotelero, ilustrando cómo los usuarios humanos, el personal de campo, los dispositivos físicos y los proveedores de nube interactúan con la plataforma central y sus sistemas periféricos.
-
 
 
 <figure>
@@ -794,15 +793,10 @@ El System Landscape Diagram contextualiza a SmartStay dentro del ecosistema glob
 </figure>
 
 
-
-
 ---
 
 ### 4.3.2. Software Architecture Context Level Diagrams
 El diagrama de contexto (Nivel 1 de C4) define las fronteras directas del sistema de software SmartStay, sus interfaces con los diferentes tipos de usuarios y los sistemas externos que complementan el flujo de trabajo.
-
-
-
 
 [DIAGRAMA: C4 - System Context Diagram (Nivel 1)]
 Descripción visual: Representación centrada en la caja de software "SmartStay System":
@@ -814,15 +808,10 @@ Descripción visual: Representación centrada en la caja de software "SmartStay 
 * Plataformas OTA: Envía reservas externas y recibe actualizaciones de cupos de habitaciones.
 * Hardware IoT de Habitación: Recibe órdenes de apertura (MQTT) y envía telemetría de temperatura/iluminación.
 
-
-
 ---
 
 ### 4.3.3. Software Architecture Container Level Diagrams
 El diagrama de contenedores (Nivel 2 de C4) descompone el sistema SmartStay en sus unidades ejecutables y de almacenamiento independientes, detallando las tecnologías elegidas y los protocolos de comunicación entre ellas.
-
-
-
 
 [DIAGRAMA: C4 - Container Diagram (Nivel 2)]
 Descripción visual: Mapeo de contenedores lógicos y de datos interconectados:
@@ -839,13 +828,10 @@ Descripción visual: Mapeo de contenedores lógicos y de datos interconectados:
 10. Relational Databases (PostgreSQL): Bases de datos aisladas por Bounded Context según el patrón Database-per-Service.
 
 
-
 ---
 
 ### 4.3.4. Software Architecture Deployment Diagrams
 El diagrama de despliegue representa la topología de infraestructura física y virtualizada sobre la cual se instancian los contenedores de software de SmartStay en la nube, asegurando alta disponibilidad, seguridad de red y escalabilidad elástica.
-
-
 
 
 [DIAGRAMA: C4 - Deployment Diagram (Nivel de Infraestructura Cloud)]

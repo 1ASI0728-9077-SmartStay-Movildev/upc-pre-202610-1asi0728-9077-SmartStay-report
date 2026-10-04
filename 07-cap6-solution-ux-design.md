@@ -725,3 +725,4 @@ Las imágenes actualmente disponibles para Landing Page no incluyen un par de mo
   - Mejora en la visibilidad de los campos.
   - Inclusión de opción de recuperación de contraseña.
   - Diseño optimizado para acceso rápido.
+
