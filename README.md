@@ -89,6 +89,54 @@ Esta sección detalla cómo el equipo colaboró para construir el **Final Projec
 **Repositorio del informe del proyecto:**  
 [https://github.com/1ASI0728-9077-SmartStay-Movildev/upc-pre-202610-1asi0728-9077-SmartStay-report](https://github.com/1ASI0728-9077-SmartStay-Movildev/upc-pre-202610-1asi0728-9077-SmartStay-report)
 
+<img src="assets/images/readme/Report-Ins.png" alt="Descargar" width="700" height="700">
+
+- **Total de commits:** 67
+- **Autores contribuyentes:**
+ - John Arévalo (`JohnArvlo`)
+ - Guillermo Howard (`GuillermoPromac`)
+ - Andrea Santur (`andreli-star`)
+ - Ítalo Verona (`atomdragon1318`)
+- Actividad distribuida por ramas correspondientes a cada sección del informe.
+- Todos los miembros participaron activamente en la redacción y revisión del contenido.
+
+## TB1 - Desarrollo de producto
+*Periodo:* 24 de agosto – 13 de setiembre de 2026
+
+En el informe se documentó el trabajo realizado durante la elaboración del capítulo 1, 2, 3 y 4.
+
+<img src="assets/images/readme/Report-Ins.png" alt="Descargar" width="700" height="700">
+
+- **Contribuciones destacadas del informe:**
+ - Definición de conceptos del proyecto usando Lean UX.
+ - Desarrollo de entrevistas y análisis de usuario, implementando los user persona para identificar necesidades del usuario.
+ - Desarrollo de requisitos del negocio y priorización.
+ - Validación e implementación del producto.
+
+- **John Arévalo (`JohnArvlo`)**: 
+- **Guillermo Howard (`GuillermoPromac`)**: 12 commits
+- **Andrea Santur (`andreli-star`)**: 5 commits
+- **Ítalo Verona (`atomdragon1318`)**: 10 commits
+- **Total de commits en TB1:** 30
+
+## TP1 - Desarrollo de la estructura Domain Driven Design (DDD) y diseño de la interfaz de usuario y experiencia de usuario (UI/UX)
+*Periodo:* 15 de setiembre – 04 de mayo de 2026
+
+En el informe se documentó el trabajo realizado durante la elaboración del capítulo 5, 6. Elaboración de la arquitectura de software a nivel estratégico y táctico, así como el diseño de la interfaz de usuario y experiencia de usuario (UI/UX) del producto.
+
+<img src="assets/images/readme/Report-Ins.png" alt="Descarga" width="700" height="700">
+
+- **Contribuciones destacadas del informe:**
+ - Corecciones del chapter 01 - lean ux.
+ - Desarrollo del diseño del producto: diagramas, wireframes y mockups.
+ - Desarrollo de los bounded contexts: Profiles, IAM, Properties Management context Bookings & Payments.
+
+- **John Arévalo (`JohnArvlo`)**: 3 commits, 3727 adicciones, 12 eliminaciones
+- **Guillermo Howard (`GuillermoPromac`)**: 28 commits, 2871 adicciones, 334 eliminaciones
+- **Andrea Santur (`andreli-star`)**: 10 commits, 1254 adicciones, 26 eliminaciones
+- **Ítalo Verona (`atomdragon1318`)**: 26 commits, 4712 adicciones, 514 eliminaciones
+- **Total de commits en TP1:** 37
+
 ## Tabla de contenido
 
 - [Chapter I: Introduction](02-cap1-introduction.md#chapter-i-introduction)
