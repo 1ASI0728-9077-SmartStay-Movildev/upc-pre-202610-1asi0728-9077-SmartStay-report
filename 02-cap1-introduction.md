@@ -210,47 +210,47 @@ User Assumptions:
 
 #### 1.2.2.3. Lean UX Hypothesis Statements
 
-Hypothesis 1: Mobile Check-in/Check-out Autonomy
+- Hipótesis 1: Autonomía en el registro de entrada y salida (check-in/check-out) móvil
 
-We believe that implementing an automated digital check-in and check-out system within the Guest App (Flutter) will reduce the average time for these processes by 15%.
+Creemos que implementar un sistema automatizado y digital de registro de entrada y salida dentro de la aplicación para huéspedes (desarrollada en Flutter) reducirá el tiempo promedio de estos procesos en un 15%.
 
-We will know we are successful when we see that guests complete their registration in less than 3 minutes and 70% of them use the mobile system without needing assistance from the reception staff.
+Sabremos que hemos tenido éxito cuando observemos que los huéspedes completan su registro en menos de 3 minutos y que el 70% de ellos utiliza el sistema móvil sin necesidad de asistencia por parte del personal de recepción.
 
-Hypothesis 2: Staff Operativo Efficiency and Adoption
+- Hipótesis 2: Eficiencia y adopción por parte del personal operativo
 
-We believe that providing an intuitive native Android application for the Staff Operativo (housekeeping and maintenance) will achieve at least 80% adoption of the system for their daily coordination tasks.
+Creemos que proporcionar una aplicación nativa intuitiva para Android destinada al personal operativo (limpieza y mantenimiento) logrará una tasa de adopción del sistema de al menos el 80% para sus tareas diarias de coordinación.
 
-We will know this is true when we see consistent daily use of the Staff App and a 10% reduction in manual operational costs after the first 4 months of implementation.
+Confirmaremos esto al observar un uso diario constante de la aplicación del personal y una reducción del 10% en los costos operativos manuales tras los primeros 4 meses de implementación.
 
-Hypothesis 3: Digital Service Satisfaction
+- Hipótesis 3: Satisfacción con el servicio digital
 
-We believe that offering a faster and clearer mobile management experience for both guests and the Staff Operativo will significantly improve overall service satisfaction.
+Creemos que ofrecer una experiencia de gestión móvil más rápida y clara, tanto para los huéspedes como para el personal operativo, mejorará significativamente la satisfacción general con el servicio.
 
-We will know we are successful when we see a satisfaction score (NPS) of at least 8/10 and that 70% of returning users interact with hotel services via the App without physical intervention.
+Sabremos que hemos tenido éxito cuando alcancemos una puntuación de satisfacción (NPS) de al menos 8/10 y cuando el 70% de los usuarios recurrentes interactúen con los servicios del hotel a través de la aplicación, sin intervención física.
 
-Hypothesis 4: IoT-Driven Resource Optimization
+- Hipótesis 4: Optimización de recursos mediante IoT
 
-We believe that integrating IoT devices for monitoring temperature and energy consumption, accessible via the Staff App, will optimize the hotel's resource usage.
+Creemos que la integración de dispositivos IoT para monitorear la temperatura y el consumo de energía —accesibles a través de la aplicación del personal— optimizará el uso de recursos del hotel.
 
-We will know this is true when we see a 20% reduction in utility expenses and the generation of detailed consumption reports through the RESTful API services.
+Confirmaremos esto al observar una reducción del 20% en los gastos de suministros y la generación de informes detallados de consumo mediante servicios de API RESTful.
 
-Hypothesis 5: In-Room Experience Personalization
+- Hipótesis 5: Personalización de la experiencia en la habitación
 
-We believe that allowing guests to directly control their room's environment (lighting, temperature) and schedule services through the Guest App will increase the consumption of additional hotel services.
+Creemos que permitir a los huéspedes controlar directamente el ambiente de su habitación (iluminación, temperatura) y programar servicios a través de la aplicación para huéspedes aumentará el consumo de servicios adicionales del hotel.
 
-We will know we are successful when we see a 25% increase in satisfaction scores regarding room comfort and a 15% increase in digital room service orders.
+Sabremos que hemos tenido éxito cuando observemos un aumento del 25% en las puntuaciones de satisfacción respecto al confort de la habitación y un incremento del 15% en los pedidos digitales de servicio a la habitación. 
 
-Hypothesis 6: Boutique Hotel Market Fit
+- Hipótesis 6: Ajuste al mercado de hoteles boutique
 
-We believe that offering a scalable subscription model focused on boutique hotels in Lima will generate valid interest for our pilot program.
+Creemos que ofrecer un modelo de suscripción escalable dirigido a hoteles boutique en Lima generará un interés real en nuestro programa piloto.
 
-We will know this is true when we see the participation of at least 3 local hotels in our pilot phase with signed collaboration agreements for post-development implementation.
+Confirmaremos la validez de esta hipótesis cuando observemos la participación de al menos tres hoteles locales en la fase piloto, con acuerdos de colaboración firmados para la implementación posterior al desarrollo.
 
-Hypothesis 7: Mobile-IoT Competitive Advantage
+- Hipótesis 7: Ventaja competitiva mediante la integración móvil e IoT
 
-We believe that our complete integration between native mobile applications and IoT technology will provide a superior advantage over legacy hotel management systems.
+Creemos que la integración completa entre aplicaciones móviles nativas y tecnología IoT nos proporcionará una ventaja superior frente a los sistemas tradicionales de gestión hotelera.
 
-We will know we are successful when we see that pilot hotels report specific operational improvements and express a preference for our mobile solution over traditional manual management.
+Sabremos que hemos tenido éxito cuando los hoteles participantes en el piloto reporten mejoras operativas concretas y manifiesten una preferencia por nuestra solución móvil frente a la gestión manual tradicional.
 
 #### 1.2.2.4. Lean UX Canvas
 

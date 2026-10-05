@@ -77,6 +77,7 @@ Proyecto
 |1.5 | 04/10/2026 | Howard Robles, Guillermo Arturo | Creacion del bounded context Bookings & Payments  |
 |1.6| 04/10/2026 | Howard Robles, Guillermo Arturo | Creacion de las conclusiones |
 |1.7| 04/10/2026 | Howard Robles, Guillermo Arturo | Creacion del outcome tp1 |
+|2.0 | 04/10/2026 | Howard Robles, Guillermo Arturo | Correcciones del TB1 |
 
 ---
 
@@ -88,6 +89,54 @@ Esta sección detalla cómo el equipo colaboró para construir el **Final Projec
 
 **Repositorio del informe del proyecto:**  
 [https://github.com/1ASI0728-9077-SmartStay-Movildev/upc-pre-202610-1asi0728-9077-SmartStay-report](https://github.com/1ASI0728-9077-SmartStay-Movildev/upc-pre-202610-1asi0728-9077-SmartStay-report)
+
+<img src="assets/images/readme/Report-Ins.png" alt="Descargar" width="700" height="700">
+
+- **Total de commits:** 67
+- **Autores contribuyentes:**
+ - John Arévalo (`JohnArvlo`)
+ - Guillermo Howard (`GuillermoPromac`)
+ - Andrea Santur (`andreli-star`)
+ - Ítalo Verona (`atomdragon1318`)
+- Actividad distribuida por ramas correspondientes a cada sección del informe.
+- Todos los miembros participaron activamente en la redacción y revisión del contenido.
+
+## TB1 - Desarrollo de producto
+*Periodo:* 24 de agosto – 13 de setiembre de 2026
+
+En el informe se documentó el trabajo realizado durante la elaboración del capítulo 1, 2, 3 y 4.
+
+<img src="assets/images/readme/Report-Ins.png" alt="Descargar" width="700" height="700">
+
+- **Contribuciones destacadas del informe:**
+ - Definición de conceptos del proyecto usando Lean UX.
+ - Desarrollo de entrevistas y análisis de usuario, implementando los user persona para identificar necesidades del usuario.
+ - Desarrollo de requisitos del negocio y priorización.
+ - Validación e implementación del producto.
+
+- **John Arévalo (`JohnArvlo`)**: 
+- **Guillermo Howard (`GuillermoPromac`)**: 12 commits
+- **Andrea Santur (`andreli-star`)**: 5 commits
+- **Ítalo Verona (`atomdragon1318`)**: 10 commits
+- **Total de commits en TB1:** 30
+
+## TP1 - Desarrollo de la estructura Domain Driven Design (DDD) y diseño de la interfaz de usuario y experiencia de usuario (UI/UX)
+*Periodo:* 15 de setiembre – 04 de mayo de 2026
+
+En el informe se documentó el trabajo realizado durante la elaboración del capítulo 5, 6. Elaboración de la arquitectura de software a nivel estratégico y táctico, así como el diseño de la interfaz de usuario y experiencia de usuario (UI/UX) del producto.
+
+<img src="assets/images/readme/Report-Ins.png" alt="Descarga" width="700" height="700">
+
+- **Contribuciones destacadas del informe:**
+ - Corecciones del chapter 01 - lean ux.
+ - Desarrollo del diseño del producto: diagramas, wireframes y mockups.
+ - Desarrollo de los bounded contexts: Profiles, IAM, Properties Management context Bookings & Payments.
+
+- **John Arévalo (`JohnArvlo`)**: 3 commits, 3727 adicciones, 12 eliminaciones
+- **Guillermo Howard (`GuillermoPromac`)**: 28 commits, 2871 adicciones, 334 eliminaciones
+- **Andrea Santur (`andreli-star`)**: 10 commits, 1254 adicciones, 26 eliminaciones
+- **Ítalo Verona (`atomdragon1318`)**: 26 commits, 4712 adicciones, 514 eliminaciones
+- **Total de commits en TP1:** 37
 
 ## Tabla de contenido
 
@@ -214,20 +263,20 @@ Esta sección detalla cómo el equipo colaboró para construir el **Final Projec
 </thead>
 <tbody>
     <tr>
-        <td style="padding: 15px; text-align: left; vertical-align: top; font-weight: bold;">Comunica oralmente sus ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerarquicos, en el marco del desarrollo de un proyecto en ingeniería.</td>
+        <td style="padding: 15px; text-align: left; vertical-align: top; font-weight: bold;">Comunica oralmente sus ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.</td>
         <td style="padding: 15px; text-align: left; vertical-align: top;">
             <strong>Arévalo Meza, John Telesforo</strong><br>
-            <strong>AV1:</strong> Comunico<br>
-            <strong>TP1:</strong> Comunico<br>
+            <strong>AV1:</strong> Presentó al equipo y al docente el planteamiento inicial de los bounded contexts Operational Tasks, Bookings & Payment e IoT Stay & Experience.<br>
+            <strong>TP1:</strong> Sustentó la versión completa de dichos bounded contexts, explicando sus responsabilidades y su integración con el resto del sistema.<br><br>
             <strong>Howard Robles, Guillermo Arturo</strong><br>
-            <strong>AV1:</strong> Comunico<br>
-            <strong>TP1:</strong> Comunico<br>
+            <strong>AV1:</strong> Presentó al equipo y al docente el planteamiento inicial de los bounded contexts IAM, Profiles, Bookings y Payments.<br>
+            <strong>TP1:</strong> Sustentó la versión completa de los bounded contexts, explicando sus responsabilidades y sus relaciones con los demás contextos.<br><br>
             <strong>Santur Tello, Andrea Elizabeth</strong><br>
-            <strong>AV1:</strong> Comunico<br>
-            <strong>TP1:</strong> Comunico<br>
+            <strong>AV1:</strong> Presentó la propuesta inicial de wireframes de la Landing Page y los primeros mockups.<br>
+            <strong>TP1:</strong> Sustentó la versión completa de los wireframes y mockups de la Landing Page, justificando las decisiones de diseño de interfaz.<br><br>
             <strong>Verona Flores, Ítalo Sebastián</strong><br>
-            <strong>AV1:</strong> Sustentación y explicación técnica de las decisiones de diseño arquitectónico estratégico basadas en Attribute-Driven Design (ADD) y EventStorming ante el equipo de desarrollo, pares académicos y el docente del curso.<br>
-            <strong>TP1:</strong> Comunico<br>
+            <strong>AV1:</strong> Sustentación y explicación técnica de las decisiones de diseño arquitectónico estratégico basadas en Attribute-Driven Design (ADD) y EventStorming ante el equipo de desarrollo, pares académicos y el docente del curso. Presentó además la propuesta inicial de wireframes de las aplicaciones.<br>
+            <strong>TP1:</strong> Sustentó la versión completa de los wireframes y mockups de las aplicaciones, explicando su alineación con los bounded contexts y las historias de usuario.<br>
         </td>
         <td style="padding: 15px; text-align: left; vertical-align: top;">
             <strong>AV1:</strong> Se definió la visión del producto y objetivos mediante la participación del Product Owner y el equipo. Se elaboraron historias de usuario, análisis de competidores y needfinding. Se aplicó event storming y se diseñaron interfaces UX. Demostró la capacidad de transmitir conceptos complejos de arquitectura de software y diseño orientado a dominios (DDD) de manera clara y objetiva.<br><br>
@@ -235,20 +284,20 @@ Esta sección detalla cómo el equipo colaboró para construir el **Final Projec
         </td>
     </tr>
     <tr>
-        <td style="padding: 15px; text-align: left; vertical-align: top; font-weight: bold;">Comunica en forma escrita ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerarquicos, en el marco del desarrollo de un proyecto en ingeniería..</td>
+        <td style="padding: 15px; text-align: left; vertical-align: top; font-weight: bold;">Comunica en forma escrita ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.</td>
         <td style="padding: 15px; text-align: left; vertical-align: top;">
             <strong>Arévalo Meza, John Telesforo</strong><br>
-            <strong>AV1:</strong> Comunico<br>
-            <strong>TP1:</strong> Comunico<br>
+            <strong>AV1:</strong> Documentó la definición inicial de los bounded contexts Operational Tasks, Bookings & Payment e IoT Stay & Experience.<br>
+            <strong>TP1:</strong> Completó y refinó la documentación de dichos bounded contexts, dejándola estructurada y consistente con la solución desarrollada.<br><br>
             <strong>Howard Robles, Guillermo Arturo</strong><br>
-            <strong>AV1:</strong> Comunico<br>
-            <strong>TP1:</strong> Comunico<br>
+            <strong>AV1:</strong> Documentó la definición inicial de los bounded contexts IAM, Profiles, Bookings y Payments.<br>
+            <strong>TP1:</strong> Completó y refinó la documentación de dichos bounded contexts, dejándola estructurada y consistente con la solución desarrollada.<br><br>
             <strong>Santur Tello, Andrea Elizabeth</strong><br>
-            <strong>AV1:</strong> Comunico<br>
-            <strong>TP1:</strong> Comunico<br>
+            <strong>AV1:</strong> Elaboró los primeros wireframes de la Landing Page y los mockups iniciales.<br>
+            <strong>TP1:</strong> Completó los wireframes y mockups de la Landing Page, y documentó su estructura y criterios de diseño.<br><br>
             <strong>Verona Flores, Ítalo Sebastián</strong><br>
-            <strong>AV1:</strong> Redacción, estructuración y refinamiento técnico de los capítulos correspondientes al diseño a nivel estratégico de software, incluyendo el Attribute-Driven Design Inputs, la definición del Architectural Drivers Backlog, y las decisiones de diseño arquitectónico (Architectural Design Decisions).<br>
-            <strong>TP1:</strong> Comunico<br>
+            <strong>AV1:</strong> Redacción, estructuración y refinamiento técnico de los capítulos correspondientes al diseño a nivel estratégico de software, incluyendo el Attribute-Driven Design Inputs, la definición del Architectural Drivers Backlog y las decisiones de diseño arquitectónico (Architectural Design Decisions). Elaboró además los primeros wireframes de las aplicaciones.<br>
+            <strong>TP1:</strong> Completó los wireframes y mockups de las aplicaciones, y documentó su estructura y criterios de diseño.<br>
         </td>
         <td style="padding: 15px; text-align: left; vertical-align: top;">
             <strong>AV1:</strong> Se estableció un flujo de trabajo basado en Gitflow y conventional commits. Se definieron metas semanales y se promovió la participación equitativa. El equipo cumplió con los objetivos del hito, evidenciando competencia para redactar documentación de ingeniería clara, estructurada y rigurosa.<br><br>
