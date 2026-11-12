@@ -564,9 +564,28 @@ No se realizaron pruebas unitarias ni de integración durante este sprint, ya qu
 
 #### 7.2.1.5. Execution Evidence for Sprint Review.
 
+A continuación, se muestra un video con los avances realizados durante el Sprint 1.
+
+Video del sprint1:
+
+<img src="assets/images/cap7/video-execution-1.png" alt="cap7" style="height: 500px !important; width: 700px !important;">
+
+Enlace del video: [Video Sprint1](https://youtu.be/ByMxDpFIc1c)
+
+Duración: 0:00 - 01:40
+
 #### 7.2.1.6. Services Documentation Evidence for Sprint Review.
 
+Durante el Sprint 1 se avanzó en el diseño de la landing page de SmartStay y se desarrollaron las primeras funcionalidades de la plataforma web y móvil.
+
+- Se diseñó la landing page para presentar los beneficios de SmartStay a administradores de hoteles y huéspedes.
+- Se integró el frontend web con la API para el inicio de sesión, la consulta del catálogo y la gestión de reservas.
+- Se implementó la estructura inicial de la aplicación móvil y se incorporaron las vistas 3D.
+- Se verificó el flujo de inicio de sesión, consulta del catálogo, creación, consulta y cancelación de una reserva.
+
 #### 7.2.1.7. Software Deployment Evidence for Sprint Review.
+
+
 
 #### 7.2.1.8. Team Collaboration Insights during Sprint 1.
 
