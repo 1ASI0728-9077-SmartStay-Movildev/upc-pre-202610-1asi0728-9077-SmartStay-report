@@ -82,6 +82,7 @@ Proyecto
 | 2.2 | 10/11/2026 | Santur Tello, Andrea Elizabeth | Creación del  UX and configuration sections |
 | 2.3 | 10/11/2026 | Verona Flores, Ítalo Sebastián | Creación del  Sprint Planning 1. |
 | 2.4 | 10/11/2026 | Howard Robles, Guillermo Arturo | Creación del  Development Evidence |
+| 2.5 | 11/11/2026 | Howard Robles, Guillermo Arturo | Creación del  Execution Evidence for Sprint Review.|
 
 ---
 
