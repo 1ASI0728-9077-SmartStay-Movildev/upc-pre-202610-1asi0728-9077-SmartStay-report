@@ -872,3 +872,33 @@ Descripción visual: Despliegue sobre arquitectura PaaS/Cloud Native con zonas d
 5. Edge / On-Premise IoT Tier:
 * Gateway IoT físico del hotel conectado vía VPN segura / TLS a los microcontroladores de cerraduras y sensores de habitaciones boutique.
 
+
+### Trazabilidad de tecnologías emergentes en la arquitectura
+
+**Tecnología emergente faltante en la implementación entregada: Internet de las Cosas (IoT) para el control domótico de habitaciones.** El capítulo IV define el contexto *IoT Stay & Experience* y plantea controles de temperatura, iluminación y acceso. El backend entregado incluye ActiveMQ para mensajería entre servicios, pero en sus componentes de ejecución no se identificó el servicio de control de dispositivos ni el flujo completo de comando, actuación y confirmación de estado. En la aplicación web, las vistas de monitoreo están fuera de las rutas activas. Los controles domóticos de los mockups representan la interacción prevista.
+
+La integración propuesta cruza los siguientes niveles de arquitectura:
+
+| Nivel | Componente y responsabilidad propuesta |
+|---|---|
+| Contexto | El huésped controla el ambiente de la habitación desde la aplicación durante una estancia autorizada. |
+| Contenedores | La aplicación llama al gateway y este deriva la solicitud al futuro servicio *IoT Stay & Experience*. El servicio consulta la identidad y el alcance de la estancia y se comunica con un broker o gateway IoT. |
+| Componentes | Un adaptador de dispositivos traduce los comandos de iluminación y temperatura y recibe la confirmación o la telemetría del sensor o actuador. |
+| Despliegue | El gateway IoT y los dispositivos o emuladores ejecutan y confirman el cambio. La interfaz distingue comando pendiente, estado confirmado y error. |
+| Evidencia para validar | Demostrar un comando autorizado y el retorno del estado con un dispositivo o emulador identificado. Registrar el resultado de una solicitud fallida y de una fuera de la habitación asignada. |
+
+```mermaid
+flowchart TD
+    A["App del huésped"] --> B["API Gateway"]
+    B --> C["Servicio IoT propuesto"]
+    C --> D["Identidad y estancia autorizada"]
+    C --> E["Broker o gateway IoT"]
+    E --> F["Sensor y actuador o emulador"]
+    F --> G["Confirmación y telemetría"]
+    G --> C
+    C --> A
+```
+
+El servicio Concierge aporta recomendaciones de alojamiento e incluye una integración configurable con DeepSeek y un respaldo. Accommodations proporciona datos para explorar habitaciones en 3D y 360° desde el navegador. El endpoint llamado `/vr` entrega la descripción de una escena 3D y, por sí solo, no acredita una experiencia con WebXR o visor de realidad virtual.
+
+**Observación sobre Web3:** se menciona en el enunciado general del curso, pero los paquetes revisados no aportan evidencia de una DApp, red blockchain o contrato inteligente. Su alcance en SmartStay queda pendiente de confirmar con el docente.

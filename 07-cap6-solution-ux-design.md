@@ -728,3 +728,436 @@ Las imágenes actualmente disponibles para Landing Page no incluyen un par de mo
 
 
 
+
+## 6.4. Applications UX/UI Design
+
+El diseño UX/UI de las aplicaciones que integran el ecosistema digital de Smart Stay traduce los requerimientos funcionales, arquitectónicos y de accesibilidad en interfaces eficientes y centradas en el usuario. A diferencia del enfoque informativo y de conversión de la Landing Page, estas soluciones están orientadas a la interacción recurrente y a la ejecución inmediata de tareas operativas y de autoservicio.
+
+El alcance comprende tres soluciones diferenciadas según su contexto de uso y rol dentro del modelo de negocio:
+1. **Aplicación Web Administrativa (Desktop):** Plataforma de gestión centralizada para directores de hotel y administradores de Smart Stay, orientada a la visualización analítica, auditoría de reservas, reportería financiera y parametrización de sedes.
+2. **Aplicación Móvil Staff (Android Nativo):** Diseñada para el personal operativo (housekeeping, recepción, mantenimiento), priorizando la ergonomía táctil con una sola mano, accesibilidad inmediata a tareas pendientes y registro ágil de turnos.
+3. **Aplicación Móvil Guest (Flutter):** Plataforma para el huésped enfocada en la autonomía de su estadía, integrando el control domótico/IoT de la habitación, solicitud directa de servicios complementarios y asistencia en tiempo real.
+
+---
+
+### 6.4.1. Applications Wireframes
+
+Los wireframes representan la estructura monocromática de baja/media fidelidad de las aplicaciones. Se prescinde de elementos visuales secundarios, colores de acento e imágenes decorativas para concentrar la atención en la distribución del espacio, la navegación principal, la jerarquía visual de los datos y el cumplimiento de las zonas interactivas mínimas (48 × 48 dp en entornos móviles).
+
+---
+
+#### 6.4.1.1. Web Application Wireframes – Modo Administrador
+
+La interfaz administrativa adopta un patrón clásico con barra lateral persistente (sidebar) a la izquierda, barra superior de control (top bar) con buscador global y notificaciones, y un área de trabajo central diseñada para optimizar la visualización de grandes volúmenes de datos.
+
+*Dashboard administrativo y Gestión de Huéspedes*
+![Wireframes Dashboard y Huéspedes](assets/images/cap6/wdashboard_huespedes.png)
+
+1. **Dashboard:**
+   - **Propósito:** Ofrecer una visión ejecutiva del desempeño del hotel en tiempo real.
+   - **Elementos clave:** Indicadores clave de desempeño (ingresos generados vs. semana previa, ocupación total en gráfico de anillo con segmentación por tarde/noche), métricas de reservas diarias, calificación consolidada de servicios (IoT, alimentos, empaque) y ranking de sedes por rendimiento.
+2. **Huéspedes (Guests):**
+   - **Propósito:** Administrar la base de datos de clientes y reservas corporativas.
+   - **Elementos clave:** Barra superior con motor de búsqueda y filtros multivariable (sede, rango de fecha), tabla estructurada con casillas de selección, datos del cliente (nombre, sede, estado de negociación/reserva), botones para exportación/importación y paginador interactivo.
+
+*Gestión de Staff y Módulo de Hoteles / Habitaciones*
+![Wireframes Staff y Hoteles](assets/images/cap6/wstaff_hoteles.png)
+
+3. **Staff:**
+   - **Propósito:** Supervisar al personal operativo y administrar sus niveles de acceso.
+   - **Elementos clave:** Filtro por sede, controles de acción rápida (editar, eliminar, añadir usuario), tabla detallada con nombre, rol asignado (Admin, Restaurant Manager, Maintenance, Receptionist), teléfono, correo corporativo, último acceso y estado de activación (Active / Inactive).
+4. **Hoteles y Habitaciones:**
+   - **Propósito:** Parametrizar la infraestructura física y los activos tecnológicos de cada sucursal.
+   - **Elementos clave:** Listado de sedes con capacidad total de habitaciones, panel lateral de detalle de la sede seleccionada (gestión de servicios y stock), buscador específico por número de habitación y ficha de detalle de habitación indicando tipo, comodidades, estado de ocupación y recursos tecnológicos vinculados.
+
+*Gestión de Reservas y Reportes Financieros / Gastos*
+![Wireframes Reservas y Gastos](assets/images/cap6/wreservas_gastos.png)
+
+5. **Reservas (Booking):**
+   - **Propósito:** Control visual y cronológico de la ocupación hotelera.
+   - **Elementos clave:** Selector de vista (Día, Semana, Mes), selector de fecha (calendario desplegable), buscador de habitación, grilla matricial donde se grafican bloques de estadía con el nombre del huésped y estados de mantenimiento bloqueados.
+6. **Pagos y Gastos (Payments):**
+   - **Propósito:** Auditoría y conciliación de flujos de caja operativos e ingresos por servicios.
+   - **Elementos clave:** Tablas de desglose para pagos recibidos (ingresos por cliente y método de pago), egresos a proveedores/personal y control de inventario de suministros operativos. Incluye gráficas comparativas de ingresos por sede, distribución porcentual de métodos de pago y evolución acumulada de ingresos.
+
+*Servicios, Productos, Reseñas y Tickets de Soporte*
+![Wireframes Servicios, Productos y Reseñas](assets/images/cap6/wservicio_producto_reseña.png)
+![Wireframes Soporte](assets/images/cap6/wsoporte.png)
+
+7. **Servicios y Productos:**
+   - **Propósito:** Catálogo maestro y control del ciclo de vida de los dispositivos IoT y amenidades.
+   - **Elementos clave:** Matriz de inventario con identificador, tipo de dispositivo (Smart TV, cerradura inteligente, sensor de movimiento, etc.), estado funcional, stock, sede física, habitación asignada, proveedor y fecha de garantía vigente.
+8. **Reseñas:**
+   - **Propósito:** Monitorear el índice de satisfacción de huéspedes y la retroalimentación del personal.
+   - **Elementos clave:** Registro cronológico de comentarios con puntuación por estrellas, categorización por sede y gráficas de dispersión de calificaciones a lo largo de las semanas operativas.
+9. **Soporte (Support):**
+   - **Propósito:** Gestión interna de incidencias y solicitudes hacia el equipo técnico de Smart Stay.
+   - **Elementos clave:** Formulario estructurado para generación de ticket (categoría de problema, nivel de severidad/prioridad, descripción), tabla de seguimiento de tickets emitidos y panel lateral con el historial de mensajes de resolución.
+
+---
+
+#### 6.4.1.2. Mobile Applications Wireframes – Modo Staff (Android Nativo)
+
+La aplicación móvil para el personal del hotel está diseñada para operar con agilidad durante los recorridos operativos, destacando estados por medio de contraste y tipografía estructurada.
+
+*Autenticación, Turnos y Tareas Operativas del Staff*
+![Wireframes Staff Flujo 1](assets/images/cap6/wappstaff1.png)
+
+1. **IntroApp & Login:**
+   - **Propósito:** Autenticación segura del trabajador en el sistema del hotel.
+   - **Elementos clave:** Pantalla inicial con isotipo de la marca y selector de sede; formulario de ingreso con campos para correo electrónico institucional, contraseña enmascarada y opción de recuperación de credenciales.
+2. **Home / Dashboard Staff:**
+   - **Propósito:** Centralizar el registro de asistencia del colaborador y las notificaciones prioritarias.
+   - **Elementos clave:** Módulo de marcación de jornada con botones de un toque para *Entrada*, *Receso* y *Salida*; tabla de historial semanal con cómputo de horas trabajadas y resumen de avisos inmediatos.
+3. **Tareas (Tasks):**
+   - **Propósito:** Desplegar y actualizar el flujo diario de actividades operativas.
+   - **Elementos clave:** Listado agrupado por número de habitación, tipo de tarea (limpieza regular, reposición de minibar, preparación para check-in), número de piso y estado de ejecución (Pendiente / Completado). Al concluir la carga diaria se presenta una retroalimentación de estado vacío amigable.
+
+*Servicios a la Habitación, Reservas y Perfil del Colaborador*
+![Wireframes Staff Flujo 2](assets/images/cap6/wappstaff2.png)
+
+4. **Servicios y Entregas:**
+   - **Propósito:** Gestionar y validar las órdenes realizadas por los huéspedes.
+   - **Elementos clave:** Tabla con número de habitación destino, ítem solicitado (Room service, toallas adicionales, reposición de agua), cantidad requerida y control de estado de entrega.
+5. **Reservas (Check-in / Check-out):**
+   - **Propósito:** Facilitar la recepción y despedida de huéspedes directamente en piso.
+   - **Elementos clave:** Buscador dinámico por nombre o habitación; tabla detallada con fecha de arribo, nombre del cliente, estado del check-in y estado del check-out.
+6. **Perfil y Notificaciones Operativas:**
+   - **Propósito:** Gestión de la cuenta del trabajador y recepción de alertas críticas.
+   - **Elementos clave:** Vista de perfil con avatar, datos de contacto, opción de cambio de contraseña y cierre de sesión. Módulo de notificaciones desplegado como tarjetas flotantes con botón de confirmación de lectura rápida.
+
+---
+
+#### 6.4.1.3. Mobile Applications Wireframes – Modo Huésped (Flutter)
+
+La interfaz del huésped se orienta al confort y al autoservicio, minimizando los pasos necesarios para controlar el ambiente físico o solicitar comodidades adicionales.
+
+*Acceso, Hub de Estadía y Control IoT de Habitación*
+![Wireframes Huésped Flujo 1](assets/images/cap6/wapphuesped1.png)
+
+1. **IntroApp & Home:**
+   - **Propósito:** Recibir al usuario tras el escaneo del código QR de la reserva y concentrar los accesos directos de la estadía.
+   - **Elementos clave:** Barra superior con saludo personalizado, buscador de servicios y acceso a alertas. En el cuerpo principal se destaca la tarjeta digital para activación de la cerradura electrónica (*Llave Digital*), accesos rápidos a *Ordenar* o *Asistencia*, y carrusel de promociones activas.
+2. **Mi Habitación (IoT Control):**
+   - **Propósito:** Control ambiental y domótico integral del cuarto asignado.
+   - **Elementos clave:** Encabezado con número de habitación y estado de ocupación; controles deslizantes (sliders) para graduar la temperatura del aire acondicionado e intensidad lumínica; interruptores binarios (On/Off) para cortinas motorizadas y TV; accesos inferiores para solicitud inmediata de limpieza, snacks o botón de auxilio (*SOS Emergencia*).
+
+*Catálogo de Servicios, Geolocalización y Datos Personales*
+![Wireframes Huésped Flujo 2](assets/images/cap6/wapphuesped2.png)
+
+3. **Servicios (Services):**
+   - **Propósito:** Exploración y contratación de amenidades hoteleras complementarias.
+   - **Elementos clave:** Bloque superior para restaurantes y room service; grilla de servicios fijos con íconos representativos (Parking, Piscina, Bares, Gimnasio, Zona Pet Friendly); y listado inferior de eventos programados en el hotel.
+4. **Mapa (Wayfinding & Entorno):**
+   - **Propósito:** Guiar al huésped dentro de las instalaciones y presentar puntos de interés turísticos externos.
+   - **Elementos clave:** Buscador con filtros por categoría; visor de mapa interactivo con pines de ubicación y tarjeta flotante con descripción resumida de la atracción o servicio seleccionado.
+5. **Perfil y Notificaciones:**
+   - **Propósito:** Visualizar datos de la cuenta, métodos de pago y comunicaciones del hotel.
+   - **Elementos clave:** Visualización de tarjetas de crédito/débito enlazadas con opción para registrar un nuevo método de pago (*Add New Card*). Superposición de avisos emergentes con confirmaciones de pedidos, recordatorios de check-out y mensajes del conserje.
+
+---
+
+#### Wireflows de referencia
+
+Los diagramas de flujo basados en wireframes (*Wireflow Diagrams*) integran la distribución esquemática de las pantallas con las rutas de navegación e interacción del usuario dentro de cada aplicación de la solución. Permiten evaluar la arquitectura de transiciones, la accesibilidad de las acciones y la respuesta ante cambios de estado entre módulos.
+
+---
+
+##### Web Application Wireflow – Modo Administrador
+
+* **User Persona:** Administrador de Hotel Boutique / Director de Operaciones.
+* **User Goal:** Monitorear el rendimiento general del hotel desde el panel de control, auditar las reservas activas y verificar la satisfacción del cliente en las distintas sedes.
+
+![Wireflow Modo Administrador](assets/images/cap6/webwireflowadmi.png)
+
+**Estructura y comportamiento del flujo:**
+1. **Punto de entrada:** El usuario accede a través de la pantalla **Intro / Acceso**, la cual valida la sesión administrativa y transfiere el control directamente al **Dashboard**.
+2. **Navegación centralizada:** El **Dashboard** actúa como núcleo operativo. Desde sus tarjetas analíticas, botones de acción rápida permiten bifurcaciones directas hacia módulos clave:
+   - Los indicadores de ingresos y ocupación enlazan a **Booking** y **Payments**.
+   - Los accesos rápidos de incidencias y opiniones derivan a **Reviews** y **Support**.
+3. **Barra de navegación persistente (Sidebar):** Permite el desplazamiento directo hacia cualquiera de las 9 secciones del sistema:
+   - **Guests:** Consulta y gestión de perfiles de clientes. Se conecta de forma bidireccional con **Booking** para auditar el detalle de los huéspedes asignados a cada reserva.
+   - **Staff:** Administración de cuentas, turnos y roles del personal.
+   - **Hotels / Rooms:** Catálogo de sedes y parametrización de habitaciones.
+   - **Booking:** Calendario interactivo matricial para el control de ocupación.
+   - **Payments:** Conciliación contable de pagos de huéspedes y compras operativas.
+   - **Services / Products:** Inventario y monitoreo de dispositivos IoT e insumos.
+   - **Reviews:** Panel consolidado de calificaciones y retroalimentación. Se nutre de la información proveniente de **Staff**, **Guests** y **Hotels / Rooms**.
+   - **Support:** Mesa de ayuda y seguimiento de tickets técnicos emitidos a Smart Stay.
+
+---
+
+##### Mobile Application Wireflow – Modo Staff (Android Nativo)
+
+* **User Persona:** Personal Operativo / Housekeeping / Mantenimiento.
+* **User Goal:** Autenticar el inicio de jornada, consultar las actividades asignadas del día y registrar el cumplimiento de servicios o limpieza en habitaciones.
+
+![Wireflow Modo Staff](assets/images/cap6/webwireflowstaff.png)
+
+**Estructura y comportamiento del flujo:**
+1. **Autenticación obligatoria:** Dado el contexto de turnos rotativos, el flujo inicia en **01 - Intro**, avanzando hacia la pantalla de **Login**, donde el colaborador ingresa sus credenciales corporativas (correo y contraseña).
+2. **Panel principal (Home):** Tras la autenticación, se presenta la vista **Home**, que contiene el módulo de registro de jornada (*Entrada*, *Receso*, *Salida*), el historial de horas acumuladas y el resumen de alertas inmediatas.
+3. **Navegación inferior (Bottom Navigation Bar):** Proporciona acceso ergonómico con una sola mano hacia las áreas de trabajo:
+   - **Tasks:** Lista priorizada de actividades del día (limpieza, reposición de minibar, preparación de cuartos). Al completar una tarea, el sistema actualiza el estado local y sincroniza el inventario con el sistema central.
+   - **Services:** Registro y confirmación de entrega de pedidos solicitados por los huéspedes (room service, toallas adicionales).
+   - **Booking:** Consulta del estado de llegadas (*Check-in*) y salidas (*Check-out*) en tiempo real.
+   - **Profile:** Parámetros de la cuenta del trabajador, cambio de clave y cierre de sesión.
+4. **Capa persistente de alertas:** El icono de **Notifications**, ubicado en la barra superior de todas las pantallas, despliega modales flotantes superpuestos con avisos urgentes sobre cambios de turno o incidencias prioritarias, sin perder el contexto de la tarea actual.
+
+---
+
+##### Mobile Application Wireflow – Modo Huésped (Flutter)
+
+* **User Persona:** Huésped Turista / Viajero Corporativo.
+* **User Goal:** Gestionar la comodidad de su estancia de manera autónoma, controlando los dispositivos domóticos de su habitación y explorando los servicios disponibles del hotel.
+
+![Wireflow Modo Huésped](assets/images/cap6/webwireflowhuesped.png)
+
+**Estructura y comportamiento del flujo:**
+1. **Bienvenida e inducción:** Inicia en la vista **01 - Intro**, que da la bienvenida al usuario con la identidad del hotel tras escanear el código QR de registro, transicionando automáticamente a la pantalla principal **Home**.
+2. **Hub de estancia (Home):** Concentra los accesos prioritarios: la tarjeta de activación de la cerradura electrónica (*Digital Key*), botones directos para llamadas de *Asistencia* y *Ordenar*, junto con un carrusel de promociones activas.
+3. **Navegación inferior persistente:**
+   - **My Room (Habitación):** Interfaz domótica central para el ajuste de actuadores y sensores IoT (graduación de temperatura, intensidad lumínica, apertura de cortinas y control de TV), además de accesos rápidos a limpieza y botón de emergencia (*SOS*).
+   - **Services:** Catálogo de amenidades divididas en gastronomía (restaurantes), bienestar (gimnasio, piscina), comodidades (parking, pet friendly) y eventos programados.
+   - **Map:** Visor interactivo con puntos de interés tanto internos (instalaciones del hotel) como turísticos en el entorno urbano.
+   - **Profile:** Ficha con los datos de contacto del huésped y módulo de pasarela para el registro seguro de tarjetas de crédito/débito (*Add New Card*).
+4. **Alertas y seguimiento:** El icono superior de **Notifications** permite consultar en cualquier momento la confirmación de solicitudes de servicio, recordatorios de estadía y avisos directos de recepción.
+
+### 6.4.2. Applications Mock-ups
+
+Las figuras de esta sección representan el diseño de alta fidelidad del producto para administración web, personal operativo y huéspedes. La jerarquía visual usa azul corporativo para la navegación y naranja para la acción prioritaria. Los fondos claros separan grupos de información. El panel lateral web organiza módulos por tarea y la navegación inferior móvil conserva el acceso a las funciones frecuentes. Los estados deben expresarse mediante etiquetas y, cuando corresponda, iconos, de forma que puedan distinguirse sin depender solo del color. Los formularios requieren etiquetas visibles y mensajes próximos al campo que necesita corrección. Estos criterios orientan el diseño y deben comprobarse sobre el producto ejecutable.
+
+Los mockups móviles y las pantallas de inventario o control ambiental representan el alcance de diseño. La evidencia de ejecución se registra por separado en el capítulo VII.
+
+#### 6.4.2.1. Web Application Mock-ups – Modo Administrador
+
+La interfaz de escritorio está optimizada para la supervisión analítica de los administradores y directores de cadenas hoteleras. El layout aplica una barra lateral fija en azul corporativo con contraste accesible, barra superior con identificación de usuario y un área de trabajo espaciosa con tarjetas elevadas y gráficos de lectura rápida.
+
+*Módulos de Dashboard, Huéspedes, Staff y Hoteles/Habitaciones*
+![Mockups Administrador Bloque 1](assets/images/cap6/mockupadmin1.png)
+
+1. **Dashboard:**
+   - Incorporación de los colores de marca en los gráficos analíticos: barras comparativas de ingresos en azul corporativo, indicadores clave en tarjetas blancas con sombras sutiles y gráfico de anillo de ocupación con resaltado del bloque horario vespertino en acento naranja.
+   - Métricas de calificación consolidada por servicio (IoT, comida, amenities) con visualización porcentual de alta legibilidad.
+2. **Huéspedes (Guests):**
+   - Tabla interactiva con microinteracciones en casillas de selección, chips de estado semánticos (En Negociación, Reservación, Incidencia) y botones de acción rápida (*Add New*, *Import/Export*) con elevación visual.
+   - Paginación estructurada y motor de búsqueda con iconos vectoriales en la cabecera.
+3. **Staff:**
+   - Visualización del equipo de trabajo mediante avatars, tipografía estructurada para roles institucionales (*Admin*, *Receptionist*, *Maintenance*) y botones tipo switch/chip para el estado de cuenta (*Active* / *Inactive*).
+4. **Hoteles y Habitaciones:**
+   - Tabla maestra de sucursales combinada con panel lateral de previsualización en naranja corporativo. Muestra la fotografía de la suite seleccionada, ficha técnica de servicios y recursos domóticos disponibles.
+
+*Módulos de Reservas, Pagos, Servicios/Productos y Reseñas*
+![Mockups Administrador Bloque 2](assets/images/cap6/mockupadmin2.png)
+
+5. **Reservas (Booking):**
+   - Calendario matricial con bloques cromáticos diferenciados para distinguir reservas confirmadas, períodos de mantenimiento técnico y asignación de huéspedes por suite.
+6. **Pagos y Gastos (Payments):**
+   - Panel de auditoría contable con gráficos de barras (ingresos vs. gastos por sede), gráfico de sectores para distribución de métodos de pago (Visa, Mastercard, Yape, Plin) y curva acumulada de facturación mensual.
+7. **Servicios y Productos:**
+   - Registro de inventario con tarjetas de resumen para stock disponible, fechas de mantenimiento técnico y garantía de hardware IoT con borde perimetral en naranja institucional.
+8. **Reseñas (Reviews):**
+   - Panel de comentarios con escala de estrellas doradas, desglose por sede hotelera y gráficos de barras horizontales que resumen la satisfacción acumulada por semana.
+
+*Módulo de Soporte y Mesa de Ayuda*
+![Mockups Administrador Bloque 3](assets/images/cap6/mockupadmin3.png)
+
+9. **Soporte:**
+   - Formulario de emisión de tickets en tarjeta destacada con botón primario *Generar ticket* en naranja corporativo.
+   - Tabla de seguimiento con indicadores cromáticos de severidad (Alta en rojo, Media en amarillo) y panel lateral con hilo de conversación interactivo entre el hotel y el equipo técnico de Smart Stay.
+
+---
+
+#### 6.4.2.2. Mobile Application Mock-ups – Modo Staff (Android Nativo)
+
+La aplicación móvil para el personal operativo adopta una interfaz con fondos en azul corporativo y tarjetas contrastadas, diseñada para facilitar la lectura en movimiento y evitar pulsaciones erróneas durante el trabajo de campo.
+
+*Autenticación, Turno Diario y Lista de Tareas*
+![Mockups Staff Bloque 1](assets/images/cap6/mockupstaff1.png)
+
+1. **Intro & Login:**
+   - Pantalla de bienvenida en azul corporativo con el isotipo oficial de Smart Stay e identificación de la sede operativa (*Hotel del Sur*).
+   - Formulario de autenticación con campos de entrada accesibles, tipografía Open Sans y botón primario de acceso en azul contrastado.
+2. **Home / Turnos:**
+   - Panel central de marcación de jornada laboral con botones de acción directa en naranja corporativo (*Entrada*) y neutros (*Receso*, *Salida*), complementado por la tabla del historial semanal de horas.
+3. **Tareas del Día (Tasks):**
+   - Cabecera en naranja de acento que destaca el módulo activo.
+   - Listado tabular de cuartos con etiquetas semánticas de estado: pendientes con indicador de atención y completadas con check de confirmación. Al concluir las labores, despliega una ilustración amigable de estado resuelto.
+
+*Gestión de Entregas, Reservas en Piso y Perfil Operativo*
+![Mockups Staff Bloque 2](assets/images/cap6/mockupstaff2.png)
+
+4. **Servicios / Entregas:**
+   - Lista de órdenes solicitadas por los huéspedes (room service, aguas, toallas) enmarcada en una tarjeta con acento visual, permitiendo validar la entrega de manera táctil.
+5. **Reservas (Check-in / Check-out):**
+   - Buscador rápido y listado con indicadores cromáticos de estado (semáforo de llegadas y salidas de huéspedes).
+6. **Perfil y Notificaciones Operativas:**
+   - Ficha del colaborador con fotografía, credenciales corporativas y botones de acción diferenciados (*Editar*, *Cambiar contraseña*, *Cerrar Sesión* en naranja).
+   - Modales flotantes de notificaciones de alta prioridad con botones de confirmación *Ok* y cierre explícito.
+
+---
+
+#### 6.4.2.3. Mobile Application Mock-ups – Modo Huésped (Flutter)
+
+La solución para el huésped ofrece una experiencia de autoservicio visualmente cálida y moderna. Emplea superficies claras, tarjetas con bordes redondeados y microinteracciones fluidas para el control domótico de la habitación.
+
+*Acceso, Hub de Estadía y Control Domótico IoT*
+![Mockups Huésped Bloque 1](assets/images/cap6/mockuphuesped1.png)
+
+1. **Intro & Bienvenida:**
+   - Vista de recepción con branding formal en azul corporativo y saludo inicial al huésped tras validar el acceso de su reserva.
+2. **Home (Hub de Estadía):**
+   - Saludo personalizado en cabecera junto con iconos de búsqueda y notificaciones.
+   - Tarjeta central destacada en naranja corporativo que aloja la **Llave Digital** con iconografía de activación.
+   - Accesos directos inferiores para *Ordenar* y *Asistencia*, seguidos de tarjetas de promociones activas.
+3. **Mi Habitación (Control IoT):**
+   - Panel de control ambiental con sliders táctiles para graduar la temperatura del climatizador y la intensidad de iluminación.
+   - Controles tipo switch (On/Off) en azul corporativo para cortinas motorizadas y encendido del televisor.
+   - Cuadrícula de accesos rápidos para solicitar limpieza, snacks a la habitación o accionar el botón de emergencia (*SOS*).
+
+*Servicios Hoteleros, Geolocalización y Billetera Digital*
+![Mockups Huésped Bloque 2](assets/images/cap6/mockuphuesped2.png)
+
+4. **Nuestros Servicios:**
+   - Tarjetas categorizadas por banners en azul oscuro para restaurantes y eventos, combinadas con una grilla de botones táctiles para servicios complementarios (Parking, Piscina, Bar, Gimnasio, Pet Friendly).
+5. **Mapa (Wayfinding y Entorno):**
+   - Mapa interactivo con pines de ubicación y tarjeta flotante con vista previa del destino, precio y porcentaje de descuento.
+6. **Perfil y Métodos de Pago:**
+   - Tarjeta virtual en degradado turquesa para la visualización de la tarjeta de crédito predeterminada y botón *+ Add New Card* para el registro de nuevos métodos de pago.
+   - Capa de notificaciones superpuestas con avisos informativos sobre el estado de las solicitudes enviadas.
+
+
+#### 6.4.2.4. Aplicación web · Referencia visual de la versión entregada
+
+Las capturas siguientes se obtuvieron al ejecutar el ZIP del frontend. Se emplearon respuestas HTTP y una sesión de demostración simuladas para mostrar las pantallas con datos de ejemplo. Complementan los mockups originales de Figma y permiten ubicar los recorridos de la versión web.
+
+| Pantalla | Organización y decisión de interfaz |
+|---|---|
+| Inicio de sesión | Formulario centrado con etiquetas de usuario y contraseña, botón para mostrar la contraseña y acceso al catálogo público. |
+| Catálogo | Filtros agrupados en la parte superior y tarjetas con hotel, tipo de habitación, tarifa, capacidad y acceso al explorador. |
+| Nueva reserva | El formulario agrupa habitación, datos del huésped y fechas antes de la acción de registro. |
+| Consulta de reservas | La navegación lateral señala la sección activa y las tarjetas muestran el estado junto a las fechas y el importe. |
+
+![Pantalla web de inicio de sesión](assets/images/cap6/web-acceso.png)
+
+![Pantalla web de catálogo con filtros y habitación de ejemplo](assets/images/cap6/web-catalogo.png)
+
+![Pantalla web de registro de reserva](assets/images/cap6/web-nueva-reserva.png)
+
+![Pantalla web de consulta administrativa de reservas](assets/images/cap6/web-gestion-reservas.png)
+
+### 6.4.3. Applications User Flow Diagrams
+
+Cada recorrido parte de un objetivo del usuario y vincula las pantallas de alta fidelidad de 6.4.2 con el wireflow de referencia. Las figuras del equipo muestran la ruta esperada y sus alternativas. Los tres primeros recorridos corresponden al diseño original. Los recorridos web adicionales documentan el comportamiento previsto en el código de la versión entregada.
+
+#### 6.4.3.1. Administrador del hotel (web)
+
+* **User Persona:** Director de Operaciones / Administrador General.
+* **User Goal:** Configurar los datos de la sede hotelera, parametrizar habitaciones/servicios y auditar métricas operativas y financieras desde el panel de control.
+
+**Happy Path (Camino Ideal):**
+El usuario inicia en *Opens App*, selecciona *Login* e ingresa sus credenciales en el prototipo. Tras la validación afirmativa (*Credentials valid?* = Yes), accede al *Dashboard*. El sistema comprueba si el hotel ya fue creado (*Already hotels created?* = Yes) y despliega el menú operativo para: registrar cuentas de staff/huéspedes, añadir tarifas, auditar reservas y pagos, monitorear incidencias, revisar calificaciones y emitir códigos de acceso, concluyendo con *Logs out successfully*.
+
+![Happy Path - Administrador](assets/images/cap6/happypathadmi.png)
+
+**Unhappy Paths (Rutas Alternativas y Manejo de Errores):**
+* *Fallo de autenticación:* Si las credenciales no son válidas (*Credentials valid?* = No), se despliega el aviso *"Incorrect credentials"*, derivando a *Forgot password* para recibir el enlace de restablecimiento vía correo electrónico.
+* *Sede inexistente o perfil incompleto:* Si aún no se han registrado hoteles (*Already hotels created?* = No), el flujo propone el desvío a *Go to section Hotels*. Si faltan campos obligatorios (*Complete hotel profile?* = No), bloquea el acceso con la alerta *"Complete required fields"* hasta completar nombre, dirección y fotos.
+* *Registro duplicado:* En la configuración de habitaciones o amenidades, si se intenta ingresar un identificador ya existente (*Duplicated entry?* = Yes), el sistema emite el mensaje *"Room/service already exists"* antes de reintentar el guardado.
+
+![Unhappy Path - Administrador](assets/images/cap6/unhappypathadmi.png)
+
+---
+
+#### 6.4.3.2. Huésped del hotel (Flutter)
+
+* **User Persona:** Huésped Turista / Viajero de Negocios.
+* **User Goal:** Realizar el check-in digital de manera autónoma, operar los controles domóticos de la habitación y solicitar servicios complementarios durante su estadía.
+
+**Happy Path (Camino Ideal):**
+El huésped abre la aplicación (*Opens App*), ingresa sus credenciales previamente creadas (*Already registered?* = Yes) y accede a la sección principal *Home*. El sistema detecta que el check-in está pendiente (*Already did check-in?* = No), permitiendo completar el *Digital check-in*. Una vez activo, el huésped desbloquea la llave digital y detalles de habitación, solicita servicios adicionales, consulta el mapa del hotel y eventos, registra métodos de pago (tarjeta, Yape, Plin), procesa el *Digital check-out* y califica su estancia antes de cerrar sesión.
+
+![Happy Path - Huésped](assets/images/cap6/happypathhuesped.png)
+
+**Unhappy Paths (Rutas Alternativas y Manejo de Errores):**
+* *Código de reserva no válido:* En el registro de nuevos usuarios, si el código otorgado por el hotel expira o es erróneo (*Is code valid?* = No), se genera el error *"Error: Invalid or expired access code"*, guiando a solicitar un nuevo token de acceso.
+* *Check-in anticipado no permitido:* Si el huésped intenta registrar su llegada antes del horario estipulado (*Check-in allowed?* = No), se notifica *"Check-in opens later"* y la aplicación pasa a estado de espera.
+* *Indisponibilidad de servicios:* Al solicitar room service o amenities, si el catálogo marca agotado (*Service available?* = No), el sistema deriva a la pantalla *Wait for service available* en lugar de procesar cobros fallidos.
+
+![Unhappy Path - Huésped](assets/images/cap6/unhappypathhuesped.png)
+
+---
+
+#### 6.4.3.3. Personal operativo (Android nativo)
+
+* **User Persona:** Personal de Limpieza / Housekeeping / Mantenimiento.
+* **User Goal:** Registrar el ingreso de la jornada laboral, consultar las tareas asignadas en piso y confirmar el cierre operativo de servicios e incidencias.
+
+**Happy Path (Camino Ideal):**
+El colaborador inicia la app (*Opens App*), se autentica con sus credenciales institucionales y accede a la pantalla principal (*Access home section*). De inmediato puede: marcar su asistencia laboral (*Marks laboral check-in and check-out*), revisar el listado de actividades del día (*Views daily assigned tasks*), reportar incidencias directamente a administración, auditar su historial de desempeño o agregar servicios solicitados por los huéspedes. Para cada tarea completada, puede adjuntar evidencia fotográfica opcional (*Uploads photo evidence*) y sincronizar el estado.
+
+![Happy Path - Staff](assets/images/cap6/happypathstaff.png)
+
+**Unhappy Paths (Rutas Alternativas y Manejo de Errores):**
+* *Código corporativo erróneo:* Si el código de activación del hotel es inválido durante el alta del trabajador (*Is code valid?* = No), se bloquea el proceso con *"Error: Invalid or expired access code"*.
+* *Credenciales no coincidentes:* En caso de contraseña incorrecta, se despliega *"Incorrect Credentials"* con acceso al restablecimiento vía enlace por correo.
+* *Pérdida de conectividad en piso:* Durante las labores de mantenimiento o limpieza, al marcar una tarea como completada, el sistema valida la red (*Internet connection available?* = No); si no hay cobertura, retiene la transacción y emite la alerta *"Status not updated, try later"*, regresando al listado local sin pérdida de datos.
+
+![Unhappy Path - Staff](assets/images/cap6/unhappypathstaff.png)
+
+
+#### 6.4.3.4. Huésped web · Encontrar y reservar una habitación
+
+**User persona:** huésped que compara alojamientos antes de viajar. **User goal:** elegir una habitación y registrar una reserva con fechas válidas. **Pantallas:** [Catálogo](assets/images/cap6/web-catalogo.png), Explorar, Concierge, [Inicio de sesión](assets/images/cap6/web-acceso.png), [Nueva reserva](assets/images/cap6/web-nueva-reserva.png) y Detalle de reserva.
+
+```mermaid
+flowchart TD
+    A["Catálogo o Concierge"] --> B{"¿Hay opciones?"}
+    B -- No --> C["Ajustar filtros o consulta"] --> A
+    B -- Sí --> D["Elegir habitación"]
+    D --> E["Explorar en 3D o 360°"]
+    E --> D
+    D --> F{"¿Sesión activa?"}
+    F -- No --> G["Iniciar sesión y volver a elegir"] --> D
+    F -- Sí --> H["Completar fechas y datos"]
+    H --> I{"¿Reserva aceptada?"}
+    I -- Sí --> J["Ver detalle y estado"]
+    I -- No --> K["Revisar fechas o disponibilidad"] --> H
+```
+
+La exploración visual es opcional y depende de los recursos publicados para la habitación. Con sesión activa, una oferta del asistente puede trasladar sus fechas al formulario. Si la aplicación dirige al inicio de sesión, el formulario de acceso de esta versión retorna a Inicio y el huésped vuelve a elegir la oferta. El total y el estado se muestran con la respuesta del servicio Bookings.
+
+#### 6.4.3.5. Administrador web · Consultar y gestionar reservas
+
+**User persona:** administrador de hotel. **User goal:** localizar una reserva dentro del alcance asignado y revisar sus acciones disponibles. **Pantallas:** [Inicio de sesión](assets/images/cap6/web-acceso.png), [Gestión de reservas](assets/images/cap6/web-gestion-reservas.png) y Detalle de reserva. Como referencia visual, véanse los [mockups de administración](assets/images/cap6/mockupadmin1.png).
+
+```mermaid
+flowchart TD
+    A["Iniciar sesión"] --> B{"¿Rol administrativo?"}
+    B -- No --> C["Mostrar acceso restringido"]
+    B -- Sí --> D["Abrir gestión de reservas"]
+    D --> E["Seleccionar reserva"]
+    E --> F{"¿Acceso autorizado?"}
+    F -- No --> G["Mostrar error y volver al listado"] --> D
+    F -- Sí --> H["Consultar detalle y estado"]
+    H --> I{"¿Acción habilitada?"}
+    I -- Sí --> J["Confirmar o cancelar según el estado"]
+    I -- No --> K["Mantener consulta del detalle"]
+    J --> L["Mostrar resultado del servidor"]
+```
+
+La interfaz filtra las opciones según rol y hotel cuando corresponde. El backend determina el alcance y autoriza las operaciones. Ante un error de red o de negocio, el usuario puede consultar el estado antes de volver a actuar.
+
+## 6.5. Applications Prototyping
+
+El prototipo de Figma enlaza las pantallas de alta fidelidad para ensayar las tareas de administración, operación y estadía. En administración, la navegación lateral mantiene el acceso al catálogo y a las reservas. En las aplicaciones móviles, la navegación inferior agrupa las tareas frecuentes y conserva el contexto al abrir formularios o avisos. Los diálogos de confirmación y mensajes de error permiten revisar una acción y recuperarse de una entrada inválida.
+
+El [prototipo interactivo de SmartStay en Figma](https://www.figma.com/make/lML4HR5vLsAGMUq3CoqvcS/Minimalist-Photo-Portfolio?t=7b0vXYUcbQwt6eOT-1&preview-route=%2Fguest%2Flogin) figura en el informe del equipo. Las transiciones de Figma representan interacciones de diseño. La ejecución del cliente web y su conexión al gateway se describen en 7.1.4.
+
+| Aplicación | Recorrido para la grabación | Captura y enlace de Microsoft Stream |
+|---|---|---|
+| Web | Mostrar búsqueda, exploración 3D o 360°, formulario de reserva y detalle. Con el rol administrador, mostrar gestión de reservas y acceso restringido. | Pendientes de grabación e inserción. |
+| Android nativo · Staff | Abrir el prototipo, iniciar sesión, consultar tareas y mostrar confirmación de servicio o error de conexión. | Pendientes de grabación e inserción. |
+| Flutter · Huésped | Mostrar check-in digital, acceso a Mi Habitación y solicitud de servicio, incluida una ruta alternativa del prototipo. | Pendientes de grabación e inserción. |
+
+Para completar la evidencia, grabar entre 3 y 5 minutos por aplicación, priorizar los recorridos de negocio y añadir una captura del video con su enlace de Microsoft Stream. Identificar en pantalla qué recorrido se ejecuta en un prototipo y cuál corresponde al producto web conectado al backend.
