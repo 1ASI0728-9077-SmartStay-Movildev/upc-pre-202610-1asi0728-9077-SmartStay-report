@@ -9,7 +9,7 @@ La gestión de configuración de Smart Stay define cómo se prepara el entorno d
 
 ### 7.1.1. Software Development Environment Configuration
 
-#### Project Management
+**Project Management**
 
 Para la gestión del proyecto se emplearon herramientas de comunicación, planificación y control de versiones. Se creó una organización en GitHub para centralizar los repositorios y coordinar el trabajo colaborativo.
 
@@ -48,19 +48,19 @@ Métricas de seguimiento: burndown chart manual, velocity al cerrar cada Sprint 
 ![sprint_trello](assets/trello2.jpg)
 *Tablero Trello del Sprint 2 con Engineering Tasks en progreso*
 
-#### Requirement Management
+**Requirement Management**
 
 Trello se usó para la gestión visual de tareas. **UXPressia** sirvió para elaborar *User Personas*, *Empathy Maps*, *Journey Maps* y *Lean UX Canvas*, y **Miro** para construir los escenarios *As-Is* y *To-Be*.
 
 **Enlaces:** [Trello](https://trello.com/) · [UXPressia](https://uxpressia.com/) · [Miro](https://miro.com/es/)
 
-#### Product UX/UI Design
+**Product UX/UI Design**
 
 El equipo utilizó **Figma** para crear *wireframes*, *mockups* y *prototipos interactivos*, validando las propuestas de diseño antes de su implementación, con principios de usabilidad y diseño centrado en el usuario.
 
 **Enlace:** [Figma](https://www.figma.com/)
 
-#### Software Development
+**Software Development**
 
 | Componente | Tecnología | Herramienta |
 |---|---|---|
@@ -80,15 +80,15 @@ La instalación y el mantenimiento de los IDE se realizaron con **JetBrains Tool
 
 **Enlaces:** [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/) · [Rider](https://www.jetbrains.com/rider/) · [Android Studio](https://developer.android.com/studio) · [Flutter](https://flutter.dev/) · [Kotlin](https://kotlinlang.org/) · [Firebase](https://firebase.google.com/) · [MySQL](https://www.mysql.com/) · [Docker](https://www.docker.com/) · [Nginx](https://nginx.org/) · [ActiveMQ](https://activemq.apache.org/)
 
-#### Software Documentation
+**Software Documentation**
 
 La documentación se redactó en formato **Markdown (.md)** dentro de los repositorios, siguiendo GitFlow. Los endpoints de cada microservicio se documentan con Swagger mediante las anotaciones `[SwaggerOperation]` y `[SwaggerResponse]`. Los diagramas de arquitectura se escriben en Structurizr DSL, PlantUML y DBML.
 
-#### Software Testing
+**Software Testing**
 
 El cliente web usa el runner incluido en [Node.js](https://nodejs.org/). Las pruebas de backend se ejecutan con el SDK de [.NET](https://dotnet.microsoft.com/download), y la prueba de humo se dirige al gateway de un entorno de demostración. Las comprobaciones de navegación se realizan en el navegador, registrando la vista, el rol y el resultado observado.
 
-#### Software Deployment
+**Software Deployment**
 
 El backend se ejecuta con **Docker Compose** (detalle en 7.1.4). Las aplicaciones móviles se ejecutan y validan con el **emulador de Android Studio** y dispositivos físicos Android.
 
@@ -96,7 +96,7 @@ El backend se ejecuta con **Docker Compose** (detalle en 7.1.4). Las aplicacione
 
 ### 7.1.2. Source Code Management
 
-#### Repositorios del proyecto
+**Repositorios del proyecto**
 
 El proyecto está organizado en una **organización de GitHub**, donde cada módulo tiene su propio repositorio.
 
@@ -109,7 +109,7 @@ El proyecto está organizado en una **organización de GitHub**, donde cada mód
 
 El informe documenta **GitFlow** como modelo de trabajo del equipo. Para la entrega se deben vincular los commits, ramas y Pull Requests del frontend desde su repositorio. Los ZIP no incluyen historial Git.
 
-#### Estructura de la aplicación web
+**Estructura de la aplicación web**
 
 `src/` agrupa el código por dominio, entre ellos IAM, Accommodations, Bookings, Payments, Profiles, Analytics y Concierge. El código común reside en `src/shared/` y `src/router.js` centraliza rutas y control de acceso. `package.json` define los scripts y `tests/integration.test.js` reúne las pruebas disponibles. El archivo `package-lock.json` mencionado en el README no figura en el ZIP recibido. Conviene recuperarlo desde el repositorio antes de usar `npm ci`.
 | Backend (Web Services) | ASP.NET Core (.NET 9), microservicios | https://github.com/Movil-dev-Aplicaciones-Moviles/application-mobile-backend | Docker Compose |
@@ -117,7 +117,7 @@ El informe documenta **GitFlow** como modelo de trabajo del equipo. Para la entr
 
 Todos los repositorios siguen el modelo **GitFlow**.
 
-#### Estructura del repositorio backend
+**Estructura del repositorio backend**
 
 ```text
 backend/
@@ -141,7 +141,7 @@ backend/
 └── docs/                         # Documentación y ADR
 ```
 
-#### Flujo de trabajo GitFlow
+**Flujo de trabajo GitFlow**
 
 El flujo se basa en el modelo "A Successful Git Branching Model", con ramas específicas para cada funcionalidad o corrección.
 
@@ -196,11 +196,11 @@ main <---- (merge a main)
 
 Para los mensajes de commit, el equipo aplica Conventional Commits con la forma `tipo(alcance): descripción`. Por ejemplo, `docs(ux): documentar flujo de reservas` para documentación y `fix(bookings): mostrar estado de la reserva` para correcciones. Estos mensajes son ejemplos de la convención. Las versiones usan `vMAJOR.MINOR.PATCH` conforme a versionado semántico.
 
-#### Archivos excluidos del control de versiones
+**Archivos excluidos del control de versiones**
 
 El archivo `.env` contiene la cadena de conexión a MySQL y otros secretos, por lo que está en `.gitignore` y se excluye de los contextos Docker. En el repositorio solo existe `.env.example` como plantilla. Los secretos no se suben a Git ni se muestran en capturas del informe.
 
-#### Integración continua con GitHub Actions
+**Integración continua con GitHub Actions**
 
 El workflow `Docker` (`.github/workflows/docker-publish.yml`) construye y publica las imágenes de los microservicios:
 
@@ -214,7 +214,7 @@ El workflow `Docker` (`.github/workflows/docker-publish.yml`) construye y public
 
 En un Pull Request el workflow solo comprueba que las imágenes compilen, sin publicarlas. Nginx y ActiveMQ usan imágenes públicas y `migrate` se construye localmente, por lo que no forman parte de la matriz.
 
-#### Verificaciones de calidad
+**Verificaciones de calidad**
 
 Las pruebas del cliente se ejecutan con el runner nativo de Node. En la revisión de este ZIP se ejecutaron `npm test` (13 pruebas aprobadas) y `npm run build` (compilación correcta, con aviso de tamaño de algunos bloques JavaScript). Las pruebas de contrato y los recorridos con respuestas simuladas se registran como evidencia de esos entornos. El despliegue y las operaciones de negocio con servicios reales requieren evidencia independiente.
 
@@ -233,7 +233,7 @@ bash tools/smoke-mvp.sh                           # Prueba de humo end-to-end de
 
 El equipo adopta convenciones de nomenclatura y guías de estilo estandarizadas para mantener la coherencia, legibilidad y escalabilidad del código. Variables, funciones, clases y archivos se nombran en **inglés**, según las convenciones de cada lenguaje.
 
-#### Kotlin (Android Studio)
+**Kotlin (Android Studio)**
 
 Referencias: [Kotlin Coding Conventions](https://kotlinlang.org/docs/coding-conventions.html) y [Android Kotlin Style Guide](https://developer.android.com/kotlin/style-guide).
 
@@ -244,7 +244,7 @@ Referencias: [Kotlin Coding Conventions](https://kotlinlang.org/docs/coding-conv
 
 Componentes utilizados: `Activity`, `Fragment`, `RecyclerView`, `Intent`, `ViewModel`, Firebase y layouts XML.
 
-#### C# y ASP.NET Core (backend)
+**C# y ASP.NET Core (backend)**
 
 Referencias: [C# Coding Conventions](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions) y [ASP.NET Core fundamentals](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/).
 
@@ -269,11 +269,11 @@ Cada servicio se organiza por capas (`Domain`, `Application`, `Infrastructure` e
 - Las consultas SQL usan parámetros, sin concatenación de cadenas.
 - El script `tools/check-boundaries.sh` verifica estas fronteras automáticamente.
 
-#### JavaScript y Vue
+**JavaScript y Vue**
 
 La aplicación web utiliza componentes de archivo único `.vue`, con `<script setup>` en las vistas revisadas. Los nombres de archivo usan minúsculas y guiones, como `booking-form.vue`. Las funciones y variables se nombran en camelCase. La presentación, las reglas del dominio y el acceso HTTP se ubican en carpetas diferenciadas. Los textos de interfaz se centralizan en `src/locales/es.json` y `src/locales/en.json`. La comprobación disponible se ejecuta con `npm test` y `npm run build`.
 
-#### Buenas prácticas comunes
+**Buenas prácticas comunes**
 
 - Nomenclatura en inglés.
 - Principio **DRY** (*Don't Repeat Yourself*): evitar duplicación de código.
@@ -288,7 +288,7 @@ La aplicación web utiliza componentes de archivo único `.vue`, con `<script se
 
 El despliegue considera los aspectos que garantizan la disponibilidad y correcta operación de los componentes del sistema.
 
-#### Backend (Web Services)
+**Backend (Web Services)**
 
 El backend se ejecuta con **Docker Compose** a partir del archivo `compose.microservices.yml`. Solo la base de datos MySQL está alojada de forma remota (filess.io); los demás componentes corren como contenedores.
 
@@ -390,7 +390,7 @@ La dirección `https://<nombre-aleatorio>.trycloudflare.com` cambia en cada ejec
 
 Las contraseñas de demostración se entregan fuera del informe.
 
-#### Web Application Deployment
+**Web Application Deployment**
 
 El cliente se prepara en un entorno Node compatible con el proyecto y se conecta al gateway mediante `VITE_MOVILDEV_API_URL`. El valor es el origen HTTP o HTTPS, sin el sufijo `/api/v1`, que el cliente añade. Los archivos de entorno de Vite contienen configuración pública y se incorporan al build. Las claves de DeepSeek y las credenciales de infraestructura corresponden al backend.
 
@@ -402,7 +402,7 @@ El cliente se prepara en un entorno Node compatible con el proyecto y se conecta
 
 El README del frontend registra pruebas unitarias y compilación, consultas públicas al gateway real y flujos de navegador con respuestas simuladas. La prueba con cuentas reales de demostración y el enlace de despliegue web definitivo quedan por confirmar. El ZIP web no incluye un workflow de publicación.
 
-#### Mobile Application Deployment
+**Mobile Application Deployment**
 
 Las aplicaciones móviles se desarrollan con **Android Studio**: la del staff en **Kotlin** (Android nativo) y la del huésped en **Flutter**.
 
@@ -422,18 +422,18 @@ Las aplicaciones móviles se desarrollan con **Android Studio**: la del staff en
 
 *El emulador de Android Studio permite validar la aplicación móvil en distintos dispositivos y versiones de Android antes de su despliegue final.*
 
-#### Landing Page
+**Landing Page**
 
 La Landing Page se despliega con **GitHub Actions** en GitHub Pages: https://movil-dev-aplicaciones-moviles.github.io/landing-page/
 
-#### Integración y despliegue continuo (CI/CD)
+**Integración y despliegue continuo (CI/CD)**
 
 - Todos los repositorios están conectados a **GitHub** y siguen GitFlow.
 - En el backend, GitHub Actions construye las imágenes de los siete microservicios y las publica en `ghcr.io` al integrar en `main` o al etiquetar una versión.
 - En la Landing Page, GitHub Actions publica el sitio al fusionar en `main`.
 - Las versiones móviles se compilan y prueban desde Android Studio antes de cada entrega.
 
-#### Limitaciones conocidas
+**Limitaciones conocidas**
 
 - IoT para domótica está definido como diseño en el capítulo IV. La integración con un gateway IoT y la prueba de comandos y telemetría quedan pendientes en la versión entregada. ActiveMQ documenta mensajería entre servicios.
 - El código entregado no aporta evidencia de un componente Web3 desplegado. El visor disponible es una experiencia 3D/360° en el navegador.
@@ -442,3 +442,64 @@ La Landing Page se despliega con **GitHub Actions** en GitHub Pages: https://mov
 - La base MySQL gratuita de filess.io tiene límites de espacio y conexiones, por lo que se usan pocos datos, una instancia por API y `Pooling=false`.
 - Una sola base y credenciales compartidas son una simplificación académica; en producción cada servicio tendría su propia base.
 - El túnel de Cloudflare es temporal y adecuado para demostraciones, no para producción.
+
+### 7.2.1. Sprint 1
+
+#### 7.2.1.1. Sprint Planning 1.
+
+A través de una reunión en la plataforma Discord, se planteó el inicio del Sprint 1. Durante la sesión se discutieron los objetivos principales, el cronograma de trabajo y la distribución de tareas para el desarrollo de la presencia digital de la startup.
+
+| Sprint #                         | Sprint 1                                                                                                                                                                                          |
+|----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Sprint Planning Background**   |                                                                                                                                                                                                   |
+| Date                             | 2026-10-19                                                                                                                                                                                        |
+| Time                             | 09:30 pm (GMT-5)                                                                                                                                                                                  |
+| Location                         | Modalidad remota mediante la plataforma Discord                                                                                                                                                   |
+| Prepared By                      | Howard Robles, Guillermo Arturo                                                                                                                                                                   |
+| Attendees (to planning meeting)  | Arévalo Meza, John Telesforo <br /> Howard Robles, Guillermo Arturo <br /> Santur Tello, Andrea Elizabeth <br /> Verona Flores, Ítalo Sebastián <br />|
+| Sprint n-1 Review Summary        | No hubo sprint anterior                                                                                                                                                                           |
+| Sprint n-1 Retrospective Summary | No hubo sprint anterior                                                                                                                                                                           |
+| **Sprint Goal & User Stories**   |                                                                                                                                                                                                   |
+| Sprint 1 Goal                    | Entregar una primera versión de la landing page de SmartStay para que los administradores de hoteles y los huéspedes puedan conocer los beneficios de la plataforma según su perfil, consultar casos de éxito e información de la empresa, y solicitar una demostración o contactar al equipo comercial.                                                                                                                                                                                                 |
+| Sprint 1 Velocity                | 15                                                                                                                                                                                                  |
+| Sum of Story Points              | 15                                                                                                                                                                                                 |
+
+#### 7.2.1.2. Sprint Backlog 1.
+
+| ID | Historia de usuario | Story Points |
+|---|---|---:|
+| US-24 | Como visitante, quiero encontrar información según mi perfil de administrador de hotel o huésped para entender los beneficios de SmartStay. | 5 |
+| US-26 | Como visitante interesado, quiero consultar casos de éxito y testimonios de hoteles para evaluar cómo SmartStay puede aportar a la operación hotelera. | 5 |
+| US-27 | Como visitante interesado, quiero solicitar una demostración y contactar al equipo comercial para conocer mejor la plataforma. | 3 |
+| US-28 | Como visitante, quiero conocer la misión, la visión y los valores de SmartStay para entender la filosofía de la empresa. | 2 |
+| | **Sum of Story Points** | **15** |
+
+
+| Work-item / Task | Description | Estimation (hours) |
+|---|---|---:|
+| US24-01 | Definir los beneficios y las llamadas a la acción para administradores de hoteles y huéspedes. | 2 |
+| US24-02 | Implementar la navegación y las secciones de beneficios por perfil en la landing page. | 3 |
+| US24-03 | Verificar en escritorio y móvil que ambos perfiles encuentren su sección en menos de tres clics. | 2 |
+| US26-01 | Seleccionar y redactar los casos de éxito y testimonios con contenido validado por el equipo. | 2 |
+| US26-02 | Implementar la sección de casos de éxito y testimonios con tarjetas adaptables. | 2 |
+| US26-03 | Verificar que las tarjetas se lean correctamente en escritorio y móvil. | 1 |
+| US27-01 | Implementar el botón «Solicitar demo» y el formulario de contacto comercial. | 2 |
+| US27-02 | Validar los campos obligatorios y mostrar mensajes de confirmación y error. | 2 |
+| US27-03 | Probar el envío al canal comercial configurado y comprobar la respuesta al visitante. | 1 |
+| US28-01 | Redactar el contenido de misión, visión y valores. | 1 |
+| US28-02 | Implementar la sección «Sobre nosotros» y enlazarla desde la navegación o el pie de página. | 1 |
+| US28-03 | Verificar que el enlace funcione y que el contenido sea legible en móvil. | 1 |
+| | **Total de horas estimadas** | **20** |
+
+#### 7.2.1.3. Development Evidence for Sprint Review.
+
+#### 7.2.1.4. Testing Suite Evidence for Sprint Review.
+
+#### 7.2.1.5. Execution Evidence for Sprint Review.
+
+#### 7.2.1.6. Services Documentation Evidence for Sprint Review.
+
+#### 7.2.1.7. Software Deployment Evidence for Sprint Review.
+
+#### 7.2.1.8. Team Collaboration Insights during Sprint 1.
+
