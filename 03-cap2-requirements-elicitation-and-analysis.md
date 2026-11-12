@@ -119,7 +119,7 @@ El mercado de soluciones para gestión hotelera presenta diversos actores. Sin e
 
 Para posicionarse de forma efectiva frente a la competencia, **Smart Stay** implementará las siguientes estrategias:
 
-#### Estrategias
+***Estrategias***
 
 1. **Diferenciación Tecnológica**: Integrar la gestión hotelera con IoT de manera completa, algo que los competidores actuales aún no ofrecen de forma integral.
 2. **Enfoque en nicho**: Dirigirnos específicamente a hoteles boutique y pequeños (20-100 habitaciones), un segmento que los grandes como Oracle o Amadeus suelen dejar de lado.
@@ -127,7 +127,7 @@ Para posicionarse de forma efectiva frente a la competencia, **Smart Stay** impl
 4. **Soporte local y en español**: Ofrecer un acompañamiento cercano y personalizado que facilita la adopción, marcando una gran diferencia frente a competidores extranjeros.
 5. **Valor medible**: Compromiso claro de reducir los costos operativos entre un 10-20%.
 
-#### Tácticas
+***Tácticas***
 
 - **Programa piloto** con hoteles boutique de Lima para generar casos de éxito reales y testimonios auténticos.
 - **Alianzas estratégicas** con gremios turísticos (como FEDECATUR) para acelerar la adopción en el sector.
@@ -387,8 +387,6 @@ Esta tendencia refleja datos globales donde las reseñas en línea han reemplaza
 
 ## 2.3. Needfinding
 
-
-
 ### 2.3.1 User Personas
 
 Segmento 1 – Administradores de Hoteles Boutique y Pequeños en Lima
@@ -410,7 +408,7 @@ Se consideran dos segmentos con sus respectivos User Persona:
 
 ---
 
-### Matriz de Tareas
+***Matriz de Tareas***
 
 | Tarea / Task | Administradores Frecuencia | Administradores Importancia | Huéspedes Frecuencia | Huéspedes Importancia |
 |-------------|--------------------------|-----------------------------|----------------------|-----------------------|
@@ -435,16 +433,16 @@ Se consideran dos segmentos con sus respectivos User Persona:
 
 ---
 
-### Análisis
+***Análisis***
 
-#### Tareas de mayor frecuencia e importancia compartidas
+***Tareas de mayor frecuencia e importancia compartidas***
 
 - **Gestión de check-in/check-out digital:** Alta/Alta en ambos perfiles, siendo un punto crítico que impacta directamente en la experiencia del huésped y la eficiencia operativa.  
 - **Gestión de reseñas y reputación digital:** Alta importancia en ambos segmentos, ya que influye en la decisión de futuros clientes y en los ingresos del hotel.  
 
 ---
 
-#### Tareas críticas para Administradores
+***Tareas críticas para Administradores***
 
 Las tareas más relevantes están orientadas a la **optimización operativa mediante digitalización y tiempo real**, entre ellas:
 
@@ -461,7 +459,7 @@ Además, destaca el:
 
 ---
 
-#### Tareas críticas para Huéspedes
+***Tareas críticas para Huéspedes***
 
 El huésped presenta un enfoque **mobile-first**, priorizando:
 
@@ -477,14 +475,14 @@ También destacan:
 
 ---
 
-#### Diferencias clave
+***Diferencias clave***
 
 - **Administradores:** Enfocados en eficiencia operativa, coordinación interna y control de recursos.  
 - **Huéspedes:** Enfocados en rapidez, autonomía, comodidad y experiencia digital personalizada.  
 
 ---
 
-#### Coincidencias
+***Coincidencias***
 
 - Ambos segmentos valoran procesos rápidos y eficientes.  
 - Ambos dependen de una **correcta gestión de información en tiempo real**.  
@@ -496,19 +494,19 @@ El Empathy Mapping permite comprender en profundidad las emociones, pensamientos
 
 En el caso de Smart Stay, se elaboraron dos mapas de empatía diferenciados según los segmentos objetivos:
 
-##### 1. Segmento Objetivo 1: STAFF OPERATIVO
+***1. Segmento Objetivo 1: STAFF OPERATIVO***
 
-##### 2. Segmento Objetivo 2: HUÉSPEDES
+***2. Segmento Objetivo 2: HUÉSPEDES***
 
 Estos mapas permiten visualizar cómo cada tipo de usuario piensa, siente y actúa frente al servicio, además de reconocer los puntos de dolor (pains) y las ganancias esperadas (gains). El análisis conjunto de ambos segmentos brinda una visión integral para mejorar la eficiencia operativa del hotel y elevar la satisfacción del huésped, alineando tecnología y experiencia humana.
 
-#### 1. Segmento Objetivo 1: STAFF OPERATIVO
+***1. Segmento Objetivo 1: STAFF OPERATIVO***
 
 ![Empathy Map - Staff Operativo](./assets/images//cap2/empathy-staff.png)
 
 ---
 
-#### 2. Segmento Objetivo 2: HUÉSPEDES
+***2. Segmento Objetivo 2: HUÉSPEDES***
 
 ![Empathy Map - Huéspedes](./assets/images//cap2/empathy-guest.png)
 
@@ -555,4 +553,3 @@ Estos mapas permiten visualizar cómo cada tipo de usuario piensa, siente y act�
 | Financial Report             | Reporte financiero                 | Documento digital generado por el sistema que resume ingresos, gastos y métricas clave para evaluar la rentabilidad del hotel.                      |
 | Guest Feedback               | Retroalimentación del huésped      | Opiniones y calificaciones que los huéspedes comparten sobre su estadía, utilizadas para mejorar los servicios.                                     |
 
- 

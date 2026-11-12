@@ -5,6 +5,7 @@
 ## 7.1. Software Configuration Management
 
 La gestión de configuración de Smart Stay define cómo se prepara el entorno de desarrollo, cómo se versiona el código, qué convenciones se siguen y cómo se construye, empaqueta y ejecuta la solución. El backend está compuesto por **siete microservicios en ASP.NET Core (.NET 9)**: IAM, Accommodations, Bookings, Payments, Profiles, Analytics y Concierge. Se ejecutan como contenedores Docker detrás de un gateway **Nginx**, con mensajería en **ActiveMQ** y persistencia en **MySQL**. La solución incluye un cliente web en Vue y contempla aplicaciones móviles para el staff (Android nativo) y el huésped (Flutter). El código web y backend se revisó en los ZIP entregados. Los componentes móviles se describen según la documentación del equipo.
+La gestión de configuración de Smart Stay define cómo se prepara el entorno de desarrollo, cómo se versiona el código, qué convenciones se siguen y cómo se construye, empaqueta y ejecuta la solución. El backend está compuesto por **siete microservicios en ASP.NET Core (.NET 9)**: IAM, Accommodations, Bookings, Payments, Profiles, Analytics y Concierge. Se ejecutan como contenedores Docker detrás de un gateway **Nginx**, con mensajería en **ActiveMQ** y persistencia en **MySQL**. Los clientes son una aplicación Android nativa (Kotlin) para el staff operativo y una aplicación Flutter para el huésped.
 
 ### 7.1.1. Software Development Environment Configuration
 
@@ -41,6 +42,11 @@ Flujo de trabajo del Sprint:
 Métricas de seguimiento: burndown chart manual, velocity al cerrar cada Sprint y porcentaje de tareas completadas frente a las planificadas.
 
 **Evidencia por incorporar:** capturas o enlaces del tablero de los sprints 1 y 2.
+![sprint_trello](assets/trello.jpg)
+*Tablero Trello del Sprint 1 mostrando la organización de tareas*
+
+![sprint_trello](assets/trello2.jpg)
+*Tablero Trello del Sprint 2 con Engineering Tasks en progreso*
 
 #### Requirement Management
 
@@ -106,6 +112,10 @@ El informe documenta **GitFlow** como modelo de trabajo del equipo. Para la entr
 #### Estructura de la aplicación web
 
 `src/` agrupa el código por dominio, entre ellos IAM, Accommodations, Bookings, Payments, Profiles, Analytics y Concierge. El código común reside en `src/shared/` y `src/router.js` centraliza rutas y control de acceso. `package.json` define los scripts y `tests/integration.test.js` reúne las pruebas disponibles. El archivo `package-lock.json` mencionado en el README no figura en el ZIP recibido. Conviene recuperarlo desde el repositorio antes de usar `npm ci`.
+| Backend (Web Services) | ASP.NET Core (.NET 9), microservicios | https://github.com/Movil-dev-Aplicaciones-Moviles/application-mobile-backend | Docker Compose |
+| Landing Page | HTML, CSS, JavaScript | https://github.com/Movil-dev-Aplicaciones-Moviles/landing-page | GitHub Actions / GitHub Pages |
+
+Todos los repositorios siguen el modelo **GitFlow**.
 
 #### Estructura del repositorio backend
 
@@ -339,6 +349,7 @@ docker compose -f compose.microservices.yml ps
 ```
 
 Las migraciones se ejecutan una por servicio y de forma secuencial, nunca en paralelo. El comando `seed` prepara datos de demostración. Ejecutarlo en una base destinada a la demo y registrar la revisión del repositorio utilizada. El backend incluye la migración `20261109000000_AddRoomLayout` de Accommodations.
+Las migraciones se ejecutan una por servicio y de forma secuencial, nunca en paralelo. El comando `seed` agrega usuarios de demostración sin borrar datos existentes.
 
 **Arranque diario** (imágenes ya construidas y base inicializada):
 
@@ -407,6 +418,9 @@ Las aplicaciones móviles se desarrollan con **Android Studio**: la del staff en
 4. **Servicios integrados:** consumo de las APIs RESTful a través del gateway (URL local o del túnel) y Firebase para autenticación y notificaciones.
 
 **Evidencia por incorporar:** captura de la app móvil en el emulador o un dispositivo de prueba.
+![Android Studio Emulator](assets/Chapter-IIII//android-studio-emulator.jpg)
+
+*El emulador de Android Studio permite validar la aplicación móvil en distintos dispositivos y versiones de Android antes de su despliegue final.*
 
 #### Landing Page
 
