@@ -247,6 +247,13 @@ En el informe se documentó el trabajo realizado durante la elaboración del cap
 - [Bibliografía](10-bibliography.md#bibliografía)
 - [Anexos](11-annexes.md#anexos)
 
+- [Capítulo VI: Solution UI/UX Design](07-cap6-solution-ux-design.md#capítulo-vi-solution-uiux-design)
+  - [6.4.2. Applications Mock-ups](07-cap6-solution-ux-design.md#642-applications-mock-ups)
+  - [6.4.3. Applications User Flow Diagrams](07-cap6-solution-ux-design.md#643-applications-user-flow-diagrams)
+  - [6.5. Applications Prototyping](07-cap6-solution-ux-design.md#65-applications-prototyping)
+- [Capítulo VII: Product Implementation, Validation, and Deployment](08-cap7-product-implementation-validation-deployment.md#capítulo-vii-product-implementation-validation-and-deployment)
+  - [7.1. Software Configuration Management](08-cap7-product-implementation-validation-deployment.md#71-software-configuration-management)
+
 <div style="page-break-after: always;"></div>
 
 ## Student Outcome 3

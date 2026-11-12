@@ -4,6 +4,7 @@
 
 ## 7.1. Software Configuration Management
 
+La gestión de configuración de Smart Stay define cómo se prepara el entorno de desarrollo, cómo se versiona el código, qué convenciones se siguen y cómo se construye, empaqueta y ejecuta la solución. El backend está compuesto por **siete microservicios en ASP.NET Core (.NET 9)**: IAM, Accommodations, Bookings, Payments, Profiles, Analytics y Concierge. Se ejecutan como contenedores Docker detrás de un gateway **Nginx**, con mensajería en **ActiveMQ** y persistencia en **MySQL**. La solución incluye un cliente web en Vue y contempla aplicaciones móviles para el staff (Android nativo) y el huésped (Flutter). El código web y backend se revisó en los ZIP entregados. Los componentes móviles se describen según la documentación del equipo.
 La gestión de configuración de Smart Stay define cómo se prepara el entorno de desarrollo, cómo se versiona el código, qué convenciones se siguen y cómo se construye, empaqueta y ejecuta la solución. El backend está compuesto por **siete microservicios en ASP.NET Core (.NET 9)**: IAM, Accommodations, Bookings, Payments, Profiles, Analytics y Concierge. Se ejecutan como contenedores Docker detrás de un gateway **Nginx**, con mensajería en **ActiveMQ** y persistencia en **MySQL**. Los clientes son una aplicación Android nativa (Kotlin) para el staff operativo y una aplicación Flutter para el huésped.
 
 ### 7.1.1. Software Development Environment Configuration
@@ -40,6 +41,7 @@ Flujo de trabajo del Sprint:
 
 Métricas de seguimiento: burndown chart manual, velocity al cerrar cada Sprint y porcentaje de tareas completadas frente a las planificadas.
 
+**Evidencia por incorporar:** capturas o enlaces del tablero de los sprints 1 y 2.
 ![sprint_trello](assets/trello.jpg)
 *Tablero Trello del Sprint 1 mostrando la organización de tareas*
 
@@ -62,6 +64,7 @@ El equipo utilizó **Figma** para crear *wireframes*, *mockups* y *prototipos in
 
 | Componente | Tecnología | Herramienta |
 |---|---|---|
+| Aplicación web | Vue 3, JavaScript, Vite, Vue Router, Pinia, Axios, PrimeVue, vue-i18n y Three.js | Node.js y npm |
 | Backend (microservicios) | C# y ASP.NET Core (.NET 9), Entity Framework Core, Swagger (Swashbuckle) | JetBrains Rider |
 | Base de datos | MySQL alojada en filess.io (una sola base compartida; cada servicio usa sus propias tablas e historial de migraciones) | Contenedor `migrate` |
 | Mensajería asíncrona | Apache ActiveMQ Classic 5.18 | Consola web (puerto 8161) |
@@ -81,6 +84,10 @@ La instalación y el mantenimiento de los IDE se realizaron con **JetBrains Tool
 
 La documentación se redactó en formato **Markdown (.md)** dentro de los repositorios, siguiendo GitFlow. Los endpoints de cada microservicio se documentan con Swagger mediante las anotaciones `[SwaggerOperation]` y `[SwaggerResponse]`. Los diagramas de arquitectura se escriben en Structurizr DSL, PlantUML y DBML.
 
+#### Software Testing
+
+El cliente web usa el runner incluido en [Node.js](https://nodejs.org/). Las pruebas de backend se ejecutan con el SDK de [.NET](https://dotnet.microsoft.com/download), y la prueba de humo se dirige al gateway de un entorno de demostración. Las comprobaciones de navegación se realizan en el navegador, registrando la vista, el rol y el resultado observado.
+
 #### Software Deployment
 
 El backend se ejecuta con **Docker Compose** (detalle en 7.1.4). Las aplicaciones móviles se ejecutan y validan con el **emulador de Android Studio** y dispositivos físicos Android.
@@ -96,6 +103,15 @@ El proyecto está organizado en una **organización de GitHub**, donde cada mód
 | Componente | Tecnología | Repositorio | Despliegue |
 |---|---|---|---|
 | Aplicación móvil | Kotlin (Android nativo) | https://github.com/Movil-dev-Aplicaciones-Moviles/smartstay-application-mobile | Android Studio Emulator / APK de pruebas |
+| Aplicación web | Vue 3 y Vite | ZIP `frontend-web-main.zip`. URL del repositorio por confirmar con el equipo. | Vite local y compilación estática en `dist/` |
+| Backend (Web Services) | ASP.NET Core (.NET 9), microservicios | https://github.com/Movil-dev-Aplicaciones-Moviles/application-mobile-backend | Docker Compose |
+| Landing Page | HTML, CSS, JavaScript | https://github.com/Movil-dev-Aplicaciones-Moviles/landing-page | GitHub Actions / GitHub Pages |
+
+El informe documenta **GitFlow** como modelo de trabajo del equipo. Para la entrega se deben vincular los commits, ramas y Pull Requests del frontend desde su repositorio. Los ZIP no incluyen historial Git.
+
+#### Estructura de la aplicación web
+
+`src/` agrupa el código por dominio, entre ellos IAM, Accommodations, Bookings, Payments, Profiles, Analytics y Concierge. El código común reside en `src/shared/` y `src/router.js` centraliza rutas y control de acceso. `package.json` define los scripts y `tests/integration.test.js` reúne las pruebas disponibles. El archivo `package-lock.json` mencionado en el README no figura en el ZIP recibido. Conviene recuperarlo desde el repositorio antes de usar `npm ci`.
 | Backend (Web Services) | ASP.NET Core (.NET 9), microservicios | https://github.com/Movil-dev-Aplicaciones-Moviles/application-mobile-backend | Docker Compose |
 | Landing Page | HTML, CSS, JavaScript | https://github.com/Movil-dev-Aplicaciones-Moviles/landing-page | GitHub Actions / GitHub Pages |
 
@@ -178,6 +194,8 @@ main <---- (merge a main)
 - **Mobile App:** ramas `main`, `develop`, `feature/responsive-design` y `feature/multilanguage`; commits con `feat:`, `fix:` y `docs:`; Pull Requests con revisión de código.
 - **Backend:** ramas `main`, `develop`, `feature/api-rooms` y `feature/api-bookings`; versionado semántico con tags `v1.0.0` y `v1.1.0`.
 
+Para los mensajes de commit, el equipo aplica Conventional Commits con la forma `tipo(alcance): descripción`. Por ejemplo, `docs(ux): documentar flujo de reservas` para documentación y `fix(bookings): mostrar estado de la reserva` para correcciones. Estos mensajes son ejemplos de la convención. Las versiones usan `vMAJOR.MINOR.PATCH` conforme a versionado semántico.
+
 #### Archivos excluidos del control de versiones
 
 El archivo `.env` contiene la cadena de conexión a MySQL y otros secretos, por lo que está en `.gitignore` y se excluye de los contextos Docker. En el repositorio solo existe `.env.example` como plantilla. Los secretos no se suben a Git ni se muestran en capturas del informe.
@@ -197,6 +215,11 @@ El workflow `Docker` (`.github/workflows/docker-publish.yml`) construye y public
 En un Pull Request el workflow solo comprueba que las imágenes compilen, sin publicarlas. Nginx y ActiveMQ usan imágenes públicas y `migrate` se construye localmente, por lo que no forman parte de la matriz.
 
 #### Verificaciones de calidad
+
+Las pruebas del cliente se ejecutan con el runner nativo de Node. En la revisión de este ZIP se ejecutaron `npm test` (13 pruebas aprobadas) y `npm run build` (compilación correcta, con aviso de tamaño de algunos bloques JavaScript). Las pruebas de contrato y los recorridos con respuestas simuladas se registran como evidencia de esos entornos. El despliegue y las operaciones de negocio con servicios reales requieren evidencia independiente.
+
+El backend entregado incluye proyectos de pruebas .NET y un script de humo. El enunciado solicita también archivos de prueba `.feature` para Web Services. Esos archivos no se encontraron en el ZIP revisado y se deben recuperar o incorporar desde el repositorio correspondiente.
+
 
 ```bash
 dotnet test backend-aw-smartstay.sln -c Release   # Pruebas unitarias
@@ -245,6 +268,10 @@ Cada servicio se organiza por capas (`Domain`, `Application`, `Infrastructure` e
 - Los importes usan `decimal` y los precios los calcula el servidor, nunca el cliente.
 - Las consultas SQL usan parámetros, sin concatenación de cadenas.
 - El script `tools/check-boundaries.sh` verifica estas fronteras automáticamente.
+
+#### JavaScript y Vue
+
+La aplicación web utiliza componentes de archivo único `.vue`, con `<script setup>` en las vistas revisadas. Los nombres de archivo usan minúsculas y guiones, como `booking-form.vue`. Las funciones y variables se nombran en camelCase. La presentación, las reglas del dominio y el acceso HTTP se ubican en carpetas diferenciadas. Los textos de interfaz se centralizan en `src/locales/es.json` y `src/locales/en.json`. La comprobación disponible se ejecuta con `npm test` y `npm run build`.
 
 #### Buenas prácticas comunes
 
@@ -321,6 +348,7 @@ docker compose -f compose.microservices.yml restart gateway
 docker compose -f compose.microservices.yml ps
 ```
 
+Las migraciones se ejecutan una por servicio y de forma secuencial, nunca en paralelo. El comando `seed` prepara datos de demostración. Ejecutarlo en una base destinada a la demo y registrar la revisión del repositorio utilizada. El backend incluye la migración `20261109000000_AddRoomLayout` de Accommodations.
 Las migraciones se ejecutan una por servicio y de forma secuencial, nunca en paralelo. El comando `seed` agrega usuarios de demostración sin borrar datos existentes.
 
 **Arranque diario** (imágenes ya construidas y base inicializada):
@@ -362,6 +390,18 @@ La dirección `https://<nombre-aleatorio>.trycloudflare.com` cambia en cada ejec
 
 Las contraseñas de demostración se entregan fuera del informe.
 
+#### Web Application Deployment
+
+El cliente se prepara en un entorno Node compatible con el proyecto y se conecta al gateway mediante `VITE_MOVILDEV_API_URL`. El valor es el origen HTTP o HTTPS, sin el sufijo `/api/v1`, que el cliente añade. Los archivos de entorno de Vite contienen configuración pública y se incorporan al build. Las claves de DeepSeek y las credenciales de infraestructura corresponden al backend.
+
+1. En la raíz del frontend, instalar dependencias con `npm install`, o con `npm ci` si se recupera el lockfile del repositorio.
+2. Configurar el origen del gateway en `.env.development.local` y ejecutar `npm run dev`. Para una prueba local, usar `http://localhost:8080` si coincide con el puerto del gateway.
+3. Ejecutar `npm test` y `npm run build`. Configurar el origen de producción antes de compilar.
+4. Publicar el contenido de `dist/` en un alojamiento estático y configurar el retorno de `index.html` para las rutas de Vue Router, como `/catalog`. Si la web se sirve por HTTPS, usar también un gateway HTTPS.
+5. Verificar el catálogo y las rutas privadas desde el origen publicado. Si se utiliza el túnel temporal, mantener el gateway activo y reconstruir el frontend cuando cambie la URL.
+
+El README del frontend registra pruebas unitarias y compilación, consultas públicas al gateway real y flujos de navegador con respuestas simuladas. La prueba con cuentas reales de demostración y el enlace de despliegue web definitivo quedan por confirmar. El ZIP web no incluye un workflow de publicación.
+
 #### Mobile Application Deployment
 
 Las aplicaciones móviles se desarrollan con **Android Studio**: la del staff en **Kotlin** (Android nativo) y la del huésped en **Flutter**.
@@ -377,6 +417,7 @@ Las aplicaciones móviles se desarrollan con **Android Studio**: la del staff en
 3. **Compilación y ejecución:** se ejecutan en el emulador y en dispositivos físicos. Android Studio genera los APK de prueba (`./gradlew :app:assembleDebug`) y se instalan con `adb install`. Las versiones se administran con GitHub y GitFlow.
 4. **Servicios integrados:** consumo de las APIs RESTful a través del gateway (URL local o del túnel) y Firebase para autenticación y notificaciones.
 
+**Evidencia por incorporar:** captura de la app móvil en el emulador o un dispositivo de prueba.
 ![Android Studio Emulator](assets/Chapter-IIII//android-studio-emulator.jpg)
 
 *El emulador de Android Studio permite validar la aplicación móvil en distintos dispositivos y versiones de Android antes de su despliegue final.*
@@ -393,6 +434,10 @@ La Landing Page se despliega con **GitHub Actions** en GitHub Pages: https://mov
 - Las versiones móviles se compilan y prueban desde Android Studio antes de cada entrega.
 
 #### Limitaciones conocidas
+
+- IoT para domótica está definido como diseño en el capítulo IV. La integración con un gateway IoT y la prueba de comandos y telemetría quedan pendientes en la versión entregada. ActiveMQ documenta mensajería entre servicios.
+- El código entregado no aporta evidencia de un componente Web3 desplegado. El visor disponible es una experiencia 3D/360° en el navegador.
+
 
 - La base MySQL gratuita de filess.io tiene límites de espacio y conexiones, por lo que se usan pocos datos, una instancia por API y `Pooling=false`.
 - Una sola base y credenciales compartidas son una simplificación académica; en producción cada servicio tendría su propia base.
