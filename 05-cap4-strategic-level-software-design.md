@@ -890,3 +890,4 @@ flowchart TD
 El servicio Concierge aporta recomendaciones de alojamiento e incluye una integración configurable con DeepSeek y un respaldo. Accommodations proporciona datos para explorar habitaciones en 3D y 360° desde el navegador. El endpoint llamado `/vr` entrega la descripción de una escena 3D y, por sí solo, no acredita una experiencia con WebXR o visor de realidad virtual.
 
 **Observación sobre Web3:** se menciona en el enunciado general del curso, pero los paquetes revisados no aportan evidencia de una DApp, red blockchain o contrato inteligente. Su alcance en SmartStay queda pendiente de confirmar con el docente.
+

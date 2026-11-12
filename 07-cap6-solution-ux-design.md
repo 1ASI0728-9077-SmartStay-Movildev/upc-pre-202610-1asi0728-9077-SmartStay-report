@@ -1608,3 +1608,4 @@ El [prototipo interactivo de SmartStay en Figma](https://www.figma.com/make/lML4
 Para completar la evidencia, grabar entre 3 y 5 minutos por aplicación, priorizar los recorridos de negocio y añadir una captura del video con su enlace de Microsoft Stream. Identificar en pantalla qué recorrido se ejecuta en un prototipo y cuál corresponde al producto web conectado al backend.
 - **Enlace al Prototipo Interactivo en Figma:**  
   [Abrir Prototipo Interactivo Smart Stay](https://www.figma.com/make/lML4HR5vLsAGMUq3CoqvcS/Minimalist-Photo-Portfolio?t=7b0vXYUcbQwt6eOT-1&preview-route=%2Fguest%2Flogin)
+
