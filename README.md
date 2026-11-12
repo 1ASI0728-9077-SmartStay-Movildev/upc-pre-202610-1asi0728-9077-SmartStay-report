@@ -81,6 +81,7 @@ Proyecto
 |2.1 | 10/11/2026 | Arévalo Meza, John Telesforo | Creación del  Software Configuration Management |
 | 2.2 | 10/11/2026 | Santur Tello, Andrea Elizabeth | Creación del  UX and configuration sections |
 | 2.3 | 10/11/2026 | Verona Flores, Ítalo Sebastián | Creación del  Sprint Planning 1. |
+| 2.4 | 10/11/2026 | Howard Robles, Guillermo Arturo | Creación del  Development Evidence |
 
 ---
 
