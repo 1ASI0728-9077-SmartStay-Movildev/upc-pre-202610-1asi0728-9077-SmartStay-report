@@ -585,7 +585,59 @@ Durante el Sprint 1 se avanzó en el diseño de la landing page de SmartStay y s
 
 #### 7.2.1.7. Software Deployment Evidence for Sprint Review.
 
+El backend de SmartStay se preparó para la demo con Docker Compose. Los siete microservicios .NET, ActiveMQ y el gateway Nginx se ejecutan en una computadora del equipo. MySQL está alojado en filess.io, por lo que los datos se conservan al detener los contenedores.
 
+- **Base de datos.** Se configuró una base MySQL compartida en filess.io y se aplicaron las migraciones. Los seis servicios que usan MySQL mantienen sus propias tablas e historial de migraciones. Concierge funciona sin base de datos. La conexión se configura con `MYSQL_CONNECTION_STRING` en un archivo `.env` local, excluido de Git.
+- **Ejecución del backend.** Docker Compose levanta los servicios y Nginx reúne las rutas de la API en `http://localhost:8080`. Se verificaron el estado del gateway y el flujo de inicio de sesión, consulta del catálogo, creación, consulta y cancelación de una reserva.
+- **Acceso para la demo.** Cloudflare Tunnel permite exponer el gateway mediante una URL HTTPS temporal. Esa dirección sirve como URL base para conectar el frontend. El acceso público depende de que la computadora, Docker y el túnel sigan activos.
+
+Los pasos para iniciar el backend, comprobar `/health` y abrir el túnel quedaron documentados en el [README del backend](https://github.com/1ASI0728-9077-SmartStay-Movildev/backend/blob/67323de/README.md).
 
 #### 7.2.1.8. Team Collaboration Insights during Sprint 1.
+
+Se crearon ramas específicas para cada actions (feature/[actions-entite-command/query]), permitiendo un trabajo paralelo organizado.
+
+Cada miembro del equipo asumió la responsabilidad de desarrollar una o más secciones del Landing page y app web. Se realizaron commits frecuentes, registrando avances de manera continua y detallada. Las funcionalidades desarrolladas se integraron mediante Pull Requests hacia la rama develop con ayuda de la herramienta GitFlowHelper. Se mantuvo una comunicación constante mediante la plataforma Discord para coordinar avances y resolver dudas en tiempo real. Se aplicaron buenas prácticas de programación, control de versiones y colaboración en equipo.
+
+***Backend***
+
+**Analíticos de colaboración**
+
+Permite visualizar y analizar la participación del equipo en tareas colaborativas, identificando el nivel de actividad y compromiso de cada miembro para optimizar la coordinación y la productividad.
+
+<img src="assets/images/cap7/Analytics_Colaborations_Backend_1.png" alt="cap5" style="height: 500px !important; width: 700px !important;">
+
+**Analíticos de commits de GitHub**
+
+Muestra el historial y frecuencia de commits realizados en GitHub, ayudando a evaluar el ritmo de desarrollo, la contribución individual y detectar posibles cuellos de botella en el flujo de trabajo.
+
+<img src="assets/images/cap7/Analytics_Commitss_Backend_1.png" alt="cap5" style="height: 500px !important; width: 700px !important;">
+
+***Frontend móvil***
+
+**Analíticos de colaboración**
+
+Permite visualizar y analizar la participación del equipo en tareas colaborativas, identificando el nivel de actividad y compromiso de cada miembro para optimizar la coordinación y la productividad.
+
+<img src="assets/images/cap7/Analytics_Colaborations_Front_Movil_1.png" alt="cap5" style="height: 500px !important; width: 700px !important;">
+
+**Analíticos de commits de GitHub**
+
+Muestra el historial y frecuencia de commits realizados en GitHub, ayudando a evaluar el ritmo de desarrollo, la contribución individual y detectar posibles cuellos de botella en el flujo de trabajo.
+
+<img src="assets/images/cap7/Analytics_Commitss_Front_Movil_1.png" alt="cap5" style="height: 500px !important; width: 700px !important;">
+
+***Frontend web**
+
+**Analíticos de colaboración**
+
+Permite visualizar y analizar la participación del equipo en tareas colaborativas, identificando el nivel de actividad y compromiso de cada miembro para optimizar la coordinación y la productividad.
+
+<img src="assets/images/cap7/Analytics_Colaborations_Front_Web_1.png" alt="cap5" style="height: 500px !important; width: 700px !important;">
+
+**Analíticos de commits de GitHub**
+
+Muestra el historial y frecuencia de commits realizados en GitHub, ayudando a evaluar el ritmo de desarrollo, la contribución individual y detectar posibles cuellos de botella en el flujo de trabajo.
+
+<img src="assets/images/cap7/Analytics_Commitss_Front_Web_1.png" alt="cap5" style="height: 500px !important; width: 700px !important;">
 
