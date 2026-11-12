@@ -79,7 +79,7 @@ Proyecto
 |1.7| 04/10/2026 | Howard Robles, Guillermo Arturo | Creacion del outcome tp1 |
 |2.0 | 04/10/2026 | Howard Robles, Guillermo Arturo | Correcciones del TB1 |
 |2.1 | 10/11/2026 | Arévalo Meza, John Telesforo | Creación del  Software Configuration Management |
-
+| 2.2 | 10/11/2026 | Santur Tello, Andrea Elizabeth | Creación del  UX and configuration sections |
 
 ---
 
