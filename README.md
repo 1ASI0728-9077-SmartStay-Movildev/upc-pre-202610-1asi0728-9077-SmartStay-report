@@ -84,6 +84,7 @@ Proyecto
 | 2.4 | 10/11/2026 | Howard Robles, Guillermo Arturo | Creación del  Development Evidence |
 | 2.5 | 11/11/2026 | Howard Robles, Guillermo Arturo | Creación del  Execution Evidence for Sprint Review.|
 | 2.6 | 11/11/2026 | Howard Robles, Guillermo Arturo | Creación del  Team report evidence.|
+| 2.7 | 11/11/2026 | Howard Robles, Guillermo Arturo | Creación del  Student Outcome av2.|
 
 ---
 
@@ -276,47 +277,60 @@ En el informe se documentó el trabajo realizado durante la elaboración del cap
 </thead>
 <tbody>
     <tr>
-        <td style="padding: 15px; text-align: left; vertical-align: top; font-weight: bold;">Comunica oralmente sus ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.</td>
+        <td style="padding: 15px; text-align: left; vertical-align: top; font-weight: bold;">
+            Comunica oralmente sus ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.
+        </td>
         <td style="padding: 15px; text-align: left; vertical-align: top;">
             <strong>Arévalo Meza, John Telesforo</strong><br>
-            <strong>AV1:</strong> Presentó al equipo y al docente el planteamiento inicial de los bounded contexts Operational Tasks, Bookings & Payment e IoT Stay & Experience.<br>
-            <strong>TP1:</strong> Sustentó la versión completa de dichos bounded contexts, explicando sus responsabilidades y su integración con el resto del sistema.<br><br>
+            <strong>AV1:</strong> Presentó al equipo y al docente el planteamiento inicial de los bounded contexts Operational Tasks, Bookings &amp; Payment e IoT Stay &amp; Experience.<br>
+            <strong>TP1:</strong> Sustentó la versión completa de dichos bounded contexts, explicando sus responsabilidades y su integración con el resto del sistema.<br>
+            <strong>AV2:</strong> Presentó la versión inicial de la aplicación móvil y explicó cómo las vistas 3D ayudan al huésped a conocer la habitación.<br><br>
             <strong>Howard Robles, Guillermo Arturo</strong><br>
             <strong>AV1:</strong> Presentó al equipo y al docente el planteamiento inicial de los bounded contexts IAM, Profiles, Bookings y Payments.<br>
-            <strong>TP1:</strong> Sustentó la versión completa de los bounded contexts, explicando sus responsabilidades y sus relaciones con los demás contextos.<br><br>
+            <strong>TP1:</strong> Sustentó la versión completa de los bounded contexts, explicando sus responsabilidades y sus relaciones con los demás contextos.<br>
+            <strong>AV2:</strong> Explicó cómo el frontend web se conecta con la API y cómo se preparó el backend para la demo con Docker Compose, MySQL en filess.io y Cloudflare Tunnel.<br><br>
             <strong>Santur Tello, Andrea Elizabeth</strong><br>
             <strong>AV1:</strong> Presentó la propuesta inicial de wireframes de la Landing Page y los primeros mockups.<br>
-            <strong>TP1:</strong> Sustentó la versión completa de los wireframes y mockups de la Landing Page, justificando las decisiones de diseño de interfaz.<br><br>
+            <strong>TP1:</strong> Sustentó la versión completa de los wireframes y mockups de la Landing Page, justificando las decisiones de diseño de interfaz.<br>
+            <strong>AV2:</strong> Explicó cómo la landing page presenta los beneficios de SmartStay a administradores de hoteles y huéspedes, y cómo orienta al visitante hacia la solicitud de una demo.<br><br>
             <strong>Verona Flores, Ítalo Sebastián</strong><br>
             <strong>AV1:</strong> Sustentación y explicación técnica de las decisiones de diseño arquitectónico estratégico basadas en Attribute-Driven Design (ADD) y EventStorming ante el equipo de desarrollo, pares académicos y el docente del curso. Presentó además la propuesta inicial de wireframes de las aplicaciones.<br>
             <strong>TP1:</strong> Sustentó la versión completa de los wireframes y mockups de las aplicaciones, explicando su alineación con los bounded contexts y las historias de usuario.<br>
+            <strong>AV2:</strong> Explicó cómo se reflejan las decisiones de arquitectura y las historias de usuario en los flujos de navegación de las aplicaciones.<br>
         </td>
         <td style="padding: 15px; text-align: left; vertical-align: top;">
             <strong>AV1:</strong> Se definió la visión del producto y objetivos mediante la participación del Product Owner y el equipo. Se elaboraron historias de usuario, análisis de competidores y needfinding. Se aplicó event storming y se diseñaron interfaces UX. Demostró la capacidad de transmitir conceptos complejos de arquitectura de software y diseño orientado a dominios (DDD) de manera clara y objetiva.<br><br>
-            <strong>TP1:</strong> El equipo consolidó un modelo de liderazgo compartido con autogestión de Bounded Contexts, asegurando la alineación con los objetivos del Sprint y la integración fluida entre componentes.<br>
+            <strong>TP1:</strong> El equipo consolidó un modelo de liderazgo compartido con autogestión de Bounded Contexts, asegurando la alineación con los objetivos del Sprint y la integración fluida entre componentes.<br><br>
+            <strong>AV2:</strong> El equipo comunicó los avances mediante ejemplos de uso de SmartStay. La explicación del flujo de inicio de sesión, catálogo y reservas permitió relacionar las decisiones técnicas con lo que el usuario puede hacer en la plataforma.<br>
         </td>
     </tr>
     <tr>
-        <td style="padding: 15px; text-align: left; vertical-align: top; font-weight: bold;">Comunica en forma escrita ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.</td>
+        <td style="padding: 15px; text-align: left; vertical-align: top; font-weight: bold;">
+            Comunica en forma escrita ideas y/o resultados con objetividad a público de diferentes especialidades y niveles jerárquicos, en el marco del desarrollo de un proyecto en ingeniería.
+        </td>
         <td style="padding: 15px; text-align: left; vertical-align: top;">
             <strong>Arévalo Meza, John Telesforo</strong><br>
-            <strong>AV1:</strong> Documentó la definición inicial de los bounded contexts Operational Tasks, Bookings & Payment e IoT Stay & Experience.<br>
-            <strong>TP1:</strong> Completó y refinó la documentación de dichos bounded contexts, dejándola estructurada y consistente con la solución desarrollada.<br><br>
+            <strong>AV1:</strong> Documentó la definición inicial de los bounded contexts Operational Tasks, Bookings &amp; Payment e IoT Stay &amp; Experience.<br>
+            <strong>TP1:</strong> Completó y refinó la documentación de dichos bounded contexts, dejándola estructurada y consistente con la solución desarrollada.<br>
+            <strong>AV2:</strong> Registró en GitHub la estructura inicial de la aplicación móvil, la incorporación de las vistas 3D y los cambios integrados mediante pull requests.<br><br>
             <strong>Howard Robles, Guillermo Arturo</strong><br>
             <strong>AV1:</strong> Documentó la definición inicial de los bounded contexts IAM, Profiles, Bookings y Payments.<br>
-            <strong>TP1:</strong> Completó y refinó la documentación de dichos bounded contexts, dejándola estructurada y consistente con la solución desarrollada.<br><br>
+            <strong>TP1:</strong> Completó y refinó la documentación de dichos bounded contexts, dejándola estructurada y consistente con la solución desarrollada.<br>
+            <strong>AV2:</strong> Documentó en el README cómo iniciar el backend con Docker Compose, verificar el estado del gateway y habilitar el acceso temporal con Cloudflare Tunnel. También dejó registradas las integraciones del frontend web con la API.<br><br>
             <strong>Santur Tello, Andrea Elizabeth</strong><br>
             <strong>AV1:</strong> Elaboró los primeros wireframes de la Landing Page y los mockups iniciales.<br>
-            <strong>TP1:</strong> Completó los wireframes y mockups de la Landing Page, y documentó su estructura y criterios de diseño.<br><br>
+            <strong>TP1:</strong> Completó los wireframes y mockups de la Landing Page, y documentó su estructura y criterios de diseño.<br>
+            <strong>AV2:</strong> Describió la estructura de la landing page, el contenido dirigido a cada tipo de visitante y la función de las llamadas a la acción.<br><br>
             <strong>Verona Flores, Ítalo Sebastián</strong><br>
             <strong>AV1:</strong> Redacción, estructuración y refinamiento técnico de los capítulos correspondientes al diseño a nivel estratégico de software, incluyendo el Attribute-Driven Design Inputs, la definición del Architectural Drivers Backlog y las decisiones de diseño arquitectónico (Architectural Design Decisions). Elaboró además los primeros wireframes de las aplicaciones.<br>
             <strong>TP1:</strong> Completó los wireframes y mockups de las aplicaciones, y documentó su estructura y criterios de diseño.<br>
+            <strong>AV2:</strong> Describió los flujos de navegación de las aplicaciones y su relación con las historias de usuario y las decisiones de arquitectura.<br>
         </td>
         <td style="padding: 15px; text-align: left; vertical-align: top;">
             <strong>AV1:</strong> Se estableció un flujo de trabajo basado en Gitflow y conventional commits. Se definieron metas semanales y se promovió la participación equitativa. El equipo cumplió con los objetivos del hito, evidenciando competencia para redactar documentación de ingeniería clara, estructurada y rigurosa.<br><br>
-            <strong>TP1:</strong> Se fomentó un entorno inclusivo mediante la rotación de responsabilidades. Se definieron metas con un Sprint Backlog detallado, entregando un producto funcional desplegado en múltiples plataformas.<br>
+            <strong>TP1:</strong> Se fomentó un entorno inclusivo mediante la rotación de responsabilidades. Se definieron metas con un Sprint Backlog detallado, entregando un producto funcional desplegado en múltiples plataformas.<br><br>
+            <strong>AV2:</strong> El equipo dejó evidencia escrita del desarrollo en el Sprint Backlog, el historial de commits y el README del backend. Estos registros permiten identificar qué se implementó y cómo reproducir la demo.<br>
         </td>
     </tr>
 </tbody>
 </table>
-

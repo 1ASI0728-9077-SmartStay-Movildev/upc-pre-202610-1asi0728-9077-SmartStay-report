@@ -1072,13 +1072,13 @@ La solución para el huésped ofrece una experiencia de autoservicio visualmente
    - Tarjeta virtual en degradado turquesa para la visualización de la tarjeta de crédito predeterminada y botón *+ Add New Card* para el registro de nuevos métodos de pago.
    - Capa de notificaciones superpuestas con avisos informativos sobre el estado de las solicitudes enviadas.
 
-   ### Applications User Flow Diagrams
+***Applications User Flow Diagrams***
 
 Los diagramas de flujo de usuario (*User Flow Diagrams*) modelan el recorrido lógico, secuencial y decisional que experimenta cada perfil de usuario al interactuar con las soluciones digitales de Smart Stay. Para cada segmento objetivo, se mapea tanto el camino ideal (*Happy Path*), donde las tareas se completan sin fricción, como las rutas alternativas o escenarios de error (*Unhappy Paths*), en los que se anticipan fallos de validación, interrupciones de conectividad o restricciones de disponibilidad operativa.
 
 ---
 
-#### 1. Rol: Administrador del Hotel (Web Application)
+***1. Rol: Administrador del Hotel (Web Application)***
 
 * **User Persona:** Director de Operaciones / Administrador General.
 * **User Goal:** Configurar los datos de la sede hotelera, parametrizar habitaciones/servicios y auditar métricas operativas y financieras desde el panel de control.
@@ -1098,7 +1098,7 @@ El usuario inicia en *Opens App*, selecciona *Login* e ingresa su correo y contr
 
 ---
 
-#### 2. Rol: Huésped del Hotel (Flutter Mobile App)
+***2. Rol: Huésped del Hotel (Flutter Mobile App)***
 
 * **User Persona:** Huésped Turista / Viajero de Negocios.
 * **User Goal:** Realizar el check-in digital de manera autónoma, operar los controles domóticos de la habitación y solicitar servicios complementarios durante su estadía.
@@ -1118,7 +1118,7 @@ El huésped abre la aplicación (*Opens App*), ingresa sus credenciales previame
 
 ---
 
-#### 3. Rol: Personal Operativo / Staff (Android Native App)
+***3. Rol: Personal Operativo / Staff (Android Native App)***
 
 * **User Persona:** Personal de Limpieza / Housekeeping / Mantenimiento.
 * **User Goal:** Registrar el ingreso de la jornada laboral, consultar las tareas asignadas en piso y confirmar el cierre operativo de servicios e incidencias.
@@ -1142,13 +1142,13 @@ El prototipado interactivo de las aplicaciones de Smart Stay tiene como propósi
 
 Los prototipos fueron construidos sobre **Figma**, articulando las pantallas de alta fidelidad (mock-ups) mediante microinteracciones, transiciones dinámicas entre contenedores y respuestas de estado ante eventos de entrada.
 
-#### Criterios y Características de Interacción
+***Criterios y Características de Interacción***
 
 - **Navegación ergonómica y persistente:** Implementación de barras inferiores de navegación (*Bottom Navigation Bar*) en las interfaces móviles para garantizar el alcance táctil con una sola mano, y menús laterales persistentes (*Sidebar*) en la plataforma web administrativa.
 - **Microinteracciones y feedback de estado:** Simulación de pulsaciones en botones primarios, interruptores para dispositivos domóticos (iluminación, aire acondicionado, cortinas), apertura de modales de confirmación y capas superpuestas de notificación.
 - **Recorridos funcionales completos:** Cobertura de las rutas críticas (*happy path*) y rutas alternas (*unhappy paths*) para cada uno de los tres perfiles del sistema.
 
-#### Recorridos Cubiertos en el Prototipo
+***Recorridos Cubiertos en el Prototipo***
 
 1. **Huésped (Flutter Mobile App):**
    - Recepción e inducción inicial (Intro / QR de estadía).
@@ -1171,7 +1171,7 @@ Los prototipos fueron construidos sobre **Figma**, articulando las pantallas de 
 
 ---
 
-#### Evidencias y Enlaces del Prototipo
+***Evidencias y Enlaces del Prototipo***
 
 
 ## 6.4. Applications UX/UI Design
@@ -1302,13 +1302,13 @@ La interfaz del huésped se orienta al confort y al autoservicio, minimizando lo
 
 ---
 
-#### Wireflows de referencia
+***Wireflows de referencia***
 
 Los diagramas de flujo basados en wireframes (*Wireflow Diagrams*) integran la distribución esquemática de las pantallas con las rutas de navegación e interacción del usuario dentro de cada aplicación de la solución. Permiten evaluar la arquitectura de transiciones, la accesibilidad de las acciones y la respuesta ante cambios de estado entre módulos.
 
 ---
 
-##### Web Application Wireflow – Modo Administrador
+***Web Application Wireflow – Modo Administrador***
 
 * **User Persona:** Administrador de Hotel Boutique / Director de Operaciones.
 * **User Goal:** Monitorear el rendimiento general del hotel desde el panel de control, auditar las reservas activas y verificar la satisfacción del cliente en las distintas sedes.
@@ -1332,7 +1332,7 @@ Los diagramas de flujo basados en wireframes (*Wireflow Diagrams*) integran la d
 
 ---
 
-##### Mobile Application Wireflow – Modo Staff (Android Nativo)
+***Mobile Application Wireflow – Modo Staff (Android Nativo)***
 
 * **User Persona:** Personal Operativo / Housekeeping / Mantenimiento.
 * **User Goal:** Autenticar el inicio de jornada, consultar las actividades asignadas del día y registrar el cumplimiento de servicios o limpieza en habitaciones.
@@ -1351,7 +1351,7 @@ Los diagramas de flujo basados en wireframes (*Wireflow Diagrams*) integran la d
 
 ---
 
-##### Mobile Application Wireflow – Modo Huésped (Flutter)
+***Mobile Application Wireflow – Modo Huésped (Flutter)***
 
 * **User Persona:** Huésped Turista / Viajero Corporativo.
 * **User Goal:** Gestionar la comodidad de su estancia de manera autónoma, controlando los dispositivos domóticos de su habitación y explorando los servicios disponibles del hotel.
